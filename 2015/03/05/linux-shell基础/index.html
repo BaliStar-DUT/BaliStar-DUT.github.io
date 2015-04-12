@@ -3,17 +3,35 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/12 | James&#39; blog</title>
+  <title>linux shell基础 | James&#39; blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分享，记录和积累">
-<meta property="og:type" content="website">
-<meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/archives/2014/12/">
+  <meta name="description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+1.1 shell基础
+shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
+1.2 VI编辑器
+Visual Interface 编辑器VI编辑器的操作模式  
+
+command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux shell基础">
+<meta property="og:url" content="http://balistardut.github.io/2015/03/05/linux-shell基础/">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="分享，记录和积累">
+<meta property="og:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+1.1 shell基础
+shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
+1.2 VI编辑器
+Visual Interface 编辑器VI编辑器的操作模式  
+
+command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="James' blog">
-<meta name="twitter:description" content="分享，记录和积累">
+<meta name="twitter:title" content="linux shell基础">
+<meta name="twitter:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+1.1 shell基础
+shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
+1.2 VI编辑器
+Visual Interface 编辑器VI编辑器的操作模式  
+
+command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
 <link rel="publisher" href="google.com/+yangDrawn">
 
   
@@ -72,39 +90,122 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2014/12/14/My-new-post/" class="archive-article-date">
-  <time datetime="2014-12-14T02:33:37.000Z" itemprop="datePublished">12月 14</time>
+        <section id="main"><article id="post-linux-shell基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/05/linux-shell基础/" class="article-date">
+  <time datetime="2015-03-05T02:26:53.000Z" itemprop="datePublished">3月 5 2015</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/12/14/My-new-post/">你好，世界</a>
+    <h1 class="article-title" itemprop="name">
+      linux shell基础
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/258" target="_blank" rel="external">慕课网：Linux达人养成计划I</a>  </p>
+<h3 id="1-1_shell基础">1.1 shell基础</h3>
+<p>shell是一个命令行解释器，与内核交互<br>linux 使用Bash 可以使用echo $SHELL 来查看shell类型  </p>
+<h3 id="1-2_VI编辑器">1.2 VI编辑器</h3>
+<p>Visual Interface 编辑器<br><strong>VI编辑器的操作模式</strong>  </p>
+<ul>
+<li><p><strong>command mode</strong>:命令模式<br> h 光标左移<br> j 光标下移<br> k 光标上移<br> l 光标右移<br> ctrl+f 向下翻页(front)<br> ctrl+b 向下翻页(back)<br> ctrl+d 向下翻半页(down)<br> ctrl+u 向上翻半页(up)<br> dd 删除光标所在行<br> o 在光标所在行的下方插入一行并切换到输入模式<br> yy 复执光标所在行<br> p 在光标所在行的下方粘贴<br> P 在光标所在行的上方粘贴  </p>
+</li>
+<li><p><strong>insert mode</strong>:输入模式  </p>
+</li>
+<li><strong>last line mode</strong>:底行模式也可归于命令模式<br> :w 保存<br> :q 退出<br> :! 强制<br> :ls 列出所有文件<br> :n 打开后一个文件 :N 打开前一个文件<br> :15 把光标快速定义到15行<br> /xxx 从光标位置向后搜索字符xxx<br> ?xxx 从光标位置向前搜字符xxx  <h3 id="1-2_脚本执行方式">1.2 脚本执行方式</h3>
+echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚本执行</strong>  </li>
+</ul>
+<ol>
+<li>赋予执行权限，直接运行<br>chmod 755 hello.sh<br>./hell.sh  </li>
+<li>通过Bash调用执行脚本<br> bash hello.sh  <h3 id="1-3_Bash的基本功能">1.3 Bash的基本功能</h3>
+<h4 id="1-3-1_命令别名与快捷键">1.3.1 命令别名与快捷键</h4>
+<strong>alias</strong> 查看系统中所有命令的别名<br>alias ls=’ls —color==never’ 修改ls的命令别名<br>alias 别名=‘原命令’  设定命令别名<br><strong>别名永久生效与删除别名</strong><br>vi ~/.bashrc  写入环境变量配置文件<br>unalias 别名 删除别名<br><strong>快捷键</strong><br>ctrl+l 清屏 clear<br>ctrl+c 强制终止当前命令<br>ctrl+a 光标移动到命令行首<br>ctrl+e 光标移动到命令行尾<br>ctrl+u 从光标所在位置删除到行首<br>ctrl+z 把命令放入后台<br>ctrl+r 在历史命令中搜索  <h3 id="1-4_输出重定向">1.4 输出重定向</h3>
+</li>
+<li>标准输入输出<br>| 设备    | 设备文件名 | 文件描述符 |  类型  |<br>| ———  |    ——-:  | :——:  | :——- |<br>| 键盘    | /dev/stdin |   0     | 标准输入 |<br>| 显示器  | /dev/stdout|   1   | 标准输出 |<br>| 显示器  | /dev/stderr|   2  | 标准错误输出 | </li>
+<li><p>输出重定向  </p>
+<blockquote>
+<p> >  标准输出重定向，单个大于号是覆盖<br> >&gt; 标准输出重定向，双大于号是追加<br> 2&gt;  标准错误重定向，覆盖<br> 2&gt;&gt; 标准错误重定向，追加<br> 命令 &gt; 文件 2&gt;&amp;1 已覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &gt;&gt; 文件 2&gt;&amp;1 以追加方式，<br> 命令 &amp;&gt; 文件 以覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &amp;&gt;&gt; 文件 以追加方式，<br> 命令 &gt;&gt; 文件1 2&gt;&gt;文件2 把标准输出追加到文件1中，把标准错误追加到文件2中  </p>
+</blockquote>
+</li>
+<li><p>输入重定向 &lt; 小于号<br> <strong>wc</strong> 统计行数，单词数，字符数<br> -c 统计字节数<br> -w 统计单词数<br> -l 统计行数<br> 命令 &lt; 文件 把文件作为命令的输入<br> 命令 &lt;&lt; 标识符 双小于号 极少用 </p>
+<h3 id="1-5_管道符">1.5 管道符</h3>
+<h4 id="多命令顺序执行">多命令顺序执行</h4>
+</li>
+<li>命令1; 命令2 命令1成功与否，命令2顺序执行  </li>
+<li>命令1&amp;&amp;命令2 逻辑与，命令1成功，命令2才执行，否则不执行  </li>
+<li>命令1||命令2 逻辑或，命令1成功，命令2不执行，否则执行  <h4 id="管道符">管道符</h4>
+<strong>命令1 | 命令2</strong> 命令1的正确输出作为命令2的操作对象<br>netstat -an | grep “ESTABLISHED” 查看连接到服务器的情况  <h4 id="通配符">通配符</h4>
+</li>
+</ol>
+<ul>
+<li>? 匹配一个任意字符</li>
+<li><ul>
+<li>匹配任意个字符  </li>
+</ul>
+</li>
+<li>[] 匹配括号中任意一个字符</li>
+<li>[-] 匹配括号中任意一个字符，-代表范围</li>
+<li>[^] 逻辑非，表示匹配不是中括号内的一个字符 </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/03/05/linux-shell基础/" data-id="0p9bq07jt1scxuvq" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/03/05/linux-shell基础/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/05/linux基础学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux常用命令</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2015/03/05/linux-shell基础/" data-title="linux shell基础" data-url="http://balistardut.github.io/2015/03/05/linux-shell基础/"></div>
+  </section>
 </section>
         
           <aside id="sidebar">
