@@ -100,13 +100,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>R语言</p>
-<h2 id="第一章_简介">第一章 简介</h2>
-<p><strong>1.1 认识R</strong><br>R控制台输入</p>
+        <h2 id="R语言"><strong>R语言</strong></h2>
+<h3 id="第一章_简介">第一章 简介</h3>
+<h4 id="1-1_认识R">1.1 认识R</h4>
+<p>R控制台输入  </p>
 <blockquote>
-<p>R.version<br>可以获得R的安装信息<br>getwd()<br>可以获得当前的工作目录<br>install.packages(‘RMySQL’)<br>安装’RMySQL’包<br>installed.packages()<br>查看当前已安装的R添加包<br>library()<br>查看当前已安装的R添加包，解释包的作用，信息更友好<br>old.packages()<br>查看是否有已安装的R添加包的新版本<br>update.packages()<br>更新所有已安装的R软件包<br>RSiteSearch(‘something’)<br>搜索邮件列表，R手册和R帮助页面中的关键词或词语<br><strong>1.2 R对象</strong><br>R中创建的每个对象都存储在计算机内存中，直到删除它们。对象名区分大小写。<br>ls()<br>objects()<br>可以列举出当前内存中存在的对象<br>rm()<br>可以删除对象来释放内存<br><strong>1.2 向量</strong><br>向量用来存储一组基本类型相同的数据。<br>可以用c()函数来创建向量<br>v &lt;- c(1,2,3,4,5)<br>创建了一个数值型向量，并赋值到v对象中<br>length(v)<br>获取向量v的长度<br>mode(v)<br>活取向量v的模式，即元素类型<br>v[2]<br>通过方括号中索引来访问某个元素<br>v[2] &lt;- “hello”<br>改变某个元素的值<br>x &lt;- vector()<br>创建空向量<br>如果使用不存在的索引，就会改变向量的长度<br><strong>1.3 向量化</strong><br>函数可以直接对向量的每个元素进行操作<br>v &lt;- c(1,2,3,4,5,6,7)<br>x &lt;- sqrt(v)<br>x将是向量v元素开方后的向量<br><strong>1.4 因子</strong><br>如果数据集有取指个数固定的名义变量，因子就很有用<br>g &lt;- c(“f”,”m”,”f”)<br>g &lt;- factor(g)<br>将向量g转换为一个因子，有2个水平“f”和”m“<br>other.g &lt;- factor(c(“m”,”m”),levels =c(“f”,”m”))<br>利用参数levels 将因子的水平变为两个<br>table()<br>table()函数用来获取多个因子的交叉表<br><strong>1.5 生成序列</strong><br>x &lt;- 1:1000<br>创建了向量x，包含1到1000的元素<br>seq(-4,1,0.5)<br>函数seq()生成从-4～1，以0.5为增量的序列<br>seq(from=1,to=5,length=4)<br>seq(length=10,from=-2,by=0.2)<br>生成不同序列<br>rep(5,10)<br>生成10个5的序列<br>rep(1:2,3)<br>生成3个1到2的序列，共6个数<br>gl(2,5，lables=c(“female”,”male”))<br>gl()函数生成2个水平(分别是female和male)的序列，每个水平重复5次<br>rnorm(10,mean=10,sd=3)<br>生成10个服从均值为10(默认为0)，标准差为3(默认为1)的正态分布随即数值<br>rt(5,df=10)<br>生成5个服从自由度为10的t分布的随即数值<br><strong>1.6 数据子集</strong><br>x[x&gt;0]<br>获取向量x种大于0的元素<br>x[ x&lt;=-2 | x&gt;5]<br>获取向量x中大于5或小于等于-2的元素<br>x[x&gt;40 &amp; x&lt;100]<br>获取大于40且小于100的元素<br>x[c(4,6)]<br>提取索引为4和6的元素<br>x[1:3]<br>提取索引从1到3的元素<br>x[-1]<br>表示删除索引为1的元素后的向量<br>x[-c(4,6)]<br>表示删除索引为4，6的元素<br>pH &lt;- c(4.5,7,7.3)<br>names(pH) &lt;- c(“area1”,”area2”,”area3”)<br>pH<br>通过names()函数可以给向量中的元素命名<br>pH &lt;- c(area1=4.5,area2=7,area3=7.3)<br>在创建向量时就赋值名字<br>pH[“area1”]</p>
-<h2 id="通过名字索引_">通过名字索引 </h2>
-<p><strong>1.7 矩阵与数组</strong><br>dim(m) &lt;- c(2,5)<br>将向量m变成2×5的矩阵，向量为10个元素，按列填充<br>m &lt;- matrix(c(1,2,3,4,5,6,7,8,9,10),2,5,byrow=T)<br>按行填充<br>m[1,]<br>输出矩阵m的第1行<br>m[,4]<br>输出矩阵的第4列<br>可以用colnames()和rownames()分布给矩阵的行和列命名<br>a &lt;- arrary(1:24),dim=c(4,3,2)<br>生成维度为4×3×2的三维数组，1：24填充<br><strong>1.8 列表</strong><br>R列表事以其他对象为成分的有序集合。元素不一定事同一种数据类型<br>my.list &lt;- list(stud.id=33334,stud.name=”Jone”,stud.marks=c(12,12,334,34))<br>生成一个列表<br>my.list$stud.id<br>获取列表的一个成分<br><strong>1.9 数据框</strong><br>my.dataset &lt;- data.frame(site=c(‘A’,’B’,’C’),season=c(‘Winter’,’Summer’,’Spring’),pH=c(7,8,9))<br>my.dataset<br>函数data.frame()生成一个数据框，其实是一个列表<br>attach(my.dataset)<br>my.dataset[site==’B’,]<br>查询site==B的数据行<br>detach(my.dataset)<br>禁止直接访问数据框的列<br>subset(my.dataset,pH&gt;8)<br>查询数据框my.dataset 中pH&gt;8的数据<br>my.dataset &lt;- edit(my.dataset)<br>可视化窗口编辑数据框<br>new.data&lt;- edit(data.frame())<br>创建一个新的数据框<br>data()<br>获取已安装的数据集<br>data(CO2)<br>应用某个数据集<br><strong>1.10 函数</strong><br>se &lt;- function （）{}<br>创建函数对象se<br><strong>1.11 R会话</strong><br>source(‘mycode.R’)<br>执行文件中的所有命令<br>getwd()<br>setwd()<br>获取和设置当前工作目录<br>save(f,my.dataset,file=’mysession.RData’)<br>在文件中保存f和my.dataset对象<br>load(‘mysession.RData’)<br>重新读入这些对象<br>save.image()<br>保存工作空间中的所有对象，保存在文件.RData中</p>
+<p>R.version<br>可以获得R的安装信息<br>getwd()<br>可以获得当前的工作目录<br>install.packages(‘RMySQL’)<br>安装’RMySQL’包<br>installed.packages()<br>查看当前已安装的R添加包<br>library()<br>查看当前已安装的R添加包，解释包的作用，信息更友好<br>old.packages()<br>查看是否有已安装的R添加包的新版本<br>update.packages()<br>更新所有已安装的R软件包<br>RSiteSearch(‘something’)<br>搜索邮件列表，R手册和R帮助页面中的关键词或词语  </p>
+<h4 id="1-2_R对象">1.2 R对象</h4>
+<p>R中创建的每个对象都存储在计算机内存中，直到删除它们。对象名区分大小写。<br>ls()<br>objects()<br>可以列举出当前内存中存在的对象<br>rm()<br>可以删除对象来释放内存  </p>
+<h4 id="1-3_向量">1.3 向量</h4>
+<p>向量用来存储一组基本类型相同的数据。<br>可以用c()函数来创建向量<br>v &lt;- c(1,2,3,4,5)<br>创建了一个数值型向量，并赋值到v对象中<br>length(v)<br>获取向量v的长度<br>mode(v)<br>活取向量v的模式，即元素类型<br>v[2]<br>通过方括号中索引来访问某个元素<br>v[2] &lt;- “hello”<br>改变某个元素的值<br>x &lt;- vector()<br>创建空向量<br>如果使用不存在的索引，就会改变向量的长度  </p>
+<h4 id="1-4_向量化">1.4 向量化</h4>
+<p>函数可以直接对向量的每个元素进行操作<br>v &lt;- c(1,2,3,4,5,6,7)<br>x &lt;- sqrt(v)<br>x将是向量v元素开方后的向量  </p>
+<h4 id="1-5_因子">1.5 因子</h4>
+<p>如果数据集有取指个数固定的名义变量，因子就很有用<br>g &lt;- c(“f”,”m”,”f”)<br>g &lt;- factor(g)<br>将向量g转换为一个因子，有2个水平“f”和”m“<br>other.g &lt;- factor(c(“m”,”m”),levels =c(“f”,”m”))<br>利用参数levels 将因子的水平变为两个<br>table()<br>table()函数用来获取多个因子的交叉表  </p>
+<h4 id="1-6_生成序列">1.6 生成序列</h4>
+<p>x &lt;- 1:1000<br>创建了向量x，包含1到1000的元素<br>seq(-4,1,0.5)<br>函数seq()生成从-4～1，以0.5为增量的序列<br>seq(from=1,to=5,length=4)<br>seq(length=10,from=-2,by=0.2)<br>生成不同序列<br>rep(5,10)<br>生成10个5的序列<br>rep(1:2,3)<br>生成3个1到2的序列，共6个数<br>gl(2,5，lables=c(“female”,”male”))<br>gl()函数生成2个水平(分别是female和male)的序列，每个水平重复5次<br>rnorm(10,mean=10,sd=3)<br>生成10个服从均值为10(默认为0)，标准差为3(默认为1)的正态分布随即数值<br>rt(5,df=10)<br>生成5个服从自由度为10的t分布的随即数值  </p>
+<h4 id="1-7_数据子集">1.7 数据子集</h4>
+<p>x[x&gt;0]<br>获取向量x种大于0的元素<br>x[ x&lt;=-2 | x&gt;5]<br>获取向量x中大于5或小于等于-2的元素<br>x[x&gt;40 &amp; x&lt;100]<br>活取大于40且小于100的元素<br>x[c(4,6)]<br>提取索引为4和6的元素<br>x[1:3]<br>提取索引从1到3的元素<br>x[-1]<br>表示删除索引为1的元素后的向量<br>x[-c(4,6)]<br>表示删除索引为4，6的元素<br>pH &lt;- c(4.5,7,7.3)<br>names(pH) &lt;- c(“area1”,”area2”,”area3”)<br>pH<br>通过names()函数可以给向量中的元素命名<br>pH &lt;- c(area1=4.5,area2=7,area3=7.3)<br>在创建向量时就赋值名字<br>pH[“area1”]<br>通过名字索引  </p>
+<h4 id="1-8_矩阵与数组">1.8 矩阵与数组</h4>
+<p>dim(m) &lt;- c(2,5)<br>将向量m变成2×5的矩阵，向量为10个元素，按列填充<br>m &lt;- matrix(c(1,2,3,4,5,6,7,8,9,10),2,5,byrow=T)<br>按行填充<br>m[1,]<br>输出矩阵m的第1行<br>m[,4]<br>输出矩阵的第4列<br>可以用colnames()和rownames()分布给矩阵的行和列命名<br>a &lt;- arrary(1:24),dim=c(4,3,2)<br>生成维度为4×3×2的三维数组，1：24填充  </p>
+<h4 id="1-9_列表">1.9 列表</h4>
+<p>R列表事以其他对象为成分的有序集合。元素不一定事同一种数据类型<br>my.list &lt;- list(stud.id=33334,stud.name=”Jone”,stud.marks=c(12,12,334,34))<br>生成一个列表<br>my.list$stud.id<br>获取列表的一个成分  </p>
+<h4 id="1-10_数据框">1.10 数据框</h4>
+<p>my.dataset &lt;- data.frame(site=c(‘A’,’B’,’C’),season=c(‘Winter’,’Summer’,’Spring’),pH=c(7,8,9))<br>my.dataset<br>函数data.frame()生成一个数据框，其实是一个列表<br>attach(my.dataset)<br>my.dataset[site==’B’,]<br>查询site==B的数据行<br>detach(my.dataset)<br>禁止直接访问数据框的列<br>subset(my.dataset,pH&gt;8)<br>查询数据框my.dataset 中pH&gt;8的数据<br>my.dataset &lt;- edit(my.dataset)<br>可视化窗口编辑数据框<br>new.data&lt;- edit(data.frame())<br>创建一个新的数据框<br>data()<br>获取已安装的数据集<br>data(CO2)<br>应用某个数据集  </p>
+<h4 id="1-11_函数">1.11 函数</h4>
+<p>se &lt;- function （）{}<br>创建函数对象se  </p>
+<h4 id="1-12_R会话">1.12 R会话</h4>
+<p>source(‘mycode.R’)<br>执行文件中的所有命令<br>getwd()<br>setwd()<br>获取和设置当前工作目录<br>save(f,my.dataset,file=’mysession.RData’)<br>在文件中保存f和my.dataset对象<br>load(‘mysession.RData’)<br>重新读入这些对象<br>save.image()<br>保存工作空间中的所有对象，保存在文件.RData中  </p>
 </blockquote>
 
       
