@@ -3,35 +3,38 @@
 <head>
   <meta charset="utf-8">
   
-  <title>linux shell基础 | James&#39; blog</title>
+  <title>linux 基础 | James&#39; blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+  <meta name="description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划II  
+1. shell基础
 1.1 shell基础
 shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
 1.2 VI编辑器
 Visual Interface 编辑器VI编辑器的操作模式  
 
-command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
+command mode:命令模式 h 光标左移 j 光标下移">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux shell基础">
-<meta property="og:url" content="http://balistardut.github.io/2015/03/05/linux-shell基础/">
+<meta property="og:title" content="linux 基础">
+<meta property="og:url" content="http://balistardut.github.io/2015/03/05/linux基础/">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+<meta property="og:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划II  
+1. shell基础
 1.1 shell基础
 shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
 1.2 VI编辑器
 Visual Interface 编辑器VI编辑器的操作模式  
 
-command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
+command mode:命令模式 h 光标左移 j 光标下移">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux shell基础">
-<meta name="twitter:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划I  
+<meta name="twitter:title" content="linux 基础">
+<meta name="twitter:description" content="学习Linux基础的笔记，视频教程来源慕课网：Linux达人养成计划II  
+1. shell基础
 1.1 shell基础
 shell是一个命令行解释器，与内核交互linux 使用Bash 可以使用echo $SHELL 来查看shell类型  
 1.2 VI编辑器
 Visual Interface 编辑器VI编辑器的操作模式  
 
-command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标右">
+command mode:命令模式 h 光标左移 j 光标下移">
 <link rel="publisher" href="google.com/+yangDrawn">
 
   
@@ -90,9 +93,9 @@ command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标�
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-linux-shell基础" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-linux基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/03/05/linux-shell基础/" class="article-date">
+    <a href="/2015/03/05/linux基础/" class="article-date">
   <time datetime="2015-03-05T02:26:53.000Z" itemprop="datePublished">3月 5 2015</time>
 </a>
     
@@ -108,7 +111,7 @@ command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标�
         
   
     <h1 class="article-title" itemprop="name">
-      linux shell基础
+      linux 基础
     </h1>
   
 
@@ -116,7 +119,8 @@ command mode:命令模式 h 光标左移 j 光标下移 k 光标上移 l 光标�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/258" target="_blank" rel="external">慕课网：Linux达人养成计划I</a>  </p>
+        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/111" target="_blank" rel="external">慕课网：Linux达人养成计划II</a>  </p>
+<h2 id="1-_shell基础">1. shell基础</h2>
 <h3 id="1-1_shell基础">1.1 shell基础</h3>
 <p>shell是一个命令行解释器，与内核交互<br>linux 使用Bash 可以使用echo $SHELL 来查看shell类型  </p>
 <h3 id="1-2_VI编辑器">1.2 VI编辑器</h3>
@@ -159,18 +163,29 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
 </li>
 <li>[] 匹配括号中任意一个字符</li>
 <li>[-] 匹配括号中任意一个字符，-代表范围</li>
-<li>[^] 逻辑非，表示匹配不是中括号内的一个字符 </li>
+<li>[^] 逻辑非，表示匹配不是中括号内的一个字符 <h2 id="2-_磁盘管理">2. 磁盘管理</h2>
+<strong>MBR分区</strong>  </li>
 </ul>
+<ol>
+<li>Linux系统中硬件设备都是以文件的形式存在于根目录下的dev目录下</li>
+<li>必须对磁盘进行分区，格式化，挂载后才能使用<br><strong>fdisk</strong><h2 id="3-_用户和用户组管理">3. 用户和用户组管理</h2>
+<strong>/etc/group存储当前系统种所有用户组信息</strong><br>group:x:0:yangz<br>组名：组密码：组编号：组中用户列表<br><strong>/etc/gshadow存储当前系统种用户组的密码</strong><br>group:<em>: : :<br>组名称：组密码：组管理者：组中用户名列表<br><strong>/etc/passwd</strong><br>user:x:123:456: ： ：<br>用户名：密码占位符：用户编号：用户组编号：用户注释信息：用户主目录：shell类型<br><em>*/etc/shadow</em></em>  <h3 id="3-1_用户和用户组基本命令">3.1 用户和用户组基本命令</h3>
+groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】【旧用户组名】 修改用户组名<br>groupmod -g 【用户组编号】【用户组名】修改用户组编号<br>groupdel [用户组名]s 删除用户组，需要先删除用户才能删除用户组  </li>
+</ol>
+<p>useradd -g [用户组名]【用户名】 添加用户到用户组<br>useradd -d /home/xxx imooc 指定用户个人文件夹<br>usermod -g [用户组名] 【用户名】 将用户添加到用户组中<br>userdel -r [用户名] 连同用户文件一起删除  </p>
+<p>passwd -l [用户名] 锁定一个用户的登陆<br>passwd -u [用户名] 解锁一个用户的登陆<br>passwd -d [用户名] 删除用户密码，可以无密码登陆  </p>
+<h3 id="3-2_用户和用户组进阶命令">3.2 用户和用户组进阶命令</h3>
+<p>gpasswd -a [用户名] [用户组]将用户添加到某个附属组<br>newgrp [附属组名称] 临时切换用户组到附属组<br>gpasswd -d [用户名] [用户组]将用户从某个附属组中删除<br>useradd -g [主用户组] -G [附属用户组。。。。] 添加用户时指定用户组<br>gpasswd [用户组名] 修改用户组密码<br>whoami 我是谁?<br>id [用户名] 显示用户详细信息<br>groups 【用户名】 显示用户所在组<br>chfn [用户名] 设置用户详细资料<br>finger [用户名] 显示用户详细资料  </p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://balistardut.github.io/2015/03/05/linux-shell基础/" data-id="0p9bq07jt1scxuvq" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://balistardut.github.io/2015/03/05/linux基础/" data-id="xl3luf2qmwgu4ml9" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://balistardut.github.io/2015/03/05/linux-shell基础/#ds-thread" class="article-comment-link">Comments</a>
+        <a href="http://balistardut.github.io/2015/03/05/linux基础/#ds-thread" class="article-comment-link">Comments</a>
       
 
       
@@ -192,7 +207,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
     </a>
   
   
-    <a href="/2015/03/05/linux基础学习/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/03/05/linux常用命令/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">linux常用命令</div>
     </a>
@@ -204,7 +219,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2015/03/05/linux-shell基础/" data-title="linux shell基础" data-url="http://balistardut.github.io/2015/03/05/linux-shell基础/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2015/03/05/linux基础/" data-title="linux 基础" data-url="http://balistardut.github.io/2015/03/05/linux基础/"></div>
   </section>
 </section>
         
@@ -214,7 +229,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -223,7 +238,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -232,7 +247,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
+      <a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 15.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 15.00px;">笔记</a>
     </div>
   </div>
 
@@ -241,7 +256,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -253,6 +268,14 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
       <ul>
         
           <li>
+            <a href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/28/linux系统扫描技术及安全防范/">linux系统扫描技术及安全防范</a>
+          </li>
+        
+          <li>
             <a href="/2015/04/23/R-基础/">R 基础</a>
           </li>
         
@@ -261,15 +284,7 @@ echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚�
           </li>
         
           <li>
-            <a href="/2015/03/05/linux-shell基础/">linux shell基础</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/05/linux基础学习/">linux常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/02/2015-03-02/">linux网络管理</a>
+            <a href="/2015/03/05/linux基础/">linux 基础</a>
           </li>
         
       </ul>

@@ -74,6 +74,264 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-linux常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/05/linux常用命令/" class="article-date">
+  <time datetime="2015-03-05T02:21:17.000Z" itemprop="datePublished">3月 5 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/05/linux常用命令/">linux常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/258" target="_blank" rel="external">慕课网：Linux达人养成计划I</a>  </p>
+<h3 id="第一节_linux命令格式">第一节  linux命令格式</h3>
+<h4 id="1-1_linux文件类型">1.1 linux文件类型</h4>
+<p>-rwxrwxrwx  1 root root 1207  </p>
+<ol>
+<li>第一位表示文件类型  <ul>
+<li>l表示软连接文件  </li>
+<li>d表示目录文件  </li>
+<li>块设备文件  </li>
+<li>字符设备文件  </li>
+<li>套接字文件  </li>
+<li>管道文件  </li>
+</ul>
+</li>
+<li>左三位表示所有者权限  </li>
+<li>中三位表示所在用户组权限  </li>
+<li>右三位表示其他用户权限<br>ls -i 查看文件id号  <h4 id="1-2_目录处理命令">1.2 目录处理命令</h4>
+</li>
+<li>建立目录<br> mkdir -p dir1/dir2 递归创建目录</li>
+<li>切换所在目录<br> cd dir1<br> cd ~ 回到home目录<br> cd - 回到上次的目录<br> ctrl+l 清理屏幕</li>
+<li>显示当前所在目录<br> pwd<br> list<br> ll = list -l</li>
+<li>删除目录（极少用了）<br> rmdir dir1 删除空白目录</li>
+<li>删除文件或目录<br> rm -r dir1  删除目录<br> rm file1  删除文件<br> rm -rf dir1或file1 强制删除，不可恢复<br> rm -rf /*  linux自杀命令  </li>
+<li>复制<br> cp -r dir1 dir2 复制目录<br> cp -p file1 file2 连带文件属性一起复制<br> cp -a dir1 dir2 目标文件与源文件属性一致  相当于cp -pdr </li>
+<li>剪切或改名<br> mv dir1或file1 dir2或file2 不同目录下为剪切<br> mv file1 file2  同一目录下为改名</li>
+<li>链接命令<br> ln -s file1 file2 创建软链接<br> 硬链接：拥有相同的文件ID,拥有相同的i节点和存储block块，可以看做一个文件。可通过i节点识别，不可跨分区，不能针对目录使用。<br> 有两个硬链接的文件，删掉一个，另一个还可访问。<br> 软链接：类似windows的快捷方式。<br> 软链接有自己的i节点和blocks<br> 删除原文件，软链接就不能使用了<br> <strong>软链接中源文件一定要写绝对路径</strong>s<h4 id="1-3_常用目录作用">1.3 常用目录作用</h4>
+</li>
+</ol>
+<ul>
+<li><strong>/</strong>  根目录</li>
+<li><strong>/bin</strong> 保存系统命令，所有用户都可用</li>
+<li><strong>/sbin</strong> 保存系统命令，只有超级用户才可用  </li>
+<li><strong>/usr/bin</strong> 系统命令，普通用户</li>
+<li><strong>/usr/sbin</strong> 系统命令，超级用户</li>
+<li><strong>/boot</strong> 系统启动目录</li>
+<li><strong>/dev</strong> 特殊文件保存目录</li>
+<li><strong>/etc</strong> 默认配置文件保存目录</li>
+<li><strong>/home</strong> 普通用户文件保存</li>
+<li><strong>/root</strong> 超级用户文件</li>
+<li><strong>/lib</strong> 函数库保存位置</li>
+<li><strong>/misc,/media,/mnt</strong> 空目录，作为外接介质分配盘符</li>
+<li><strong>/proc,/sys</strong> 不能直接操作，保存内存的挂载点，内存的盘符</li>
+<li><strong>/tmp</strong> 临时目录，可以随意放东西</li>
+<li><strong>/usr</strong> 系统软件资源目录</li>
+<li><strong>/var</strong> 系统相关文档内容<h4 id="1-4_文件搜索命令">1.4 文件搜索命令</h4>
+</li>
+</ul>
+<ol>
+<li>文件搜索命令 <strong>locate</strong> 只能搜索文件名<br>locate file1 搜索数据库/var/lib/mlocate中记录的文件，搜索速度较快，但是不能找到最新建立的文件,只能搜索文件名。<br><strong>updatedb</strong> 更新数据库<br>命令遵循配置文件/etc/updatedb.conf的规则进行搜索。</li>
+<li><p>文件搜索命令 <strong>find</strong><br> find 搜索范围 搜索条件<br> find / -name filename 在/下按文件名搜索filename<br> find /root -name “ab[cd]” 在/root下按文件名搜索abc或abd<br> find /root -name “<em>[cd]” 搜索以c或d结尾的文件<br> <em>*通配符</em></em>:</p>
+<ul>
+<li>*  匹配任意内容</li>
+<li>？ 匹配任意一个字符</li>
+<li>[] 匹配任意一个中括号内的字符<br>-i 不区分大小写<br>-user username 按用户名搜索<br>-nouser 按没有用户名的文件搜索，就是搜索垃圾文件或内核产生的文件，或外来文件<br><strong>find /root -mtime +10</strong> 查找10天前修改的文件<br><strong>find /root -mtime -10</strong> 查找10天内s修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性的时间<br>-mtime 修改文件内容的时间<br><strong>find . -size -25k</strong>查找当前目录下文件大小小于25k的文件<br><strong>find . -size +2M</strong>查找当前目录下文件大小大于2M的文件，必须大写<br><strong>find . -inum 261211</strong>查找当前目录下文件ID为.。的文件<br><strong>find /etc -size +20k -a -size -30k</strong> 查找目录下大于20k和小于30k大小的文件<br>-a 逻辑和<br>-o 逻辑或<br><strong>find /etc -size +20k -a -size -30k -exec ls -lh {}\; </strong><br>-exec 参数后面跟的是command命令，它的终止是以;为结束标志的，所以这句命令后面的分号是不可缺少的，考虑到各个系统中分号会有不同的意义，所以前面加反斜杠。<br>{} 花括号代表前面find查找出来的文件名。</li>
+</ul>
+</li>
+<li><p>命令搜索命令<br> <strong>whereis</strong> 不能搜索文件，只能搜索系统命令<br> whereis cmd 搜索命令cmd所在位置和帮助文档所在位置<br> -b 只查找可执行文件<br> -m 只查找帮助文档<br> <strong>which</strong> 查看命令和命令别名所在位置，但是不一定都能找到<br> cd是shell的内置命令，不是linux内置的命令，故无法在linux系统内找到。</p>
+</li>
+<li>字符串搜索命令 <strong>grep [选项] 字符串 文件名</strong>在文件种匹配符合条件的字符串<br> grep -i 忽略大小写<br> grep -v 排除指定字符串  </li>
+<li>find命令与grep命令的区别<br>find 在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，是完全匹配<br>grep 在文件中搜索符合条件的字符串，如果需要匹配，使用正则表达式进行匹配，是包含匹配，只要包含就能找到  <h4 id="1-5_帮助命令">1.5 帮助命令</h4>
+</li>
+<li><p><strong>man 内容</strong> 获取制定内容的帮助<br>man -f 内容 == whatis 内容 查看内容所在man的位置<br>man -数字 内容 查看man的第几部分的内容<br>man -k 内容 == apropos 内容 找到全部包含内容关键字的内容  </p>
+</li>
+<li><p><strong>其他帮助命令</strong><br> 命令 —help 获取命令选项帮助信息<br> help shell内部命令帮助<br> info 内容 找出内容所有的详细的信息  </p>
+<h4 id="1-6_压缩与解压缩命令">1.6 压缩与解压缩命令</h4>
+<p>常见压缩格式.zip,.gz,.bz2,.tar.gz,.tar.bz2  </p>
+</li>
+<li><p><strong>.zip格式</strong><br>zip 压缩文件名 源文件名  压缩文件<br>zip -r 压缩文件名 源目录 压缩目录<br>unzip 压缩文件 解压缩.zip文件  </p>
+</li>
+<li><p><strong>.gz格式压缩</strong><br>gzip 源文件 压缩为.gz格式的压缩文件，源文件会消失<br>gzip -c 源文件 &gt; 压缩文件 保留源文件，压缩到其他文件<br>gzip -r 目录 压缩目录下所有的子文件，但是不压缩目录<br>gzip -d 压缩文件 解压缩文件<br>gunzip 压缩文件 解压缩文件  </p>
+</li>
+<li><strong>.bz2格式压缩</strong><br>bzip2 源文件 压缩为bz2格式，不保留源文件<br>bzip2 -k 源文件 压缩后保留源文件<br>bzip2 命令不能塔索目录<br>bzip2 -d 压缩文件 解压缩，-k保留压缩文件<br>bunzip2 压缩文件 解压缩，-k保留压缩文件  </li>
+<li><strong>.tar打包命令</strong><br>tar -cvf 打包文件名 源文件<br>-c 打包 -v 显示过程 -f 显示打包后的文件名<br>tar -cvf abc.tar abc 将abc文件打包成abc.tar<br>tar -xvf 打包文件名 解打包文件<br>tar -zcvf 压缩包名.tar.gz 源文件 直接将文件压缩成.tar.gz格式<br>tar -zxvf 压缩包名.tar.gz 解压缩<br>tar -jcvf 压缩包名.tar.bz2 源文件 直接将文件压缩成.tar.bz2格式<br>tar -jxvf 压缩包名.tar.bz2 解压缩<br>tar -jxvf fiel.tar.bz2 -C /dir  制定解压目录  <h4 id="1-7_关机或重启命令">1.7 关机或重启命令</h4>
+</li>
+<li><strong>shutdown [选项] 时间 </strong>保存相关内容，更安全<br>-c: 取消前一个关机命令<br>-h: 关机<br>-r: 重启<br>以下命令关机不太安全，推荐用shutdown<br><strong>halt </strong><br><strong>poweroff </strong><br><strong>init 0</strong><br><strong>reboot</strong><br><strong>init 6</strong><br><strong>系统运行级别：0-6</strong><br>cat /etc/inittab 修改系统默认运行级别<br>runlevel 查询系统运行级别  <h4 id="1-8_挂载命令">1.8 挂载命令</h4>
+</li>
+<li><strong> mount [-t 文件类型]  [-o 特殊选项] 设备文件名 挂载点 </strong>挂载文件系统<br>-t 文件系统<br>mount 查看系统中已经挂载好的设备<br>mount -a 依据配置文件/etc/fstab的内容，自动挂载  </li>
+<li><strong> umount 设备文件名或挂载点 </strong>卸载文件系统<br>umount /home/yangz/UUI 卸载文件系统<br><strong>fdisk -l：</strong>查看U盘设备文件名<br><strong>mount -t vfat /dev/sdb1 /mnt/usb </strong>挂载U盘<br><strong>linux默认不支持NTFS设备</strong>  <h4 id="1-9_用户登陆与交互命令">1.9 用户登陆与交互命令</h4>
+</li>
+<li><strong>w 查看当前用户登陆信息</strong>  </li>
+<li><strong>last 查看历史登陆信息</strong>  </li>
+<li><strong>lastlog 查看所有用户的最后一次登陆时间</strong>  </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/03/05/linux常用命令/" data-id="dgrzf0yle99kbzx3" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/03/05/linux常用命令/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux网络管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/02/linux网络管理/" class="article-date">
+  <time datetime="2015-03-02T08:03:18.000Z" itemprop="datePublished">3月 2 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/02/linux网络管理/">linux网络管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Linux网络管理的笔记，视频教程来源<a href="http://www.imooc.com/learn/258" target="_blank" rel="external">慕课网：Linux网络管理</a>   </p>
+<h2 id="第一节">第一节</h2>
+<h3 id="1-1_ISO/OSI_七层模型">1.1  ISO/OSI 七层模型</h3>
+<p>应用层—&gt;表示层—&gt;会话层—&gt;传输层—&gt;网络层—&gt;数据连接层—&gt;物理层<br><strong>物理层</strong>：设备之间的比特流的传输、物理接口、电气特性等;<br><strong>数据链路层</strong>：成帧（写入mac地址）、用MAC地址访问媒介，错误检测与修正<br><strong>网络层</strong>：提供逻辑地址、选路（自动选路）<br><strong>传输层</strong>：可靠与不可靠的传输、传输前的错误检测，流量控制。确定端口号，两种协议TCP、UDP<br><strong>会话层</strong>：对应用会话的管理、同步<br><strong>表示层</strong>：数据的表现形式、特定功能的实现<br><strong>应用层</strong>：用户接口</p>
+<h3 id="1-2_TCP/IP">1.2 TCP/IP</h3>
+<p><strong>网络接口层</strong>：负责监视数据在主机和网络之间的交换<br>arp协议（地址解析协议）：将IP地址转换成物理地址，局域网内通过MAC地址传输，交换机只识别物理地址<br>cmd中 arp -a查看与本机有联系的IP地址和mac地址映射<br><strong>网际互联层</strong>：解决主机到主机的通信问题<br>IP协议：<br>ICMP协议：PING命令的原理<br><strong>传输层</strong>：<br>TCP协议：三次握手，面向连接可靠的协议 两军问题<br>UDP协议：<br><strong>应用层</strong>：<br>数据封装过程：<br>FTP默认端口：21</p>
+<h3 id="1-3_IP地址">1.3 IP地址</h3>
+<p>IP包头：<br>IP地址分类：<br>A类地址：1.0.0.0—126.255.255.255<br>B类地址：128.0.0.0—191.255.255.255<br>C类地址：192.0.0.0—223.255.255.255<br>D类和E类地址不对民用开放<br>用标准子网掩码来分割地址。<br>每个网段内有私有IP地址，用来局域网内分配。<br>私有IP不能直接访问公网，免费可以自己分配。<br>192.168.0.0—192.168.255.255</p>
+<h3 id="1-4_子网掩码">1.4 子网掩码</h3>
+<p>用来分割网络IP和主机IP<br>标准子网掩码和变长子网掩码。<br>IP和子网掩码同时使用才能确认此IP，不是同一网段需要用路由器路由。</p>
+<h3 id="1-5_端口的作用">1.5 端口的作用</h3>
+<p>端口是什么：传输层加入的，通过IP确定主机，通过端口确定服务类型。<br>www服务端口号：80<br>TCP协议包头和UDP协议包头中有端口号。<br>端口号长度是16位，一万以内的端口号给系统用的，一万以外的给自己用。<br>FTP（文件传输协议）：端口号 20 21<br>SSH （安全shell协议）：端口号 22<br>telnet（远程登录协议）：23<br>DNS（域名系统）：53<br>http：80<br>SMTP：25 发信<br>POP3:110 收信<br><strong>查看本机启用的端口：</strong><br>命令 ： netstat -an<br>UDP是无连接的，无状态的。</p>
+<h3 id="1-6_DNS的作用">1.6  DNS的作用</h3>
+<p>早期hosts文件是做静态IP和域名对应，优先于DNS来解析IP地址。<br>但是名称解析效能下降和主机维护困难</p>
+<p><strong>DNS服务</strong><br>层次性和分布性<br>首先向DNS服务器发送一个IP解析请求，客户机拿到IP后访问web服务器。</p>
+<p><strong>域名空间结构：</strong></p>
+<ul>
+<li>“.”根域名，根域名服务器全球只有13台，所有DNS服务器都知道根在哪儿。</li>
+<li>顶级域名：ISO分配的，固定的</li>
+<li>二级域名：个人或企业向服务商买的</li>
+<li>主机名：三级域名是二级域名购买后自己规定的。</li>
+</ul>
+<p>如何防范钓鱼网站？</p>
+<p><strong>DNS查询过程:</strong><br>客户机查询本地域名服务器，如果本地域名服务器没有，询问根DNS服务器，根知道顶级域名DNS在哪儿，查询顶级域名DNS服务器，接着查询二级域名服务器。<br><strong>迭代查询：</strong>根服务器，返回优化的查询结果，允许返回优化的值。返回的不一定是准确结果。<br><strong>递归查询：</strong>本地域名服务器，一定要返回一个结果。要么成功，要么失败，一定要有结果。一般客户机与服务器之间的是递归查询。</p>
+<h3 id="1-7_网关作用">1.7  网关作用</h3>
+<p>网关又称网间连接器，协议转换器 ，是一个服务器或路由器<br>MAC地址，48位。交换机闪烁时，记录插入端口的网卡的地址。交换机不认识IP，属于数据链路层的，IP属于网络层的。  </p>
+<ol>
+<li>局域网之间通信不需要，不同网段通信需要通过网关。  </li>
+<li>内网通过网关变成公网IP，公网IP转换成内网IP </li>
+</ol>
+<hr>
+<h2 id="第二节_Linux网络配置">第二节 Linux网络配置</h2>
+<h3 id="2-1_IP地址配置">2.1 IP地址配置</h3>
+<p>DHCP服务器：自动分配IP地址服务。<br>linux配置IP地址的方法：</p>
+<ol>
+<li>ifconfig命令临时配置IP地址（rethat系列的）<br> 临时配置，关机后丢失，所以不常用<br> ifconfig ethe0 192.168.0.200 netmask 255.255.2550</li>
+<li>setup工具永久配置IP地址<br> 红帽专有图形配置方式</li>
+<li>修改网络配置文件<br> hostname [主机名] 修改主机名  </li>
+<li>图形界面配置IP地址<h3 id="2-2_虚拟机网络配置">2.2 虚拟机网络配置</h3>
+</li>
+<li>推荐桥接方式</li>
+<li>NAT方式</li>
+<li>仅主机模式</li>
+</ol>
+<hr>
+<h2 id="第三节_Linux网络命令">第三节 Linux网络命令</h2>
+<h3 id="3-1_网络环境查看命令">3.1 网络环境查看命令</h3>
+<ul>
+<li>ifconfig：查看与配置网络状态</li>
+<li>ifdown:ifdown 网卡设备名 禁用该网卡设备</li>
+<li>ifup:ifup 网卡设备名 启动该网卡设备</li>
+<li>netstat:网络状态查询 netstat -tn 或 -un</li>
+<li>route: route -n 查看路由列表<br>route add/del default gw 192.168.1.1 临时设定网关</li>
+<li>nslookup: 域名解析命令,后面加域名即可解析。</li>
+</ul>
+<p>在一台服务器里，连内网的网卡是不能设置网关的。</p>
+<h3 id="3-2_linux测试命令">3.2 linux测试命令</h3>
+<ul>
+<li>ping [选项] IP地址 利用ICMP协议</li>
+<li>telnet [域名或IP] [端口] 远程管理与端口探测命令</li>
+<li>traceroute [域名或IP] 路由跟踪命令</li>
+<li>wget [下载地址] 下载命令</li>
+<li>tcpdump -i eth0 -nnX port 21  : 抓包命令。</li>
+<li>ftp和telnet，还有http都是用的明文传递，数据包可以被别人抓到，会泄露信息。</li>
+<li>https才是加密的，ssh替代telnet 是加密的。  </li>
+</ul>
+<hr>
+<h2 id="第四节_远程登录工具">第四节 远程登录工具</h2>
+<h3 id="4-1_SSH协议原理">4.1 SSH协议原理</h3>
+<p>非对称加密的原理，secure shell protocol<br>加密的，远程的，安全的加密协议。</p>
+<ul>
+<li>ssh 用户名@IP地址 远程登录指定linux服务器</li>
+<li>scp [-r] 用户名@ip:文件路径 本地路径 //下载文件</li>
+<li>scp [-r] 本地文件 用户名@ip:上传路径 //上传文件  </li>
+</ul>
+<h3 id="4-2_SecureCRT远程管理工具">4.2 SecureCRT远程管理工具</h3>
+<p>windows下远程登录linux服务器的工具，收费的  </p>
+<h3 id="4-3_XShell和WinSCP工具">4.3 XShell和WinSCP工具</h3>
+<p>XShell Windows下的远程管理工具<br>WinScp windows与linux通过网络传递文件的工具  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/03/02/linux网络管理/" data-id="73lolvfd7fsral1h" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/03/02/linux网络管理/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2015年2月8日" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/02/08/2015年2月8日/" class="article-date">
@@ -185,7 +443,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -194,7 +452,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -203,7 +461,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
+      <a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 15.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 15.00px;">笔记</a>
     </div>
   </div>
 
@@ -212,7 +470,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -224,6 +482,14 @@
       <ul>
         
           <li>
+            <a href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/28/linux系统扫描技术及安全防范/">linux系统扫描技术及安全防范</a>
+          </li>
+        
+          <li>
             <a href="/2015/04/23/R-基础/">R 基础</a>
           </li>
         
@@ -232,15 +498,7 @@
           </li>
         
           <li>
-            <a href="/2015/03/05/linux-shell基础/">linux shell基础</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/05/linux基础学习/">linux常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/02/2015-03-02/">linux网络管理</a>
+            <a href="/2015/03/05/linux基础/">linux 基础</a>
           </li>
         
       </ul>

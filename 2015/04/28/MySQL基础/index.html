@@ -3,17 +3,41 @@
 <head>
   <meta charset="utf-8">
   
-  <title>James&#39; blog</title>
+  <title>MySQL基础（上） | James&#39; blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分享，记录和积累">
-<meta property="og:type" content="website">
-<meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/">
+  <meta name="description" content="学习Linux基础的笔记，视频教程来源慕课网：与MySQL的零距离接触  
+为第一到第五章部分
+第一章 MySQL基本知识
+1.启动/关闭MySQL
+CMD中启动服务：net start mysqlCMD中停止服务：net stop mysql所有Windows服务都可以通过上面命令启动与关闭  
+2.登录与退出
+登录MySQL：mysql [参数]  
+
+-D ,—database=name 打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础（上）">
+<meta property="og:url" content="http://balistardut.github.io/2015/04/28/MySQL基础/">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="分享，记录和积累">
+<meta property="og:description" content="学习Linux基础的笔记，视频教程来源慕课网：与MySQL的零距离接触  
+为第一到第五章部分
+第一章 MySQL基本知识
+1.启动/关闭MySQL
+CMD中启动服务：net start mysqlCMD中停止服务：net stop mysql所有Windows服务都可以通过上面命令启动与关闭  
+2.登录与退出
+登录MySQL：mysql [参数]  
+
+-D ,—database=name 打">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="James' blog">
-<meta name="twitter:description" content="分享，记录和积累">
+<meta name="twitter:title" content="MySQL基础（上）">
+<meta name="twitter:description" content="学习Linux基础的笔记，视频教程来源慕课网：与MySQL的零距离接触  
+为第一到第五章部分
+第一章 MySQL基本知识
+1.启动/关闭MySQL
+CMD中启动服务：net start mysqlCMD中停止服务：net stop mysql所有Windows服务都可以通过上面命令启动与关闭  
+2.登录与退出
+登录MySQL：mysql [参数]  
+
+-D ,—database=name 打">
 <link rel="publisher" href="google.com/+yangDrawn">
 
   
@@ -72,9 +96,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/04/28/MySQL基础/" class="article-date">
   <time datetime="2015-04-28T08:39:32.000Z" itemprop="datePublished">4月 28 2015</time>
@@ -91,8 +113,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL基础（上）
     </h1>
   
 
@@ -255,342 +277,24 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-linux系统扫描技术及安全防范" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/28/linux系统扫描技术及安全防范/" class="article-date">
-  <time datetime="2015-04-28T08:31:57.000Z" itemprop="datePublished">4月 28 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/28/linux系统扫描技术及安全防范/">linux系统扫描技术及安全防范</a>
-    </h1>
+    <a href="/2015/04/28/linux系统扫描技术及安全防范/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux系统扫描技术及安全防范</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/344" target="_blank" rel="external">慕课网：Linux系统扫描技术及安全防范</a>  </p>
-<p>×内容不多，只是个引导作用×</p>
-<h3 id="第一章_概述">第一章 概述</h3>
-<p><strong>1.1 扫描技术概述</strong>  </p>
-<ol>
-<li>主机扫描  </li>
-<li>路由扫描  </li>
-<li>批量服务扫描  </li>
-<li>linux防范恶意扫描安全策略<br><strong>1.2 网络安全技术定义</strong>  </li>
-<li>网络入侵方式<br>踩点-网络扫描-查点-提权 等  </li>
-<li>实例中用到的命令<br> tracert(tracrout),nmap,nc  <h2 id="第二章_fping应用">第二章 fping应用</h2>
-<strong>1.fping概述</strong><br><strong>主机扫描命令 fping</strong><br>作用：批量的给目标主机发送ping请求，测试主机的存活情况<br>特点：并行发送，结果易读<br><strong>源码包编译过程</strong>  </li>
-<li>检测编译 ./configure 产生Makefile  </li>
-<li>编译 make 产生二进制可执行文件  </li>
-<li>安装 make install 安装到指定目录<br><strong>2. fping安装步骤</strong>  <h2 id="第三章_hping应用">第三章 hping应用</h2>
-<strong>hping参数</strong>  </li>
-<li>对指定目标端口发起tcp探测<br>-p：端口<br>-S：设置TCP模式SYN包  </li>
-<li>s 伪造来源IP，模拟Ddos攻击<br> -a 伪造IP地址  <h2 id="第四章_路由扫描">第四章 路由扫描</h2>
-</li>
-</ol>
-<hr>
-<p>作用：查询一个主机到另一个主机的经过的路由跳数，及数据延迟情况<br>常用工具：traceroute,mtr<br>mtr特点：能测试出主机到每一个路由器的连通性<br><strong>Traceroute参数介绍</strong>  </p>
-<ol>
-<li>默认使用的事UDP协议（30000上的端口）<br>2.使用TCP协议 -T -p<br>3.使用ICMP协议介绍 -I  <h2 id="第五章_批量主机服务扫描">第五章 批量主机服务扫描</h2>
-目的：1.批量主机存活扫描 2，针对主机服务扫描<br>命令：nmap,ncat<br><strong>nmap介绍</strong>  </li>
-<li>基于icmp  </li>
-<li>基于tcp  </li>
-<li>基于udp<br><strong>ncat介绍</strong>  </li>
-<li>-w 设置的超时时间  </li>
-<li>-z 一个输入输出模式  </li>
-<li>-v 显示命令执行过程<br>方式一：基于tcp协议（默认）<br> nc -v -z -w2 [ip] [范围]<br>方式二：基于UDP协议 -u<br> nc -v -u -z -w2 [ip] [范围]  </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/28/linux系统扫描技术及安全防范/" data-id="ftzr20t2007sfotj" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/28/linux系统扫描技术及安全防范/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-  
-    <article id="post-R-基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/23/R-基础/" class="article-date">
-  <time datetime="2015-04-23T12:34:33.000Z" itemprop="datePublished">4月 23 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/R/">R</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/23/R-基础/">R 基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第一章_简介">第一章 简介</h3>
-<h4 id="1-1_认识R">1.1 认识R</h4>
-<p>R控制台输入  </p>
-<blockquote>
-<p>R.version<br>可以获得R的安装信息<br>getwd()<br>可以获得当前的工作目录<br>install.packages(‘RMySQL’)<br>安装’RMySQL’包<br>installed.packages()<br>查看当前已安装的R添加包<br>library()<br>查看当前已安装的R添加包，解释包的作用，信息更友好<br>old.packages()<br>查看是否有已安装的R添加包的新版本<br>update.packages()<br>更新所有已安装的R软件包<br>RSiteSearch(‘something’)<br>搜索邮件列表，R手册和R帮助页面中的关键词或词语  </p>
-<h4 id="1-2_R对象">1.2 R对象</h4>
-<p>R中创建的每个对象都存储在计算机内存中，直到删除它们。对象名区分大小写。<br>ls()<br>objects()<br>可以列举出当前内存中存在的对象<br>rm()<br>可以删除对象来释放内存  </p>
-<h4 id="1-3_向量">1.3 向量</h4>
-<p>向量用来存储一组基本类型相同的数据。<br>可以用c()函数来创建向量<br>v &lt;- c(1,2,3,4,5)<br>创建了一个数值型向量，并赋值到v对象中<br>length(v)<br>获取向量v的长度<br>mode(v)<br>活取向量v的模式，即元素类型<br>v[2]<br>通过方括号中索引来访问某个元素<br>v[2] &lt;- “hello”<br>改变某个元素的值<br>x &lt;- vector()<br>创建空向量<br>如果使用不存在的索引，就会改变向量的长度  </p>
-<h4 id="1-4_向量化">1.4 向量化</h4>
-<p>函数可以直接对向量的每个元素进行操作<br>v &lt;- c(1,2,3,4,5,6,7)<br>x &lt;- sqrt(v)<br>x将是向量v元素开方后的向量  </p>
-<h4 id="1-5_因子">1.5 因子</h4>
-<p>如果数据集有取指个数固定的名义变量，因子就很有用<br>g &lt;- c(“f”,”m”,”f”)<br>g &lt;- factor(g)<br>将向量g转换为一个因子，有2个水平“f”和”m“<br>other.g &lt;- factor(c(“m”,”m”),levels =c(“f”,”m”))<br>利用参数levels 将因子的水平变为两个<br>table()<br>table()函数用来获取多个因子的交叉表  </p>
-<h4 id="1-6_生成序列">1.6 生成序列</h4>
-<p>x &lt;- 1:1000<br>创建了向量x，包含1到1000的元素<br>seq(-4,1,0.5)<br>函数seq()生成从-4～1，以0.5为增量的序列<br>seq(from=1,to=5,length=4)<br>seq(length=10,from=-2,by=0.2)<br>生成不同序列<br>rep(5,10)<br>生成10个5的序列<br>rep(1:2,3)<br>生成3个1到2的序列，共6个数<br>gl(2,5，lables=c(“female”,”male”))<br>gl()函数生成2个水平(分别是female和male)的序列，每个水平重复5次<br>rnorm(10,mean=10,sd=3)<br>生成10个服从均值为10(默认为0)，标准差为3(默认为1)的正态分布随即数值<br>rt(5,df=10)<br>生成5个服从自由度为10的t分布的随即数值  </p>
-<h4 id="1-7_数据子集">1.7 数据子集</h4>
-<p>x[x&gt;0]<br>获取向量x种大于0的元素<br>x[ x&lt;=-2 | x&gt;5]<br>获取向量x中大于5或小于等于-2的元素<br>x[x&gt;40 &amp; x&lt;100]<br>活取大于40且小于100的元素<br>x[c(4,6)]<br>提取索引为4和6的元素<br>x[1:3]<br>提取索引从1到3的元素<br>x[-1]<br>表示删除索引为1的元素后的向量<br>x[-c(4,6)]<br>表示删除索引为4，6的元素<br>pH &lt;- c(4.5,7,7.3)<br>names(pH) &lt;- c(“area1”,”area2”,”area3”)<br>pH<br>通过names()函数可以给向量中的元素命名<br>pH &lt;- c(area1=4.5,area2=7,area3=7.3)<br>在创建向量时就赋值名字<br>pH[“area1”]<br>通过名字索引  </p>
-<h4 id="1-8_矩阵与数组">1.8 矩阵与数组</h4>
-<p>dim(m) &lt;- c(2,5)<br>将向量m变成2×5的矩阵，向量为10个元素，按列填充<br>m &lt;- matrix(c(1,2,3,4,5,6,7,8,9,10),2,5,byrow=T)<br>按行填充<br>m[1,]<br>输出矩阵m的第1行<br>m[,4]<br>输出矩阵的第4列<br>可以用colnames()和rownames()分布给矩阵的行和列命名<br>a &lt;- arrary(1:24),dim=c(4,3,2)<br>生成维度为4×3×2的三维数组，1：24填充  </p>
-<h4 id="1-9_列表">1.9 列表</h4>
-<p>R列表事以其他对象为成分的有序集合。元素不一定事同一种数据类型<br>my.list &lt;- list(stud.id=33334,stud.name=”Jone”,stud.marks=c(12,12,334,34))<br>生成一个列表<br>my.list$stud.id<br>获取列表的一个成分  </p>
-<h4 id="1-10_数据框">1.10 数据框</h4>
-<p>my.dataset &lt;- data.frame(site=c(‘A’,’B’,’C’),season=c(‘Winter’,’Summer’,’Spring’),pH=c(7,8,9))<br>my.dataset<br>函数data.frame()生成一个数据框，其实是一个列表<br>attach(my.dataset)<br>my.dataset[site==’B’,]<br>查询site==B的数据行<br>detach(my.dataset)<br>禁止直接访问数据框的列<br>subset(my.dataset,pH&gt;8)<br>查询数据框my.dataset 中pH&gt;8的数据<br>my.dataset &lt;- edit(my.dataset)<br>可视化窗口编辑数据框<br>new.data&lt;- edit(data.frame())<br>创建一个新的数据框<br>data()<br>获取已安装的数据集<br>data(CO2)<br>应用某个数据集  </p>
-<h4 id="1-11_函数">1.11 函数</h4>
-<p>se &lt;- function （）{}<br>创建函数对象se  </p>
-<h4 id="1-12_R会话">1.12 R会话</h4>
-<p>source(‘mycode.R’)<br>执行文件中的所有命令<br>getwd()<br>setwd()<br>获取和设置当前工作目录<br>save(f,my.dataset,file=’mysession.RData’)<br>在文件中保存f和my.dataset对象<br>load(‘mysession.RData’)<br>重新读入这些对象<br>save.image()<br>保存工作空间中的所有对象，保存在文件.RData中  </p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/23/R-基础/" data-id="83n3698hpcskcdw5" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/23/R-基础/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R语言/">R语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/12/hello-world/" class="article-date">
-  <time datetime="2015-04-12T09:03:03.000Z" itemprop="datePublished">4月 12 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/12/hello-world/" data-id="3c1pkos5n4edsj9h" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/12/hello-world/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/05/linux基础/" class="article-date">
-  <time datetime="2015-03-05T02:26:53.000Z" itemprop="datePublished">3月 5 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/05/linux基础/">linux 基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/111" target="_blank" rel="external">慕课网：Linux达人养成计划II</a>  </p>
-<h2 id="1-_shell基础">1. shell基础</h2>
-<h3 id="1-1_shell基础">1.1 shell基础</h3>
-<p>shell是一个命令行解释器，与内核交互<br>linux 使用Bash 可以使用echo $SHELL 来查看shell类型  </p>
-<h3 id="1-2_VI编辑器">1.2 VI编辑器</h3>
-<p>Visual Interface 编辑器<br><strong>VI编辑器的操作模式</strong>  </p>
-<ul>
-<li><p><strong>command mode</strong>:命令模式<br> h 光标左移<br> j 光标下移<br> k 光标上移<br> l 光标右移<br> ctrl+f 向下翻页(front)<br> ctrl+b 向下翻页(back)<br> ctrl+d 向下翻半页(down)<br> ctrl+u 向上翻半页(up)<br> dd 删除光标所在行<br> o 在光标所在行的下方插入一行并切换到输入模式<br> yy 复执光标所在行<br> p 在光标所在行的下方粘贴<br> P 在光标所在行的上方粘贴  </p>
-</li>
-<li><p><strong>insert mode</strong>:输入模式  </p>
-</li>
-<li><strong>last line mode</strong>:底行模式也可归于命令模式<br> :w 保存<br> :q 退出<br> :! 强制<br> :ls 列出所有文件<br> :n 打开后一个文件 :N 打开前一个文件<br> :15 把光标快速定义到15行<br> /xxx 从光标位置向后搜索字符xxx<br> ?xxx 从光标位置向前搜字符xxx  <h3 id="1-2_脚本执行方式">1.2 脚本执行方式</h3>
-echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚本执行</strong>  </li>
-</ul>
-<ol>
-<li>赋予执行权限，直接运行<br>chmod 755 hello.sh<br>./hell.sh  </li>
-<li>通过Bash调用执行脚本<br> bash hello.sh  <h3 id="1-3_Bash的基本功能">1.3 Bash的基本功能</h3>
-<h4 id="1-3-1_命令别名与快捷键">1.3.1 命令别名与快捷键</h4>
-<strong>alias</strong> 查看系统中所有命令的别名<br>alias ls=’ls —color==never’ 修改ls的命令别名<br>alias 别名=‘原命令’  设定命令别名<br><strong>别名永久生效与删除别名</strong><br>vi ~/.bashrc  写入环境变量配置文件<br>unalias 别名 删除别名<br><strong>快捷键</strong><br>ctrl+l 清屏 clear<br>ctrl+c 强制终止当前命令<br>ctrl+a 光标移动到命令行首<br>ctrl+e 光标移动到命令行尾<br>ctrl+u 从光标所在位置删除到行首<br>ctrl+z 把命令放入后台<br>ctrl+r 在历史命令中搜索  <h3 id="1-4_输出重定向">1.4 输出重定向</h3>
-</li>
-<li>标准输入输出<br>| 设备    | 设备文件名 | 文件描述符 |  类型  |<br>| ———  |    ——-:  | :——:  | :——- |<br>| 键盘    | /dev/stdin |   0     | 标准输入 |<br>| 显示器  | /dev/stdout|   1   | 标准输出 |<br>| 显示器  | /dev/stderr|   2  | 标准错误输出 | </li>
-<li><p>输出重定向  </p>
-<blockquote>
-<p> >  标准输出重定向，单个大于号是覆盖<br> >&gt; 标准输出重定向，双大于号是追加<br> 2&gt;  标准错误重定向，覆盖<br> 2&gt;&gt; 标准错误重定向，追加<br> 命令 &gt; 文件 2&gt;&amp;1 已覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &gt;&gt; 文件 2&gt;&amp;1 以追加方式，<br> 命令 &amp;&gt; 文件 以覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &amp;&gt;&gt; 文件 以追加方式，<br> 命令 &gt;&gt; 文件1 2&gt;&gt;文件2 把标准输出追加到文件1中，把标准错误追加到文件2中  </p>
-</blockquote>
-</li>
-<li><p>输入重定向 &lt; 小于号<br> <strong>wc</strong> 统计行数，单词数，字符数<br> -c 统计字节数<br> -w 统计单词数<br> -l 统计行数<br> 命令 &lt; 文件 把文件作为命令的输入<br> 命令 &lt;&lt; 标识符 双小于号 极少用 </p>
-<h3 id="1-5_管道符">1.5 管道符</h3>
-<h4 id="多命令顺序执行">多命令顺序执行</h4>
-</li>
-<li>命令1; 命令2 命令1成功与否，命令2顺序执行  </li>
-<li>命令1&amp;&amp;命令2 逻辑与，命令1成功，命令2才执行，否则不执行  </li>
-<li>命令1||命令2 逻辑或，命令1成功，命令2不执行，否则执行  <h4 id="管道符">管道符</h4>
-<strong>命令1 | 命令2</strong> 命令1的正确输出作为命令2的操作对象<br>netstat -an | grep “ESTABLISHED” 查看连接到服务器的情况  <h4 id="通配符">通配符</h4>
-</li>
-</ol>
-<ul>
-<li>? 匹配一个任意字符</li>
-<li><ul>
-<li>匹配任意个字符  </li>
-</ul>
-</li>
-<li>[] 匹配括号中任意一个字符</li>
-<li>[-] 匹配括号中任意一个字符，-代表范围</li>
-<li>[^] 逻辑非，表示匹配不是中括号内的一个字符 <h2 id="2-_磁盘管理">2. 磁盘管理</h2>
-<strong>MBR分区</strong>  </li>
-</ul>
-<ol>
-<li>Linux系统中硬件设备都是以文件的形式存在于根目录下的dev目录下</li>
-<li>必须对磁盘进行分区，格式化，挂载后才能使用<br><strong>fdisk</strong><h2 id="3-_用户和用户组管理">3. 用户和用户组管理</h2>
-<strong>/etc/group存储当前系统种所有用户组信息</strong><br>group:x:0:yangz<br>组名：组密码：组编号：组中用户列表<br><strong>/etc/gshadow存储当前系统种用户组的密码</strong><br>group:<em>: : :<br>组名称：组密码：组管理者：组中用户名列表<br><strong>/etc/passwd</strong><br>user:x:123:456: ： ：<br>用户名：密码占位符：用户编号：用户组编号：用户注释信息：用户主目录：shell类型<br><em>*/etc/shadow</em></em>  <h3 id="3-1_用户和用户组基本命令">3.1 用户和用户组基本命令</h3>
-groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】【旧用户组名】 修改用户组名<br>groupmod -g 【用户组编号】【用户组名】修改用户组编号<br>groupdel [用户组名]s 删除用户组，需要先删除用户才能删除用户组  </li>
-</ol>
-<p>useradd -g [用户组名]【用户名】 添加用户到用户组<br>useradd -d /home/xxx imooc 指定用户个人文件夹<br>usermod -g [用户组名] 【用户名】 将用户添加到用户组中<br>userdel -r [用户名] 连同用户文件一起删除  </p>
-<p>passwd -l [用户名] 锁定一个用户的登陆<br>passwd -u [用户名] 解锁一个用户的登陆<br>passwd -d [用户名] 删除用户密码，可以无密码登陆  </p>
-<h3 id="3-2_用户和用户组进阶命令">3.2 用户和用户组进阶命令</h3>
-<p>gpasswd -a [用户名] [用户组]将用户添加到某个附属组<br>newgrp [附属组名称] 临时切换用户组到附属组<br>gpasswd -d [用户名] [用户组]将用户从某个附属组中删除<br>useradd -g [主用户组] -G [附属用户组。。。。] 添加用户时指定用户组<br>gpasswd [用户组名] 修改用户组密码<br>whoami 我是谁?<br>id [用户名] 显示用户详细信息<br>groups 【用户名】 显示用户所在组<br>chfn [用户名] 设置用户详细资料<br>finger [用户名] 显示用户详细资料  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/03/05/linux基础/" data-id="xl3luf2qmwgu4ml9" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/03/05/linux基础/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2015/04/28/MySQL基础/" data-title="MySQL基础（上）" data-url="http://balistardut.github.io/2015/04/28/MySQL基础/"></div>
+  </section>
 </section>
         
           <aside id="sidebar">
