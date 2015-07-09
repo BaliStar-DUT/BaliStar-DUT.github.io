@@ -74,6 +74,150 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux-C语言编程基本原理与实践" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/09/Linux-C语言编程基本原理与实践/" class="article-date">
+  <time datetime="2015-07-09T01:50:13.000Z" itemprop="datePublished">7月 9 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一节_C语言历史">第一节 C语言历史</h2>
+<p>ANSI C ：<br>二十世纪年代由美国国家标准局制定的C语言国际标准语法：ANSI C。<br>C语言用途：<br>linux嵌入式，ARM嵌入式，单片机，硬件编程<br>NGINX：C语言编写的高并发web服务器</p>
+<h2 id="第二节_开发环境与配置">第二节 开发环境与配置</h2>
+<p>linux和cc(gcc)编译器<br>emacs和vim编辑器<br><strong>常用命令：</strong><br>sudo apt-get update //自动更新资源<br>sudo apt-get install vim; //安装vim编辑器<br>cc -v 查看编译器版本<br><strong>vim常用操作：</strong><br>i:左插入  shift+i:行首插入<br>a:右插入 shift+a:行尾插入<br>o:向下插入一行 shift+o:向上插入一行<br>x:删除当前字符 dd:删除当前行 </p>
+<h2 id="第三节_编写C程序">第三节 编写C程序</h2>
+<p><strong>头文件：</strong><br>导入库文件：#include<stdio.h> //导入标准输入输出库，存在于linux /usr/include里.尖括号里面的是系统函数库里的，会在环境变量里查找文件，双引号是当前目录里查找。include 表示编译时直接复制过来。</stdio.h></p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span>
+<span class="keyword">int</span> main()
+{
+    <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p><strong>编译程序：</strong><br>    cc a.c</p>
+<h2 id="第四节_多文件编译">第四节 多文件编译</h2>
+<h3 id="4-1_编写多文件程序">4.1 编写多文件程序</h3>
+<pre><code>gcc a.<span class="built_in">c</span> b.<span class="built_in">c</span> -o outputfile <span class="comment">//编译并连接成可执行文件,可以仅连接</span>
+gcc -<span class="built_in">c</span> a.<span class="built_in">c</span> -o a.o <span class="comment">//仅编译但不连接,可以通过这种方法将大型软件工程的源文件先编译成静态库，可以直接调用。</span>
+</code></pre><p>//a.c 与b.c在同一文件夹下<br>vim中同时打开多个文件：<br>:set nu;// 显示行号<br>:sp b.c //同时打开a.c和b.c<br>ctrl+w+↓ //进入下面的文件<br>ctrl+w+↑ //进入上面的文件<br>:dd //复制<br>:p //粘贴<br>:wqa //保存所有文件</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span>
+<span class="keyword">int</span> max(<span class="keyword">int</span> a,<span class="keyword">int</span> b)
+{
+    <span class="keyword">if</span>(a&gt;b){
+        <span class="keyword">return</span> a;
+    }<span class="keyword">else</span>{
+        <span class="keyword">return</span> b;
+    }
+}
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> a1=<span class="number">2</span>;
+    <span class="keyword">int</span> a2=<span class="number">3</span>;
+    <span class="keyword">int</span> maxNum;
+    maxNum=max(a1,a2);
+    <span class="built_in">printf</span>(<span class="string">"the max value is %d"</span>,maxNum);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h3 id="4-2_头文件与函数分离">4.2 头文件与函数分离</h3>
+<p>为了使别人调用函数时清楚知道函数返回值，参数类型，可以将函数的声明和实现分离，声明写成.h头文件的形式，这样调用时只要将头文件包含进来就可以了。</p>
+<h3 id="4-3_makefile编写">4.3 makefile编写</h3>
+<p>make工具可以将大型的开发项目分成分成若干个模块。<br>make内部也是使用gcc.</p>
+<pre><code>make -v <span class="comment">//显示make版本号</span>
+#this <span class="keyword">is</span> make file
+hello.out:<span class="built_in">max</span>.o <span class="built_in">min</span>.o a.<span class="built_in">c</span>
+    gcc <span class="built_in">max</span>.o <span class="built_in">min</span>.o a.<span class="built_in">c</span>
+<span class="built_in">max</span>.o:<span class="built_in">max</span>.<span class="built_in">c</span>
+    gcc -<span class="built_in">c</span> <span class="built_in">max</span>.<span class="built_in">c</span>
+<span class="built_in">min</span>.o:<span class="built_in">min</span>.<span class="built_in">c</span>
+    gcc -<span class="built_in">c</span> <span class="built_in">min</span>.<span class="built_in">c</span>
+</code></pre><h2 id="第五节_main函数详解">第五节 main函数详解</h2>
+<h3 id="5-1_return语句">5.1 return语句</h3>
+<p>前一个语句成功时，才运行后一个语句。<br>    gcc main.c -o main.out &amp;&amp; ./main.out<br>每个语句都有一个返回值。<br>return 0; 表示程序运行成功</p>
+<h3 id="5-2_main函数参数">5.2 main函数参数</h3>
+<p>main(int argc,char *argv[]) //argc 表示参数个数，argv[]表示参数值；</p>
+<pre><code><span class="comment">#include &lt;stdio.h&gt;</span>
+<span class="keyword">int</span> main(<span class="keyword">int</span> argv,char* argc[])
+{
+    <span class="keyword">printf</span>(<span class="string">"argv is <span class="variable">%d</span> \n"</span>,argv);
+    <span class="keyword">int</span> i=<span class="number">0</span>;
+    <span class="keyword">for</span>(;i&lt;argv;i++){
+        <span class="keyword">printf</span>(<span class="string">"argc[<span class="variable">%d</span>] is <span class="variable">%s</span>"</span>,i,argc[i]);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h2 id="第六节_输入输出流">第六节 输入输出流</h2>
+<h3 id="6-1输入输出函数">6.1输入输出函数</h3>
+<p>stdin //标准输入，键盘<br>stdout //标准输出，1，显示器<br>stderr //标准错误,2<br>printf(“argv is %d \n”,argv);<br>fprintf(stdout,”please input a num:\n”);<br>scanf(“%d”,&amp;a);<br>fscanf(stdin,”%d”,&amp;a);</p>
+<pre><code> <span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span>
+<span class="keyword">int</span> main(<span class="keyword">int</span> argv,<span class="keyword">char</span>* argc[])
+{
+    <span class="built_in">printf</span>(<span class="string">"argv is %d \n"</span>,argv);
+    <span class="keyword">int</span> i=<span class="number">0</span>;
+    <span class="keyword">for</span>(;i&lt;argv;i++){
+        <span class="built_in">printf</span>(<span class="string">"argc[%d] is %s \n"</span>,i,argc[i]);
+    }
+    <span class="built_in">fprintf</span>(stdout,<span class="string">"please input a num:\n"</span>);
+    <span class="keyword">int</span> a;
+    <span class="built_in">fscanf</span>(stdin,<span class="string">"%d"</span>,&amp;a);
+    <span class="keyword">if</span>(a&lt;<span class="number">0</span>){
+        <span class="built_in">fprintf</span>(stderr,<span class="string">"the value must &gt;0\n"</span>);<span class="comment">//标准错误流</span>
+        <span class="keyword">return</span> <span class="number">1</span>;    
+    }
+    <span class="comment">//scanf("%d",&amp;a);</span>
+    <span class="built_in">printf</span>(<span class="string">"you have input:%d\n"</span>,a);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h3 id="6-2_通道">6.2 通道</h3>
+<p>输出流重定向：</p>
+<blockquote>
+<blockquote>
+<p>重定向到，并且是追加的<br>重定向到，并且是覆盖的</p>
+</blockquote>
+</blockquote>
+<p>输入流重定向：<br>./a.out &lt; input.txt 将文件input.txt输入到程序中运行</p>
+<h2 id="第七节_管道原理及应用">第七节 管道原理及应用</h2>
+<p>| 管道符</p>
+<pre><code><span class="keyword">ps</span> -<span class="keyword">e</span> | <span class="keyword">grep</span> ss //从当前运行的进程中查到带有ss的进程
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/07/09/Linux-C语言编程基本原理与实践/" data-id="fwcolmdz91zs6x43" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/07/09/Linux-C语言编程基本原理与实践/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/04/28/MySQL基础/" class="article-date">
@@ -481,111 +625,6 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
 
 
   
-    <article id="post-linux基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/05/linux基础/" class="article-date">
-  <time datetime="2015-03-05T02:26:53.000Z" itemprop="datePublished">3月 5 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/05/linux基础/">linux 基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/111" target="_blank" rel="external">慕课网：Linux达人养成计划II</a>  </p>
-<h2 id="1-_shell基础">1. shell基础</h2>
-<h3 id="1-1_shell基础">1.1 shell基础</h3>
-<p>shell是一个命令行解释器，与内核交互<br>linux 使用Bash 可以使用echo $SHELL 来查看shell类型  </p>
-<h3 id="1-2_VI编辑器">1.2 VI编辑器</h3>
-<p>Visual Interface 编辑器<br><strong>VI编辑器的操作模式</strong>  </p>
-<ul>
-<li><p><strong>command mode</strong>:命令模式<br> h 光标左移<br> j 光标下移<br> k 光标上移<br> l 光标右移<br> ctrl+f 向下翻页(front)<br> ctrl+b 向下翻页(back)<br> ctrl+d 向下翻半页(down)<br> ctrl+u 向上翻半页(up)<br> dd 删除光标所在行<br> o 在光标所在行的下方插入一行并切换到输入模式<br> yy 复执光标所在行<br> p 在光标所在行的下方粘贴<br> P 在光标所在行的上方粘贴  </p>
-</li>
-<li><p><strong>insert mode</strong>:输入模式  </p>
-</li>
-<li><strong>last line mode</strong>:底行模式也可归于命令模式<br> :w 保存<br> :q 退出<br> :! 强制<br> :ls 列出所有文件<br> :n 打开后一个文件 :N 打开前一个文件<br> :15 把光标快速定义到15行<br> /xxx 从光标位置向后搜索字符xxx<br> ?xxx 从光标位置向前搜字符xxx  <h3 id="1-2_脚本执行方式">1.2 脚本执行方式</h3>
-echo [选项] [内容]<br>-e  可以输入转义字符的内容<br><strong>脚本执行</strong>  </li>
-</ul>
-<ol>
-<li>赋予执行权限，直接运行<br>chmod 755 hello.sh<br>./hell.sh  </li>
-<li>通过Bash调用执行脚本<br> bash hello.sh  <h3 id="1-3_Bash的基本功能">1.3 Bash的基本功能</h3>
-<h4 id="1-3-1_命令别名与快捷键">1.3.1 命令别名与快捷键</h4>
-<strong>alias</strong> 查看系统中所有命令的别名<br>alias ls=’ls —color==never’ 修改ls的命令别名<br>alias 别名=‘原命令’  设定命令别名<br><strong>别名永久生效与删除别名</strong><br>vi ~/.bashrc  写入环境变量配置文件<br>unalias 别名 删除别名<br><strong>快捷键</strong><br>ctrl+l 清屏 clear<br>ctrl+c 强制终止当前命令<br>ctrl+a 光标移动到命令行首<br>ctrl+e 光标移动到命令行尾<br>ctrl+u 从光标所在位置删除到行首<br>ctrl+z 把命令放入后台<br>ctrl+r 在历史命令中搜索  <h3 id="1-4_输出重定向">1.4 输出重定向</h3>
-</li>
-<li>标准输入输出<br>| 设备    | 设备文件名 | 文件描述符 |  类型  |<br>| ———  |    ——-:  | :——:  | :——- |<br>| 键盘    | /dev/stdin |   0     | 标准输入 |<br>| 显示器  | /dev/stdout|   1   | 标准输出 |<br>| 显示器  | /dev/stderr|   2  | 标准错误输出 | </li>
-<li><p>输出重定向  </p>
-<blockquote>
-<p> >  标准输出重定向，单个大于号是覆盖<br> >&gt; 标准输出重定向，双大于号是追加<br> 2&gt;  标准错误重定向，覆盖<br> 2&gt;&gt; 标准错误重定向，追加<br> 命令 &gt; 文件 2&gt;&amp;1 已覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &gt;&gt; 文件 2&gt;&amp;1 以追加方式，<br> 命令 &amp;&gt; 文件 以覆盖方式，标准错误和标准输出重定向到文件中<br> 命令 &amp;&gt;&gt; 文件 以追加方式，<br> 命令 &gt;&gt; 文件1 2&gt;&gt;文件2 把标准输出追加到文件1中，把标准错误追加到文件2中  </p>
-</blockquote>
-</li>
-<li><p>输入重定向 &lt; 小于号<br> <strong>wc</strong> 统计行数，单词数，字符数<br> -c 统计字节数<br> -w 统计单词数<br> -l 统计行数<br> 命令 &lt; 文件 把文件作为命令的输入<br> 命令 &lt;&lt; 标识符 双小于号 极少用 </p>
-<h3 id="1-5_管道符">1.5 管道符</h3>
-<h4 id="多命令顺序执行">多命令顺序执行</h4>
-</li>
-<li>命令1; 命令2 命令1成功与否，命令2顺序执行  </li>
-<li>命令1&amp;&amp;命令2 逻辑与，命令1成功，命令2才执行，否则不执行  </li>
-<li>命令1||命令2 逻辑或，命令1成功，命令2不执行，否则执行  <h4 id="管道符">管道符</h4>
-<strong>命令1 | 命令2</strong> 命令1的正确输出作为命令2的操作对象<br>netstat -an | grep “ESTABLISHED” 查看连接到服务器的情况  <h4 id="通配符">通配符</h4>
-</li>
-</ol>
-<ul>
-<li>? 匹配一个任意字符</li>
-<li><ul>
-<li>匹配任意个字符  </li>
-</ul>
-</li>
-<li>[] 匹配括号中任意一个字符</li>
-<li>[-] 匹配括号中任意一个字符，-代表范围</li>
-<li>[^] 逻辑非，表示匹配不是中括号内的一个字符 <h2 id="2-_磁盘管理">2. 磁盘管理</h2>
-<strong>MBR分区</strong>  </li>
-</ul>
-<ol>
-<li>Linux系统中硬件设备都是以文件的形式存在于根目录下的dev目录下</li>
-<li>必须对磁盘进行分区，格式化，挂载后才能使用<br><strong>fdisk</strong><h2 id="3-_用户和用户组管理">3. 用户和用户组管理</h2>
-<strong>/etc/group存储当前系统种所有用户组信息</strong><br>group:x:0:yangz<br>组名：组密码：组编号：组中用户列表<br><strong>/etc/gshadow存储当前系统种用户组的密码</strong><br>group:<em>: : :<br>组名称：组密码：组管理者：组中用户名列表<br><strong>/etc/passwd</strong><br>user:x:123:456: ： ：<br>用户名：密码占位符：用户编号：用户组编号：用户注释信息：用户主目录：shell类型<br><em>*/etc/shadow</em></em>  <h3 id="3-1_用户和用户组基本命令">3.1 用户和用户组基本命令</h3>
-groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】【旧用户组名】 修改用户组名<br>groupmod -g 【用户组编号】【用户组名】修改用户组编号<br>groupdel [用户组名]s 删除用户组，需要先删除用户才能删除用户组  </li>
-</ol>
-<p>useradd -g [用户组名]【用户名】 添加用户到用户组<br>useradd -d /home/xxx imooc 指定用户个人文件夹<br>usermod -g [用户组名] 【用户名】 将用户添加到用户组中<br>userdel -r [用户名] 连同用户文件一起删除  </p>
-<p>passwd -l [用户名] 锁定一个用户的登陆<br>passwd -u [用户名] 解锁一个用户的登陆<br>passwd -d [用户名] 删除用户密码，可以无密码登陆  </p>
-<h3 id="3-2_用户和用户组进阶命令">3.2 用户和用户组进阶命令</h3>
-<p>gpasswd -a [用户名] [用户组]将用户添加到某个附属组<br>newgrp [附属组名称] 临时切换用户组到附属组<br>gpasswd -d [用户名] [用户组]将用户从某个附属组中删除<br>useradd -g [主用户组] -G [附属用户组。。。。] 添加用户时指定用户组<br>gpasswd [用户组名] 修改用户组密码<br>whoami 我是谁?<br>id [用户名] 显示用户详细信息<br>groups 【用户名】 显示用户所在组<br>chfn [用户名] 设置用户详细资料<br>finger [用户名] 显示用户详细资料  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/03/05/linux基础/" data-id="xl3luf2qmwgu4ml9" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/03/05/linux基础/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -599,7 +638,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -608,7 +647,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -617,7 +656,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 15.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 15.00px;">笔记</a>
+      <a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
     </div>
   </div>
 
@@ -626,7 +665,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -636,6 +675,10 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
+          </li>
         
           <li>
             <a href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
@@ -651,10 +694,6 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
         
           <li>
             <a href="/2015/04/12/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/05/linux基础/">linux 基础</a>
           </li>
         
       </ul>
