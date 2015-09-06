@@ -74,6 +74,80 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-String及相关数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/06/String及相关数据类型/" class="article-date">
+  <time datetime="2015-09-06T15:52:37.000Z" itemprop="datePublished">9月 6 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/06/String及相关数据类型/">String及相关数据类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>String类属于java.lang包<br><img src="http://img.mukewang.com/53d9f7d200010bb007780366.jpg" alt="String类的常用方法"></li>
+<li><p>StringBuffer类和StringBuilder类<br> 当频繁操作字符串时，就会额外产生很多临时变量。使用 StringBuilder 或 StringBuffer 就可以避免这个问题。至于 StringBuilder 和StringBuffer ，它们基本相似，不同之处，StringBuffer 是线程安全的，而 StringBuilder 则没有实现线程安全功能，所以性能略高。因此一般情况下，如果需要创建一个内容可变的字符串对象，应优先考虑使用 StringBuilder 类。<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/StringBuilderTest.java" target="_blank" rel="external">StringBuilder类的示例代码</a><br><img src="http://img.mukewang.com/53a7d34300011c6005970125.jpg" alt="StringBuilder类的常用方法"></p>
+</li>
+<li><p>Integer类是int的对应包装类</p>
+<ul>
+<li>Integer类的构造方法：<br><img src="http://img.mukewang.com/53abde780001144905740055.jpg" alt="Integer类的构造方法"></li>
+<li>Integer类的常用方法：<br><img src="http://img.mukewang.com/53abdee00001542805680224.jpg" alt="Integer类的常用方法"></li>
+<li></li>
+</ul>
+</li>
+<li>装箱和拆箱<br> 那什么是装箱和拆箱呢？我们分别来看下<br>装箱：把基本类型转换成包装类，使其具有对象的性质，又可分为手动装箱和自动装箱<br><img src="http://img.mukewang.com/53abe4590001373504390074.jpg" alt="装箱"><br>拆箱：和装箱相反，把包装类对象转换成基本类型的值，又可分为手动拆箱和自动拆箱<br><img src="http://img.mukewang.com/53abe5210001652606630071.jpg" alt="拆箱"><br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/IntegerTest.java" target="_blank" rel="external">示例代码</a></li>
+<li>各种数据类型与字符串的相互转换<br>在程序开发中，我们经常需要在基本数据类型和字符串之间进行转换。<br>其中，基本类型转换为字符串有三种方法：<br>1.使用包装类的 toString() 方法<br>2.使用String类的 valueOf() 方法<br>3.用一个空字符串加上基本类型，得到的就是基本类型数据对应的字符串<br><img src="http://img.mukewang.com/53abea61000151e105120118.jpg" alt="基本类型转字符串"><br>再来看，将字符串转换成基本类型有两种方法：<br>1.调用包装类的 parseXxx 静态方法<br>2.调用包装类的 valueOf() 方法转换为基本类型的包装类，会自动拆箱<br><img src="http://img.mukewang.com/53abeaad000109af04610098.jpg" alt="字符串转换为基本类型"><br>PS：其他基本类型与字符串的相互转化这里不再一一列出，方法都类似<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/String2Double.java" target="_blank" rel="external">示例代码</a></li>
+<li>表示时间的Date类和SimpleDateFormat类（已经不推荐使用，见7Calendar类）<br> Date类属于java.util包中，SimpleDateFormat类属于java.text包中。</li>
+</ol>
+<ul>
+<li>Date类：<br>   Date d = new Date();<pre><code>  System.<span class="keyword">out</span>.println(d);
+</code></pre>使用 Date 类的默认无参构造方法创建出的对象就代表当前时间，我们可以直接输出 Date 对象显示当前的时间，显示的结果如下：<br>  Tue Aug 11 15:24:41 CST 2015<br>其中， Wed 代表 Wednesday (星期三)， Jun 代表 June (六月)， 11 代表 11 号， CST 代表 China Standard Time (中国标准时间，也就是北京时间，东八区)。<br>从上面的输出结果中，我们发现，默认的时间格式不是很友好，与我们日常看到的日期格式不太一样，如果想要按指定的格式进行显示，如 2014-06-11 09:22:30 ，那该怎么做呢？<br>可以使用 SimpleDateFormat来对日期时间进行格式化，如可以将日期转换为指定格式的文本，也可将文本转换为日期。<ul>
+<li>SimpleDateFormat类：<br>1.使用 format() 方法将日期转换为指定格式的文本<br><img src="http://img.mukewang.com/53b22d780001e5f808060193.jpg" alt="format()方法"><br>代码中的 “yyyy-MM-dd HH:mm:ss” 为预定义字符串， yyyy 表示四位年， MM 表示两位月份， dd 表示两位日期， HH 表示小时(使用24小时制)， mm 表示分钟， ss 表示秒，这样就指定了转换的目标格式，最后调用 format() 方法将时间转换为指定的格式的字符串。<br>运行结果： 2014-06-11  09:55:48<br>2.使用 parse() 方法将文本转换为日期<br><img src="http://img.mukewang.com/53b22ddf00012edf08100192.jpg" alt="parse()方法"><br>代码中的 “yyyy年MM月dd日 HH:mm:ss” 指定了字符串的日期格式，调用 parse() 方法将文本转换为日期。<br>运行结果：<br><img src="http://img.mukewang.com/53b22e4f000108b104570025.jpg" alt="结果"><br>一定要注意哦：<br>1、 调用 SimpleDateFormat 对象的 parse() 方法时可能会出现转换异常，即 ParseException ，因此需要进行异常处理<br>2、 使用 Date 类时需要导入 java.util 包，使用 SimpleDateFormat 时需要导入 java.text 包<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/DateTest.java" target="_blank" rel="external">示例代码</a></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Calendar类<br>Date 类最主要的作用就是获得当前时间，同时这个类里面也具有设置时间以及一些其他的功能，但是由于本身设计的问题，这些方法却遭到众多批评，不建议使用，更推荐使用 Calendar 类进行时间和日期的处理。<br>java.util.Calendar 类是一个抽象类，可以通过调用 getInstance() 静态方法获取一个 Calendar 对象，此对象已由当前日期时间初始化，即默认代表当前时间，如 Calendar c = Calendar.getInstance();<br>那么如何使用 Calendar 获取年、月、日、时间等信息呢？我们来看下面的代码：<br><img src="http://img.mukewang.com/53b23219000153b608030239.jpg" alt="Calendar类的使用方法"><br>其中，调用 Calendar 类的 getInstance() 方法获取一个实例，然后通过调用 get() 方法获取日期时间信息，参数为需要获得的字段的值， Calendar.Year 等为 Calendar 类中定义的静态常量。<br>运行结果： 当前时间：2015-08-11 15:44:04<br>Calendar 类提供了 getTime() 方法，用来获取 Date 对象，完成 Calendar 和 Date 的转换，还可通过 getTimeInMillis() 方法，获取此 Calendar 的时间值，以毫秒为单位。如下所示：<br><img src="http://img.mukewang.com/53b232b200015b8306120095.jpg" alt="Calendar类的使用方法"><br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/CalendarTest.java" target="_blank" rel="external">Calendar类示例代码</a></li>
+<li>Math类<br> Math 类位于 java.lang 包中，包含用于执行基本数学运算的方法， Math 类的所有方法都是静态方法，所以使用该类中的方法时，可以直接使用类名.方法名，如： Math.round();<br>常用的方法：<br><img src="http://img.mukewang.com/53b22ff10001b6d104810124.jpg" alt="Math类的常用方法"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/09/06/String及相关数据类型/" data-id="ppvo0hmiupp006rv" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/09/06/String及相关数据类型/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Calendar/">Calendar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Linux-C语言编程基本原理与实践" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/09/Linux-C语言编程基本原理与实践/" class="article-date">
@@ -559,75 +633,9 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/12/hello-world/" class="article-date">
-  <time datetime="2015-04-12T09:03:03.000Z" itemprop="datePublished">4月 12 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/12/hello-world/" data-id="3c1pkos5n4edsj9h" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/12/hello-world/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -638,7 +646,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -647,7 +655,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -656,7 +664,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
+      <a href="/tags/Calendar/" style="font-size: 10.00px;">Calendar</a><a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/String/" style="font-size: 10.00px;">String</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
     </div>
   </div>
 
@@ -665,7 +673,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -675,6 +683,10 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/06/String及相关数据类型/">String及相关数据类型</a>
+          </li>
         
           <li>
             <a href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
@@ -690,10 +702,6 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
         
           <li>
             <a href="/2015/04/23/R-基础/">R 基础</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/12/hello-world/">Hello World</a>
           </li>
         
       </ul>
