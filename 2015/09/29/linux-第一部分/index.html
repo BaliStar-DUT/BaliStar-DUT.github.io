@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Linux | James&#39; blog</title>
+  <title>centOS 第一部分 | James&#39; blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分享，记录和积累">
-<meta property="og:type" content="website">
-<meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/categories/Linux/">
+  <meta name="description" content="1.6 配置IP地址
+ifconfig -a 用来查看所有启动和不启动的网卡信息lo 是回环地址    eth0 是第一个网卡    eth1 是第二个网卡    dhclient 可以使网卡自动获取IP地址    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0    可以用vim查看并编辑：    其中有ONBOOT=no 改成ONB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 第一部分">
+<meta property="og:url" content="http://balistardut.github.io/2015/09/29/linux-第一部分/">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="分享，记录和积累">
+<meta property="og:description" content="1.6 配置IP地址
+ifconfig -a 用来查看所有启动和不启动的网卡信息lo 是回环地址    eth0 是第一个网卡    eth1 是第二个网卡    dhclient 可以使网卡自动获取IP地址    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0    可以用vim查看并编辑：    其中有ONBOOT=no 改成ONB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="James' blog">
-<meta name="twitter:description" content="分享，记录和积累">
+<meta name="twitter:title" content="centOS 第一部分">
+<meta name="twitter:description" content="1.6 配置IP地址
+ifconfig -a 用来查看所有启动和不启动的网卡信息lo 是回环地址    eth0 是第一个网卡    eth1 是第二个网卡    dhclient 可以使网卡自动获取IP地址    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0    可以用vim查看并编辑：    其中有ONBOOT=no 改成ONB">
 <link rel="publisher" href="google.com/+yangDrawn">
 
   
@@ -72,134 +75,153 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/09/29/linux-第一部分/" class="archive-article-date">
-  <time datetime="2015-09-29T13:55:48.000Z" itemprop="datePublished">9月 29</time>
+        <section id="main"><article id="post-linux-第一部分" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/29/linux-第一部分/" class="article-date">
+  <time datetime="2015-09-29T13:55:48.000Z" itemprop="datePublished">9月 29 2015</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/29/linux-第一部分/">centOS 第一部分</a>
+    <h1 class="article-title" itemprop="name">
+      centOS 第一部分
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/09/Linux-C语言编程基本原理与实践/" class="archive-article-date">
-  <time datetime="2015-07-09T01:50:13.000Z" itemprop="datePublished">7月 9</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
-    </h1>
-  
+        <h2 id="1-6_配置IP地址">1.6 配置IP地址</h2>
+<p>ifconfig -a 用来查看所有启动和不启动的网卡信息<br>lo 是回环地址<br>    eth0 是第一个网卡<br>    eth1 是第二个网卡<br>    dhclient 可以使网卡自动获取IP地址<br>    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0<br>    可以用vim查看并编辑：<br>    其中有ONBOOT=no 改成ONBOOT=yes 可以使网卡开机时自动启动<br>    BOOTPROTO=dhcp 改成BOOTPROTO=static 将从dhcp方式获取IP改为使用静态IP，同时需要设置：<br>    IPADDR=192.168.11.16 //IP地址<br>    NETMASK=255.255.255.0 //子网掩码<br>    GATEWAY=192.168.11.1 //网关地址，就是路由器的IP地址<br>    DNS1=192.168.11.1 //可以设置DNS地址，通常是网关地址<br>    DNS2=8.8.8.8 //可以设置第二个DNS服务器地址，这是google的DNS服务器<br>    更改完配置文件后需要重启服务:<br>    service network restart<br>    关闭网卡的命令是：<br>    ifdown eth0 //将关闭eth0网卡，此时ifconfig将不会出现网卡eth0，ifconfig -a 才会出现<br>    打开网卡的命令是：<br>    ifup eth0 //将打开eth0网卡<br>    检测是否可以上网的命令是：<br>    ping 主机名 //可以ping到指定主机，检测网络是否联通</p>
+<h2 id="1-7_系统启动过程">1.7 系统启动过程</h2>
+<ol>
+<li>power on 计算机通电</li>
+<li>BIOS：（1）初始化硬件，如内存，显卡，时间，磁盘等。（2）来查找启动介质</li>
+<li>MBR：位于硬盘的第一个分区的第一个扇区，大小为512byte。其中前446byte是bootloader，也就是grub，之后64byte是partition table分区表，之后2byte是校验位。<br>GRUB的配置文件在：/boot/grub/grub.conf<br>通常会去查看文件：/etc/grub.conf //是一个链接到上面文件的链接文件<br>配置文件中有：Kernel 内核的位置，<br>initrd 内核镜像的位置，内核镜像将解压到内存中，加载硬件驱动<br>及相关启动设置</li>
+<li>GRUB启动引导阶段<br>stage1 :在MBR中<br>stage1.5 : 桥梁作用<br>stage2 :在硬盘中</li>
+<li>内核引导阶段<br>引导/boot/kernel<br>执行/boot/initrd //在内存中释放供kernel使用的root fileSystem；执行根目录下的/sbin/init进程<br>启动位于/sbin/init的init进程<br>通过rc.d中的配置根据文件/etc/inittab中的runlevel来决定启动哪些应用</li>
+</ol>
+<ul>
+<li>linux启动级别6是重启</li>
+<li>由命令行界面切换到图形界面的命令是:init 5 和 startx<br>chkconfig 命令可以用来查看相应启动级别下哪些服务会启动<br>如果有哪些命令需要开机时就执行，可以将它们加入到文件/etc/rc.d/rc.local中</li>
+</ul>
+<ol>
+<li>Sys v init初始化阶段<br>启动图形化界面的相关初始化工作</li>
+</ol>
+<h2 id="1-9_远程连接工具">1.9 远程连接工具</h2>
+<ol>
+<li>putty</li>
+<li>xshell</li>
+<li>密钥验证<br>利用putty key可以生成公钥和私钥：<br>公钥复制到服务器端：/root/.ssh/authorized_keys文件中<br>chmod 700 /root/.ssh/<br>chmod 600 /root/.ssh/authorized_keys<br>同时需要关闭防火墙：<br>linux的防火墙有两种：selinux 和 netfilter(iptables)<br>关闭selinux防火墙：setenforce 0 //临时关闭防火墙<br>永久关闭防火墙需要编辑配置文件：vi /etc/selinux/config<br>将其中的：SELINUX=enforcing 改成SELINUX=disabled，并且需要重启才能生效<br>关闭iptables防火墙：iptables -F //临时清除规则<br>永久关闭：service iptables save //相当于将清除规则后，保存规则到配置文件/etc/sysconfig/iptables中<br>私钥保存在本地：用putty设置auth中的私钥</li>
+</ol>
+<h2 id="2-1_运行级别">2.1 运行级别</h2>
+<ol>
+<li>runlevel //显示当前的运行级别<br>runlevel的配置文件在：/etc/inittab<br>init 0 ==shutdown -h now //0级别是断电，计算机将关闭<br>init 6 == reboot == shutdown -r now //6级别是重启，与后面的命令等效<br>init 5 //5级将启动图形界面，但是首先必须安装图形界面</li>
+<li>yum工具<br>yum grouplist //将列出网络上可用的yum rpm包<br>yum groupinstall “包名” //将安装相关软件包<br>echo $LANG //将显示当前语言环境变量LANG的值<br>LANG=en //将设置环境变量LANG为en，即设置为英文环境<br>yum gourpinstall -y “X Window System” //将不用输入y来安装X Window<br>init 5 == statx //重启到图形界面</li>
+</ol>
+<h2 id="2-2_单用户模式">2.2 单用户模式</h2>
+<ol>
+<li>单用户模式 level 1<br>就像windows的安全模式，可以用来更改root密码</li>
+<li>进入单用户模式<br>重启，3秒内按任意键进入启动选项，e进入编辑模式，a修改启动参数，c进入命令行模式<br>编辑启动文件，改成进入启动level 1 或single，按B进入boot，重启</li>
+</ol>
+<h2 id="2-3_救援模式">2.3 救援模式</h2>
+<p>rescue模式就像winPE，是一个内存操作系统，从安装光盘启动它<br>root密码可以在单用户模式下修改，条件是没有设置grub密码，如果设置了grub密码就可以在救援模式下修改root密码。<br>先关机，设置BIOS从CD-ROM启动，进入后选择rescue模式启动，系统将会挂载到/mnt/sysimage目录下，进入rescue模式下的shell中。若要进入原来操作系统环境中，要进入/mnt/sysimage，修改root密码，则vi编辑/etc/passwd，这个就是系统的密码保存文件。若要修改原系统的root密码，则chroot /mnt/sysimage/，切换到原linux系统的环境中， 进入相应环境中，修改密码的命令是passwd，根据提示输入新的密码。命令exit进入rescue模式下，reboot重启。</p>
+<h2 id="2-4_cd命令">2.4 cd命令</h2>
+<ol>
+<li>cd 无参数，则进入当前用户的home目录与cd ~ 的效果一致</li>
+<li>whoami 显示当前用户名</li>
+<li>id 显示当前用户id，组id </li>
+<li>echo $HOME 显示环境变量的内容即当前用户Home目录的路径</li>
+<li>pwd 打印当前所在目录名</li>
+<li>cd - 将会回到上一次所在的目录</li>
+<li>cd . 进入当前目录</li>
+<li>cd ..进入上一级目录</li>
+</ol>
+<h2 id="2-5_ls命令">2.5 ls命令</h2>
+<ol>
+<li>ls -l 长模式显示文件信息</li>
+<li>ls -a 可以显示隐藏文件信息 </li>
+<li>ls -d 显示当前目录信息 ls -ld 可以查看目录的详细信息</li>
+<li>ctrl + l == clear 快速请屏幕</li>
+<li>ctrl + u 快速删除</li>
+<li>ls -t 按时间倒序排列的结果</li>
+<li>ls -i 查看文件的iNode信息</li>
+<li>当我们ls的时候，列出来的文件会根据文件类型不同而显示不同的颜色， /bin/ls </li>
+</ol>
+<h2 id="2-6_环境变量">2.6 环境变量</h2>
+<ol>
+<li>which ls 查看ls命令所在的目录 输出 alias ls =’ls —color=auto’ 命令的别名</li>
+<li>ls所在 /bin/ls 直接用/bin/ls 输出将没有颜色</li>
+<li>alias ls = ‘ls —color=auto’ 给命令做别名，但是仅在当前窗口有效</li>
+<li>alias 命令可以查看所有自定义的命令</li>
+<li>vi /etc/profile 可以编辑文件，将命令别名保存到配置文件中</li>
+<li>vi /etc/bashrc 或vi ~/.bashrc 编辑这个文件是当前用户的别名配置文件</li>
+<li>echo $PATH 所有命令都可以在这个环境变量下找到</li>
+<li>cp 复制文件 </li>
+<li>mv 移动文件 </li>
+<li>PATH-SPATH：/tmp/ 将tmp目录加入到path路径中，暂时的</li>
+<li>vi /etc/profile 可以将变量加入到此文件中，系统重启时才应用这些设置</li>
+<li>source /etc/profile 可以即时应用配置文件</li>
+<li>set </li>
+</ol>
+<h2 id="2-7_快捷键使用">2.7 快捷键使用</h2>
+<ol>
+<li>ctrl+l 清屏</li>
+<li>ctrl+d == exit == logout 退出当前终端</li>
+<li>ctrl+u 快速删除当前光标前面的内容</li>
+<li>ctrl+k 快速删除当前光标后面的内容</li>
+<li>ctrl+c 结束当前的命令运行，杀掉进程</li>
+<li>sleep 100 休眠当前终端100秒  </li>
+<li>ctrl+z 暂停当前命令运行 fg 命令可以恢复运行</li>
+<li>ctrl+s 锁定屏幕 </li>
+<li>ctrl+q 解锁屏幕  </li>
+</ol>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/04/28/linux系统扫描技术及安全防范/" class="archive-article-date">
-  <time datetime="2015-04-28T08:31:57.000Z" itemprop="datePublished">4月 28</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/04/28/linux系统扫描技术及安全防范/">linux系统扫描技术及安全防范</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/05/linux基础/" class="archive-article-date">
-  <time datetime="2015-03-05T02:26:53.000Z" itemprop="datePublished">3月 5</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/05/linux基础/">linux 基础</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/05/linux常用命令/" class="archive-article-date">
-  <time datetime="2015-03-05T02:21:17.000Z" itemprop="datePublished">3月 5</time>
-</a>
+        <a data-url="http://balistardut.github.io/2015/09/29/linux-第一部分/" data-id="h270eal9cqa4eyrp" class="article-share-link" data-share="baidu">分享到</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/05/linux常用命令/">linux常用命令</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/02/linux网络管理/" class="archive-article-date">
-  <time datetime="2015-03-02T08:03:18.000Z" itemprop="datePublished">3月 2</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/02/linux网络管理/">linux网络管理</a>
-    </h1>
-  
+        <a href="http://balistardut.github.io/2015/09/29/linux-第一部分/#ds-thread" class="article-comment-link">Comments</a>
+      
 
-    </header>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/06/String及相关数据类型/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">String及相关数据类型</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2015/09/29/linux-第一部分/" data-title="centOS 第一部分" data-url="http://balistardut.github.io/2015/09/29/linux-第一部分/"></div>
+  </section>
 </section>
         
           <aside id="sidebar">

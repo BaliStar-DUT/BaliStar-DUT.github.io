@@ -74,6 +74,139 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-linux-第一部分" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/29/linux-第一部分/" class="article-date">
+  <time datetime="2015-09-29T13:55:48.000Z" itemprop="datePublished">9月 29 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/29/linux-第一部分/">centOS 第一部分</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-6_配置IP地址">1.6 配置IP地址</h2>
+<p>ifconfig -a 用来查看所有启动和不启动的网卡信息<br>lo 是回环地址<br>    eth0 是第一个网卡<br>    eth1 是第二个网卡<br>    dhclient 可以使网卡自动获取IP地址<br>    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0<br>    可以用vim查看并编辑：<br>    其中有ONBOOT=no 改成ONBOOT=yes 可以使网卡开机时自动启动<br>    BOOTPROTO=dhcp 改成BOOTPROTO=static 将从dhcp方式获取IP改为使用静态IP，同时需要设置：<br>    IPADDR=192.168.11.16 //IP地址<br>    NETMASK=255.255.255.0 //子网掩码<br>    GATEWAY=192.168.11.1 //网关地址，就是路由器的IP地址<br>    DNS1=192.168.11.1 //可以设置DNS地址，通常是网关地址<br>    DNS2=8.8.8.8 //可以设置第二个DNS服务器地址，这是google的DNS服务器<br>    更改完配置文件后需要重启服务:<br>    service network restart<br>    关闭网卡的命令是：<br>    ifdown eth0 //将关闭eth0网卡，此时ifconfig将不会出现网卡eth0，ifconfig -a 才会出现<br>    打开网卡的命令是：<br>    ifup eth0 //将打开eth0网卡<br>    检测是否可以上网的命令是：<br>    ping 主机名 //可以ping到指定主机，检测网络是否联通</p>
+<h2 id="1-7_系统启动过程">1.7 系统启动过程</h2>
+<ol>
+<li>power on 计算机通电</li>
+<li>BIOS：（1）初始化硬件，如内存，显卡，时间，磁盘等。（2）来查找启动介质</li>
+<li>MBR：位于硬盘的第一个分区的第一个扇区，大小为512byte。其中前446byte是bootloader，也就是grub，之后64byte是partition table分区表，之后2byte是校验位。<br>GRUB的配置文件在：/boot/grub/grub.conf<br>通常会去查看文件：/etc/grub.conf //是一个链接到上面文件的链接文件<br>配置文件中有：Kernel 内核的位置，<br>initrd 内核镜像的位置，内核镜像将解压到内存中，加载硬件驱动<br>及相关启动设置</li>
+<li>GRUB启动引导阶段<br>stage1 :在MBR中<br>stage1.5 : 桥梁作用<br>stage2 :在硬盘中</li>
+<li>内核引导阶段<br>引导/boot/kernel<br>执行/boot/initrd //在内存中释放供kernel使用的root fileSystem；执行根目录下的/sbin/init进程<br>启动位于/sbin/init的init进程<br>通过rc.d中的配置根据文件/etc/inittab中的runlevel来决定启动哪些应用</li>
+</ol>
+<ul>
+<li>linux启动级别6是重启</li>
+<li>由命令行界面切换到图形界面的命令是:init 5 和 startx<br>chkconfig 命令可以用来查看相应启动级别下哪些服务会启动<br>如果有哪些命令需要开机时就执行，可以将它们加入到文件/etc/rc.d/rc.local中</li>
+</ul>
+<ol>
+<li>Sys v init初始化阶段<br>启动图形化界面的相关初始化工作</li>
+</ol>
+<h2 id="1-9_远程连接工具">1.9 远程连接工具</h2>
+<ol>
+<li>putty</li>
+<li>xshell</li>
+<li>密钥验证<br>利用putty key可以生成公钥和私钥：<br>公钥复制到服务器端：/root/.ssh/authorized_keys文件中<br>chmod 700 /root/.ssh/<br>chmod 600 /root/.ssh/authorized_keys<br>同时需要关闭防火墙：<br>linux的防火墙有两种：selinux 和 netfilter(iptables)<br>关闭selinux防火墙：setenforce 0 //临时关闭防火墙<br>永久关闭防火墙需要编辑配置文件：vi /etc/selinux/config<br>将其中的：SELINUX=enforcing 改成SELINUX=disabled，并且需要重启才能生效<br>关闭iptables防火墙：iptables -F //临时清除规则<br>永久关闭：service iptables save //相当于将清除规则后，保存规则到配置文件/etc/sysconfig/iptables中<br>私钥保存在本地：用putty设置auth中的私钥</li>
+</ol>
+<h2 id="2-1_运行级别">2.1 运行级别</h2>
+<ol>
+<li>runlevel //显示当前的运行级别<br>runlevel的配置文件在：/etc/inittab<br>init 0 ==shutdown -h now //0级别是断电，计算机将关闭<br>init 6 == reboot == shutdown -r now //6级别是重启，与后面的命令等效<br>init 5 //5级将启动图形界面，但是首先必须安装图形界面</li>
+<li>yum工具<br>yum grouplist //将列出网络上可用的yum rpm包<br>yum groupinstall “包名” //将安装相关软件包<br>echo $LANG //将显示当前语言环境变量LANG的值<br>LANG=en //将设置环境变量LANG为en，即设置为英文环境<br>yum gourpinstall -y “X Window System” //将不用输入y来安装X Window<br>init 5 == statx //重启到图形界面</li>
+</ol>
+<h2 id="2-2_单用户模式">2.2 单用户模式</h2>
+<ol>
+<li>单用户模式 level 1<br>就像windows的安全模式，可以用来更改root密码</li>
+<li>进入单用户模式<br>重启，3秒内按任意键进入启动选项，e进入编辑模式，a修改启动参数，c进入命令行模式<br>编辑启动文件，改成进入启动level 1 或single，按B进入boot，重启</li>
+</ol>
+<h2 id="2-3_救援模式">2.3 救援模式</h2>
+<p>rescue模式就像winPE，是一个内存操作系统，从安装光盘启动它<br>root密码可以在单用户模式下修改，条件是没有设置grub密码，如果设置了grub密码就可以在救援模式下修改root密码。<br>先关机，设置BIOS从CD-ROM启动，进入后选择rescue模式启动，系统将会挂载到/mnt/sysimage目录下，进入rescue模式下的shell中。若要进入原来操作系统环境中，要进入/mnt/sysimage，修改root密码，则vi编辑/etc/passwd，这个就是系统的密码保存文件。若要修改原系统的root密码，则chroot /mnt/sysimage/，切换到原linux系统的环境中， 进入相应环境中，修改密码的命令是passwd，根据提示输入新的密码。命令exit进入rescue模式下，reboot重启。</p>
+<h2 id="2-4_cd命令">2.4 cd命令</h2>
+<ol>
+<li>cd 无参数，则进入当前用户的home目录与cd ~ 的效果一致</li>
+<li>whoami 显示当前用户名</li>
+<li>id 显示当前用户id，组id </li>
+<li>echo $HOME 显示环境变量的内容即当前用户Home目录的路径</li>
+<li>pwd 打印当前所在目录名</li>
+<li>cd - 将会回到上一次所在的目录</li>
+<li>cd . 进入当前目录</li>
+<li>cd ..进入上一级目录</li>
+</ol>
+<h2 id="2-5_ls命令">2.5 ls命令</h2>
+<ol>
+<li>ls -l 长模式显示文件信息</li>
+<li>ls -a 可以显示隐藏文件信息 </li>
+<li>ls -d 显示当前目录信息 ls -ld 可以查看目录的详细信息</li>
+<li>ctrl + l == clear 快速请屏幕</li>
+<li>ctrl + u 快速删除</li>
+<li>ls -t 按时间倒序排列的结果</li>
+<li>ls -i 查看文件的iNode信息</li>
+<li>当我们ls的时候，列出来的文件会根据文件类型不同而显示不同的颜色， /bin/ls </li>
+</ol>
+<h2 id="2-6_环境变量">2.6 环境变量</h2>
+<ol>
+<li>which ls 查看ls命令所在的目录 输出 alias ls =’ls —color=auto’ 命令的别名</li>
+<li>ls所在 /bin/ls 直接用/bin/ls 输出将没有颜色</li>
+<li>alias ls = ‘ls —color=auto’ 给命令做别名，但是仅在当前窗口有效</li>
+<li>alias 命令可以查看所有自定义的命令</li>
+<li>vi /etc/profile 可以编辑文件，将命令别名保存到配置文件中</li>
+<li>vi /etc/bashrc 或vi ~/.bashrc 编辑这个文件是当前用户的别名配置文件</li>
+<li>echo $PATH 所有命令都可以在这个环境变量下找到</li>
+<li>cp 复制文件 </li>
+<li>mv 移动文件 </li>
+<li>PATH-SPATH：/tmp/ 将tmp目录加入到path路径中，暂时的</li>
+<li>vi /etc/profile 可以将变量加入到此文件中，系统重启时才应用这些设置</li>
+<li>source /etc/profile 可以即时应用配置文件</li>
+<li>set </li>
+</ol>
+<h2 id="2-7_快捷键使用">2.7 快捷键使用</h2>
+<ol>
+<li>ctrl+l 清屏</li>
+<li>ctrl+d == exit == logout 退出当前终端</li>
+<li>ctrl+u 快速删除当前光标前面的内容</li>
+<li>ctrl+k 快速删除当前光标后面的内容</li>
+<li>ctrl+c 结束当前的命令运行，杀掉进程</li>
+<li>sleep 100 休眠当前终端100秒  </li>
+<li>ctrl+z 暂停当前命令运行 fg 命令可以恢复运行</li>
+<li>ctrl+s 锁定屏幕 </li>
+<li>ctrl+q 解锁屏幕  </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/09/29/linux-第一部分/" data-id="h270eal9cqa4eyrp" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/09/29/linux-第一部分/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-String及相关数据类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/06/String及相关数据类型/" class="article-date">
@@ -557,82 +690,6 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
 
 
   
-    <article id="post-R-基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/23/R-基础/" class="article-date">
-  <time datetime="2015-04-23T12:34:33.000Z" itemprop="datePublished">4月 23 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/R/">R</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/23/R-基础/">R 基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第一章_简介">第一章 简介</h3>
-<h4 id="1-1_认识R">1.1 认识R</h4>
-<p>R控制台输入  </p>
-<blockquote>
-<p>R.version<br>可以获得R的安装信息<br>getwd()<br>可以获得当前的工作目录<br>install.packages(‘RMySQL’)<br>安装’RMySQL’包<br>installed.packages()<br>查看当前已安装的R添加包<br>library()<br>查看当前已安装的R添加包，解释包的作用，信息更友好<br>old.packages()<br>查看是否有已安装的R添加包的新版本<br>update.packages()<br>更新所有已安装的R软件包<br>RSiteSearch(‘something’)<br>搜索邮件列表，R手册和R帮助页面中的关键词或词语  </p>
-<h4 id="1-2_R对象">1.2 R对象</h4>
-<p>R中创建的每个对象都存储在计算机内存中，直到删除它们。对象名区分大小写。<br>ls()<br>objects()<br>可以列举出当前内存中存在的对象<br>rm()<br>可以删除对象来释放内存  </p>
-<h4 id="1-3_向量">1.3 向量</h4>
-<p>向量用来存储一组基本类型相同的数据。<br>可以用c()函数来创建向量<br>v &lt;- c(1,2,3,4,5)<br>创建了一个数值型向量，并赋值到v对象中<br>length(v)<br>获取向量v的长度<br>mode(v)<br>活取向量v的模式，即元素类型<br>v[2]<br>通过方括号中索引来访问某个元素<br>v[2] &lt;- “hello”<br>改变某个元素的值<br>x &lt;- vector()<br>创建空向量<br>如果使用不存在的索引，就会改变向量的长度  </p>
-<h4 id="1-4_向量化">1.4 向量化</h4>
-<p>函数可以直接对向量的每个元素进行操作<br>v &lt;- c(1,2,3,4,5,6,7)<br>x &lt;- sqrt(v)<br>x将是向量v元素开方后的向量  </p>
-<h4 id="1-5_因子">1.5 因子</h4>
-<p>如果数据集有取指个数固定的名义变量，因子就很有用<br>g &lt;- c(“f”,”m”,”f”)<br>g &lt;- factor(g)<br>将向量g转换为一个因子，有2个水平“f”和”m“<br>other.g &lt;- factor(c(“m”,”m”),levels =c(“f”,”m”))<br>利用参数levels 将因子的水平变为两个<br>table()<br>table()函数用来获取多个因子的交叉表  </p>
-<h4 id="1-6_生成序列">1.6 生成序列</h4>
-<p>x &lt;- 1:1000<br>创建了向量x，包含1到1000的元素<br>seq(-4,1,0.5)<br>函数seq()生成从-4～1，以0.5为增量的序列<br>seq(from=1,to=5,length=4)<br>seq(length=10,from=-2,by=0.2)<br>生成不同序列<br>rep(5,10)<br>生成10个5的序列<br>rep(1:2,3)<br>生成3个1到2的序列，共6个数<br>gl(2,5，lables=c(“female”,”male”))<br>gl()函数生成2个水平(分别是female和male)的序列，每个水平重复5次<br>rnorm(10,mean=10,sd=3)<br>生成10个服从均值为10(默认为0)，标准差为3(默认为1)的正态分布随即数值<br>rt(5,df=10)<br>生成5个服从自由度为10的t分布的随即数值  </p>
-<h4 id="1-7_数据子集">1.7 数据子集</h4>
-<p>x[x&gt;0]<br>获取向量x种大于0的元素<br>x[ x&lt;=-2 | x&gt;5]<br>获取向量x中大于5或小于等于-2的元素<br>x[x&gt;40 &amp; x&lt;100]<br>活取大于40且小于100的元素<br>x[c(4,6)]<br>提取索引为4和6的元素<br>x[1:3]<br>提取索引从1到3的元素<br>x[-1]<br>表示删除索引为1的元素后的向量<br>x[-c(4,6)]<br>表示删除索引为4，6的元素<br>pH &lt;- c(4.5,7,7.3)<br>names(pH) &lt;- c(“area1”,”area2”,”area3”)<br>pH<br>通过names()函数可以给向量中的元素命名<br>pH &lt;- c(area1=4.5,area2=7,area3=7.3)<br>在创建向量时就赋值名字<br>pH[“area1”]<br>通过名字索引  </p>
-<h4 id="1-8_矩阵与数组">1.8 矩阵与数组</h4>
-<p>dim(m) &lt;- c(2,5)<br>将向量m变成2×5的矩阵，向量为10个元素，按列填充<br>m &lt;- matrix(c(1,2,3,4,5,6,7,8,9,10),2,5,byrow=T)<br>按行填充<br>m[1,]<br>输出矩阵m的第1行<br>m[,4]<br>输出矩阵的第4列<br>可以用colnames()和rownames()分布给矩阵的行和列命名<br>a &lt;- arrary(1:24),dim=c(4,3,2)<br>生成维度为4×3×2的三维数组，1：24填充  </p>
-<h4 id="1-9_列表">1.9 列表</h4>
-<p>R列表事以其他对象为成分的有序集合。元素不一定事同一种数据类型<br>my.list &lt;- list(stud.id=33334,stud.name=”Jone”,stud.marks=c(12,12,334,34))<br>生成一个列表<br>my.list$stud.id<br>获取列表的一个成分  </p>
-<h4 id="1-10_数据框">1.10 数据框</h4>
-<p>my.dataset &lt;- data.frame(site=c(‘A’,’B’,’C’),season=c(‘Winter’,’Summer’,’Spring’),pH=c(7,8,9))<br>my.dataset<br>函数data.frame()生成一个数据框，其实是一个列表<br>attach(my.dataset)<br>my.dataset[site==’B’,]<br>查询site==B的数据行<br>detach(my.dataset)<br>禁止直接访问数据框的列<br>subset(my.dataset,pH&gt;8)<br>查询数据框my.dataset 中pH&gt;8的数据<br>my.dataset &lt;- edit(my.dataset)<br>可视化窗口编辑数据框<br>new.data&lt;- edit(data.frame())<br>创建一个新的数据框<br>data()<br>获取已安装的数据集<br>data(CO2)<br>应用某个数据集  </p>
-<h4 id="1-11_函数">1.11 函数</h4>
-<p>se &lt;- function （）{}<br>创建函数对象se  </p>
-<h4 id="1-12_R会话">1.12 R会话</h4>
-<p>source(‘mycode.R’)<br>执行文件中的所有命令<br>getwd()<br>setwd()<br>获取和设置当前工作目录<br>save(f,my.dataset,file=’mysession.RData’)<br>在文件中保存f和my.dataset对象<br>load(‘mysession.RData’)<br>重新读入这些对象<br>save.image()<br>保存工作空间中的所有对象，保存在文件.RData中  </p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/23/R-基础/" data-id="83n3698hpcskcdw5" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/23/R-基础/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/R语言/">R语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -646,7 +703,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -655,7 +712,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -664,7 +721,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Calendar/" style="font-size: 10.00px;">Calendar</a><a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/String/" style="font-size: 10.00px;">String</a><a href="/tags/linux/" style="font-size: 16.67px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 13.33px;">笔记</a>
+      <a href="/tags/Calendar/" style="font-size: 10.00px;">Calendar</a><a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/String/" style="font-size: 10.00px;">String</a><a href="/tags/centOS/" style="font-size: 10.00px;">centOS</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 20.00px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 15.00px;">笔记</a>
     </div>
   </div>
 
@@ -673,7 +730,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -683,6 +740,10 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/09/29/linux-第一部分/">centOS 第一部分</a>
+          </li>
         
           <li>
             <a href="/2015/09/06/String及相关数据类型/">String及相关数据类型</a>
@@ -698,10 +759,6 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
         
           <li>
             <a href="/2015/04/28/linux系统扫描技术及安全防范/">linux系统扫描技术及安全防范</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/23/R-基础/">R 基础</a>
           </li>
         
       </ul>
@@ -789,6 +846,11 @@ var duoshuoQuery = {short_name:"yangz3"};
 <!-- 百度分享 end -->
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
 
