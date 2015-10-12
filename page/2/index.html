@@ -74,6 +74,191 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/28/MySQL基础/" class="article-date">
+  <time datetime="2015-04-28T08:39:32.000Z" itemprop="datePublished">4月 28 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/122" target="_blank" rel="external">慕课网：与MySQL的零距离接触</a>  </p>
+<p>为第一到第五章部分</p>
+<h2 id="第一章_MySQL基本知识">第一章 MySQL基本知识</h2>
+<h3 id="1-启动/关闭MySQL">1.启动/关闭MySQL</h3>
+<p>CMD中启动服务：<br>net start mysql<br>CMD中停止服务：<br>net stop mysql<br>所有Windows服务都可以通过上面命令启动与关闭  </p>
+<h3 id="2-登录与退出">2.登录与退出</h3>
+<p>登录MySQL：<br>mysql [参数]  </p>
+<blockquote>
+<p>-D ,—database=name 打开指定数据库<br>-h 服务器名称<br>-p 密码  </p>
+<p>-P 端口号 MySQL默认端口号3306<br>-u 用户名<br>-V 输出版本信息并退出<br>—prompt=name 设置提示符</p>
+</blockquote>
+<p>退出MySQL：<br>exit<br>quit<br>\q</p>
+<h3 id="3-修改MySQL提示符">3.修改MySQL提示符</h3>
+<p>MySQL默认提示符 mysql&gt;<br>1.连接客户端时通过参数指定<br>shell&gt;mysql -u root -p root —prompt 提示符<br>2.连接上客户端后，通过prompt命令修改<br>mysql&gt;prompt 提示符  </p>
+<blockquote>
+<p>\D 完整的日期<br>\d 数据库名称<br>\h 主机名称<br>\u 当前用户名  </p>
+</blockquote>
+<h3 id="4-MySQL常用命令">4.MySQL常用命令</h3>
+<ol>
+<li>显示当前服务器版本<br> SELECT VERSION();</li>
+<li>显示当前日期时间<br> SELECT NOW();</li>
+<li>显示当前用户<br> SELECT USER();  </li>
+<li>显示当前打开的数据库<br> SELECT DATABASE();</li>
+<li>显示错误信息<br> SHOW WARNINGS;</li>
+<li>显示数据库创建时的命令<br> SHOW CREATE DATABASE db_name<br> SHOW CREATE TABLE db_name;</li>
+<li>以表格形式显示（直观）<br> 后面加”\G”;</li>
+<li><h3 id="5-操作数据库">5.操作数据库</h3>
+</li>
+<li>创建数据库<br> CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name;  </li>
+<li>查看当前服务器中数据库列表<br> SHOW {DATABASES | SCHEMAS} [LIKE ‘pattern’ | WHERE expr]</li>
+<li>显示数据库创建时的命令<br> SHOW CREATE DATABASE db_name</li>
+<li>修改数据库<br> ALTER {DATABASE | SCHEMA} [db_name]  [DEFAULT] CHARACTER SET [=] charset_name;  </li>
+<li>删除数据库<br> DROP {DATABASE | SCHEMA} [IF EXISTS] db_name;  <h2 id="第二章_数据类型和操作数据表">第二章 数据类型和操作数据表</h2>
+<h3 id="1-数据类型">1.数据类型</h3>
+</li>
+<li>整型 （有正负之分）<blockquote>
+<p>TINYINT  1个字节<br>有符号值：-128到127（-2^7到2^7-1）<br>无符号值：0到255（0到2^8）<br>SMALLINT  2个字节<br>MEDIUMINT 3个字节<br>INT 4个字节<br>BIGINT 8个字节  </p>
+</blockquote>
+</li>
+<li>浮点型  <blockquote>
+<p>FLOAT[(M,D)] M是数字总位数，D是小数点后面的位数。单精度浮点数精确到大约7位小数位<br>DOUBLE[(M,D)] </p>
+</blockquote>
+</li>
+<li>日期时间型  <blockquote>
+<p>YEAR 1个字节<br>TIME 3个字节<br>DATE 3个字节<br>DATETIME 8个字节<br>TIMESTAMP 4个字节</p>
+</blockquote>
+</li>
+<li>字符型  <blockquote>
+<p>CHAR(M) M个字节，0&lt;=M&lt;=255<br>VARCHAR(M) L+1个字节<br>TINYTEXT  L+1个字节<br>TEXT L+2个字节<br>MEDIUMTEXT  L+3个字节<br>LONGTEXT  L+4个字节<br>ENUM(‘value1’,’value2’,…)<br>SET(‘value1’,’value2’,…)  元素做任意的排列组合</p>
+<h3 id="2-数据表操作">2.数据表操作</h3>
+</blockquote>
+</li>
+<li>创建数据表<br> CREATE  TABLE [IF NOT EXISTS] table_name(<pre><code> column_name data_<span class="built_in">type</span>,
+ .....
+</code></pre> )<br> 如果在CREATE语句后指定一个SELECT，MYsql将为在select中所有的单元创建新字段。<br> 可以用来复制表<br> 例如： create table weibotest select * from weibo where msg_ID=0</li>
+<li>查看数据库中的数据表列表<br> SHOW TABLES [FROM  db_name] [LIKE ‘pattern’ | WHERE expr]</li>
+<li>查看数据表结构<br> SHOW COLUMNS FROM tb1_name </li>
+<li>记录的插入与查找<br> INSERT [INTO] tb1_name [(col_name,…)] VALUES (val,…)<br> SELECT expr,… FROM tb1_name</li>
+<li>空与非空<br> NULL和NOT NULL</li>
+<li>自动编号<br> AUTO_INCREMENT  <ul>
+<li>自动编号，且必须与主键组合使用</li>
+<li>默认情况下，起始值为1，每次增量为1  </li>
+</ul>
+</li>
+<li>主键约束<br> PRIMARY KEY<ul>
+<li>每张数据表只能存在一个主键</li>
+<li>主键保证记录的唯一性</li>
+<li>主键自动为NOT NULL</li>
+</ul>
+</li>
+<li>唯一约束<br> UNIQUE KEY<ul>
+<li>唯一约束可以保证记录的唯一性</li>
+<li>唯一约束的字段可以为空（NULL）</li>
+<li>每张数据表可以存在多个唯一约束</li>
+</ul>
+</li>
+<li>默认约束<br>DEFAULT <ul>
+<li>默认值</li>
+<li>当插入记录时，如果没有明确为字段赋值，则自动赋予默认值</li>
+</ul>
+</li>
+<li>删除数据记录<br>DELETE FROM tb_name WHERE id = 3;</li>
+<li><h2 id="第三章_约束以及修改数据表">第三章 约束以及修改数据表</h2>
+<h3 id="1-外键约束的要求解析">1.外键约束的要求解析</h3>
+<strong>约束</strong>  </li>
+<li>约束保证数据的完整性和一致性  </li>
+<li>约束分为表级约束和列级约束  </li>
+<li><p>约束类型包括：  </p>
+<ul>
+<li>NOT NULL (非空约束)</li>
+<li>PRIMARY KEY (主键约束)</li>
+<li>UNIQUE KEY (唯一约束)</li>
+<li>DEFAULT (默认约束)</li>
+<li><strong>FOREIGN KEY(外键约束)</strong><br>外键约束：实现一对一或一对多的关系  </li>
+</ul>
+</li>
+</ol>
+<p><strong>外键约束的要求</strong>：  </p>
+<ol>
+<li>父表和子表必须使用相同的存储引擎，而且禁止使用临时表；  </li>
+<li>数据表的存储引擎只能是InnoDB。  </li>
+<li>外键列和参照列必须具有相似的数据类型。其中数字的长度或是否有符号位必须相同；而字符的长度可以不同。  </li>
+<li>外键列和参照列必须创建索引。如果外键列不存在索引的话，MySQL将自动创建索引<br><strong>显示是否有创建索引</strong><br>SHOW INDEXES FROM tb_name\G;\G可以以图表的形式表现结果<br><strong>编辑数据表的默认存储引擎</strong><br>MySQL的配置文件：my.ini<br>default-storage-engine=INNODB<h3 id="2-外键约束的参照操作">2.外键约束的参照操作</h3>
+</li>
+<li>CASECADE：从父表删除或更新且自动删除或更新子表中匹配的行<br> FOREIGN KEY (pid) REFERENCES province(id) ON DELETE CASCADE;当从父表中删除记录的时候，子表中也会删除  </li>
+<li>SET NULL：从父表删除或更新行，并设置字表中的外键列为NULL。如果使用该选项，必须保证字表列没有指定NOT NULL</li>
+<li>RESTRICT:拒绝对父表的删除或更新操作 </li>
+<li>NO ACTION:标准SQL关键字，在MySQL中与RESTRICT相同<h3 id="3-表级约束和列级约束">3.表级约束和列级约束</h3>
+对一个数据列建立的约束，称为列级约束；<br>对多个数据列建立的约束，称为表级约束；<br>列级约束既可以在列定义时声明，也可以在列定以后声明；<br>表级约束只能在列定义后声明。<h3 id="4-修改数据表-添加/删除列">4.修改数据表-添加/删除列</h3>
+</li>
+<li>添加单列<br> ALTER TABLE tb_name ADD [COLUMN] col_name  column_definition [FIRST | AFTER  col_name]</li>
+<li>添加多列<br> ALTER TABLE tb_name ADD [COLUMN] (col_name column_definition,…)</li>
+<li>删除列<br> ALTER TABLE tb_name DROP col_name;<h3 id="5-添加约束">5.添加约束</h3>
+</li>
+<li>添加主键约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] PRIMARY KEY <a href="index_col_name,...">index_type</a>  </li>
+<li>添加唯一约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] UNIQUE [INDES | KEY] [index_name] <a href="index_col_name,...">index_type</a></li>
+<li>添加外键约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] <a href="index_col_name,...">index_type</a> reference_definition</li>
+<li>添加/删除默认约束<br> ALTER TABLE tb_name ALTER [COLUMN] col_name {SET DEFAULT literal | DROP DEFAULT};</li>
+<li>删除主键约束<br> ALTER TABLE tb_name DROP PRIMARY KEY;</li>
+<li>删除唯一约束或索引<br> ALTER TABLE tb_name DROP {INDEX | KEY} index_name;<br> SHOW INDEXES FROM tb_name;//显示索引情况</li>
+<li>删除外键约束<br> ALTER TABLE tb_name DROP FOREIGN KEY fk_symbol;<h3 id="6-修改列定义和更名数据表">6.修改列定义和更名数据表</h3>
+</li>
+<li>修改列定义<br> ALTER TABLE tb_name MODIFY [COLUMN] col_name culumn_definition [FIRST | AFTER col_name];</li>
+<li>修改列名称<br> ALTER TABLE tb_name CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST | AFTER col_name];</li>
+<li>数据表更名<br> 方法1：ALTER TABLE tb_name RENAME [TO | AS] new_tb_name;<br> 方法2：RENAME TABLE tb_name TO new_tb_name [,tb_name2 TO new_tb_name2]….  <h2 id="第四章_操作数据表中的记录">第四章 操作数据表中的记录</h2>
+<h3 id="1-插入记录_INSERT">1.插入记录 INSERT</h3>
+INSERT [INTO] tb_name [(col_name,…)]{VALUES | VALUE}({expr | DEFAULT},…),(…),…<br>INSERT users VALUES(NULL,’Tom’,’123’,25,1);<br>INSERT users VALUES(DEFAULT,’Tom’,’123’,25,1);<br>//默认自动编号的可以用NULL或DEFAULT来表示<br><strong>插入多个值</strong>：<br>INSERT users VALUES(DEFAULT,’Tom’,’123’,25,1),  (NULL,’Rose’,md5(‘123’),DEFAULT,0);<br>md5()是mysql的一个计算哈希值的函数。  <h3 id="2-插入记录_INSERT_SET">2.插入记录 INSERT SET</h3>
+插入记录：INSERT [INTO] tb_name SET col_name={expr | DEFAULT},…<br>说明：与第一种方式的区别在于，此方法可以使用子查询（SubQuery）,且一次只能插入一条<br>INSERT users SET username=’Ben’,password=’4576 ‘;<br>INSERT [INTO] tbname [(colname,…)] SELECT …<br>说明：此方法可以将查询结果插入到制定数据表。<br>INSERT test(usernaem) SELECT username FROM users WHERE age&gt;=30;   <h3 id="3-单表更新记录UPDATE">3.单表更新记录UPDATE</h3>
+单表更新：<br>UPDATE  [LOW_PRIORITY] [IGNORE] table_reference SET col_name1={expr1 | DEFAULT} [,col_name2={expr1 | DEFAULT} ]….[WHERE where_condition]<br>UPDATE users age=age+5;//所有的age都增加5<br>更新多列：<br>UPDATE users SET age=age - id,sex=0;<br>更新的时候加条件：<br>UPDATE users SET age=age + 10 WHERE id%2 = 0;//对ID为偶数的记录更新age  <h3 id="4-_单表删除记录DELETE">4. 单表删除记录DELETE</h3>
+DELETE FROM tb_name [WHERE where_condition];<br>查询表达式解析：<br>SELECT select_expr [,select_expr] [<br> FROM table_reference<br> [WHERE where_condition]<br> [GROUP BY {col_name | positon} {ASC | DESC},….]<br> [HVING where_conditon]<br> [ORDER BY {col_name | expr | position} [ASC | DESC],…]<br> [LIMIT {[offset,] row_count | row_count OFFSET offset}]<br>]<h3 id="5-_查询表达式解析">5. 查询表达式解析</h3>
+查询表达式：<br>每个表达式表示想要的一列，必须有至少一个。<br>多个列之间用英文逗号分隔。<br>星号(<em>)表示所有列。tb_name.</em>可以 表示命名表的所有列。<br>查询表达式可以使用[AS] alias_name 为其赋予别名。<br>别名可用于GROUP BY.ORDER BY 或HAVING字句。  <h3 id="6-_WHERE语句进行条件查询">6. WHERE语句进行条件查询</h3>
+WHERE语句条件查询：<br>条件表达式：对记录进行过滤，在where语句中，可以使用mysql支持的函数或运算符。  <h3 id="7-_GROUP_BY语句对查询结果分组">7. GROUP BY语句对查询结果分组</h3>
+GROUP BY语句对查询结果进行分组<br>SELECT sex FROM users GROUP BY sex;  <h3 id="8-_HAVING语句设置分组条件">8. HAVING语句设置分组条件</h3>
+[HVING where_]<br>分组条件中的条件必须为聚合函数（max()，min()，avg()，count()，sum()）  <h3 id="9-_ORDER_BY_语句对查询结果排序">9. ORDER BY 语句对查询结果排序</h3>
+ORDER BY:对查询结果进行排序：<br>[ORDER BY {col_name | expr | position} [ASC | DESC],…]<br>SELECT * FROM users ORDER BY age , id DESC;//先按age升序排列，再按id降序排列  <h3 id="10-_LIMIT语句限制查询数量">10. LIMIT语句限制查询数量</h3>
+LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFSET offset}];<br>SELECT <em> FROM users LIMIT 2;//返回前2条数据<br>SELECT </em> FROM users LIMIT 3,2; //返回从下标3开始的2条数据；下标从0开始   </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/04/28/MySQL基础/" data-id="kkm6g7cp5z5uxmst" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/04/28/MySQL基础/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-linux系统扫描技术及安全防范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/04/28/linux系统扫描技术及安全防范/" class="article-date">
@@ -401,137 +586,6 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
 
 
   
-    <article id="post-linux常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/05/linux常用命令/" class="article-date">
-  <time datetime="2015-03-05T02:21:17.000Z" itemprop="datePublished">3月 5 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/05/linux常用命令/">linux常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/258" target="_blank" rel="external">慕课网：Linux达人养成计划I</a>  </p>
-<h3 id="第一节_linux命令格式">第一节  linux命令格式</h3>
-<h4 id="1-1_linux文件类型">1.1 linux文件类型</h4>
-<p>-rwxrwxrwx  1 root root 1207  </p>
-<ol>
-<li>第一位表示文件类型  <ul>
-<li>l表示软连接文件  </li>
-<li>d表示目录文件  </li>
-<li>块设备文件  </li>
-<li>字符设备文件  </li>
-<li>套接字文件  </li>
-<li>管道文件  </li>
-</ul>
-</li>
-<li>左三位表示所有者权限  </li>
-<li>中三位表示所在用户组权限  </li>
-<li>右三位表示其他用户权限<br>ls -i 查看文件id号  <h4 id="1-2_目录处理命令">1.2 目录处理命令</h4>
-</li>
-<li>建立目录<br> mkdir -p dir1/dir2 递归创建目录</li>
-<li>切换所在目录<br> cd dir1<br> cd ~ 回到home目录<br> cd - 回到上次的目录<br> ctrl+l 清理屏幕</li>
-<li>显示当前所在目录<br> pwd<br> list<br> ll = list -l</li>
-<li>删除目录（极少用了）<br> rmdir dir1 删除空白目录</li>
-<li>删除文件或目录<br> rm -r dir1  删除目录<br> rm file1  删除文件<br> rm -rf dir1或file1 强制删除，不可恢复<br> rm -rf /*  linux自杀命令  </li>
-<li>复制<br> cp -r dir1 dir2 复制目录<br> cp -p file1 file2 连带文件属性一起复制<br> cp -a dir1 dir2 目标文件与源文件属性一致  相当于cp -pdr </li>
-<li>剪切或改名<br> mv dir1或file1 dir2或file2 不同目录下为剪切<br> mv file1 file2  同一目录下为改名</li>
-<li>链接命令<br> ln -s file1 file2 创建软链接<br> 硬链接：拥有相同的文件ID,拥有相同的i节点和存储block块，可以看做一个文件。可通过i节点识别，不可跨分区，不能针对目录使用。<br> 有两个硬链接的文件，删掉一个，另一个还可访问。<br> 软链接：类似windows的快捷方式。<br> 软链接有自己的i节点和blocks<br> 删除原文件，软链接就不能使用了<br> <strong>软链接中源文件一定要写绝对路径</strong>s<h4 id="1-3_常用目录作用">1.3 常用目录作用</h4>
-</li>
-</ol>
-<ul>
-<li><strong>/</strong>  根目录</li>
-<li><strong>/bin</strong> 保存系统命令，所有用户都可用</li>
-<li><strong>/sbin</strong> 保存系统命令，只有超级用户才可用  </li>
-<li><strong>/usr/bin</strong> 系统命令，普通用户</li>
-<li><strong>/usr/sbin</strong> 系统命令，超级用户</li>
-<li><strong>/boot</strong> 系统启动目录</li>
-<li><strong>/dev</strong> 特殊文件保存目录</li>
-<li><strong>/etc</strong> 默认配置文件保存目录</li>
-<li><strong>/home</strong> 普通用户文件保存</li>
-<li><strong>/root</strong> 超级用户文件</li>
-<li><strong>/lib</strong> 函数库保存位置</li>
-<li><strong>/misc,/media,/mnt</strong> 空目录，作为外接介质分配盘符</li>
-<li><strong>/proc,/sys</strong> 不能直接操作，保存内存的挂载点，内存的盘符</li>
-<li><strong>/tmp</strong> 临时目录，可以随意放东西</li>
-<li><strong>/usr</strong> 系统软件资源目录</li>
-<li><strong>/var</strong> 系统相关文档内容<h4 id="1-4_文件搜索命令">1.4 文件搜索命令</h4>
-</li>
-</ul>
-<ol>
-<li>文件搜索命令 <strong>locate</strong> 只能搜索文件名<br>locate file1 搜索数据库/var/lib/mlocate中记录的文件，搜索速度较快，但是不能找到最新建立的文件,只能搜索文件名。<br><strong>updatedb</strong> 更新数据库<br>命令遵循配置文件/etc/updatedb.conf的规则进行搜索。</li>
-<li><p>文件搜索命令 <strong>find</strong><br> find 搜索范围 搜索条件<br> find / -name filename 在/下按文件名搜索filename<br> find /root -name “ab[cd]” 在/root下按文件名搜索abc或abd<br> find /root -name “<em>[cd]” 搜索以c或d结尾的文件<br> <em>*通配符</em></em>:</p>
-<ul>
-<li>*  匹配任意内容</li>
-<li>？ 匹配任意一个字符</li>
-<li>[] 匹配任意一个中括号内的字符<br>-i 不区分大小写<br>-user username 按用户名搜索<br>-nouser 按没有用户名的文件搜索，就是搜索垃圾文件或内核产生的文件，或外来文件<br><strong>find /root -mtime +10</strong> 查找10天前修改的文件<br><strong>find /root -mtime -10</strong> 查找10天内s修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性的时间<br>-mtime 修改文件内容的时间<br><strong>find . -size -25k</strong>查找当前目录下文件大小小于25k的文件<br><strong>find . -size +2M</strong>查找当前目录下文件大小大于2M的文件，必须大写<br><strong>find . -inum 261211</strong>查找当前目录下文件ID为.。的文件<br><strong>find /etc -size +20k -a -size -30k</strong> 查找目录下大于20k和小于30k大小的文件<br>-a 逻辑和<br>-o 逻辑或<br><strong>find /etc -size +20k -a -size -30k -exec ls -lh {}\; </strong><br>-exec 参数后面跟的是command命令，它的终止是以;为结束标志的，所以这句命令后面的分号是不可缺少的，考虑到各个系统中分号会有不同的意义，所以前面加反斜杠。<br>{} 花括号代表前面find查找出来的文件名。</li>
-</ul>
-</li>
-<li><p>命令搜索命令<br> <strong>whereis</strong> 不能搜索文件，只能搜索系统命令<br> whereis cmd 搜索命令cmd所在位置和帮助文档所在位置<br> -b 只查找可执行文件<br> -m 只查找帮助文档<br> <strong>which</strong> 查看命令和命令别名所在位置，但是不一定都能找到<br> cd是shell的内置命令，不是linux内置的命令，故无法在linux系统内找到。</p>
-</li>
-<li>字符串搜索命令 <strong>grep [选项] 字符串 文件名</strong>在文件种匹配符合条件的字符串<br> grep -i 忽略大小写<br> grep -v 排除指定字符串  </li>
-<li>find命令与grep命令的区别<br>find 在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，是完全匹配<br>grep 在文件中搜索符合条件的字符串，如果需要匹配，使用正则表达式进行匹配，是包含匹配，只要包含就能找到  <h4 id="1-5_帮助命令">1.5 帮助命令</h4>
-</li>
-<li><p><strong>man 内容</strong> 获取制定内容的帮助<br>man -f 内容 == whatis 内容 查看内容所在man的位置<br>man -数字 内容 查看man的第几部分的内容<br>man -k 内容 == apropos 内容 找到全部包含内容关键字的内容  </p>
-</li>
-<li><p><strong>其他帮助命令</strong><br> 命令 —help 获取命令选项帮助信息<br> help shell内部命令帮助<br> info 内容 找出内容所有的详细的信息  </p>
-<h4 id="1-6_压缩与解压缩命令">1.6 压缩与解压缩命令</h4>
-<p>常见压缩格式.zip,.gz,.bz2,.tar.gz,.tar.bz2  </p>
-</li>
-<li><p><strong>.zip格式</strong><br>zip 压缩文件名 源文件名  压缩文件<br>zip -r 压缩文件名 源目录 压缩目录<br>unzip 压缩文件 解压缩.zip文件  </p>
-</li>
-<li><p><strong>.gz格式压缩</strong><br>gzip 源文件 压缩为.gz格式的压缩文件，源文件会消失<br>gzip -c 源文件 &gt; 压缩文件 保留源文件，压缩到其他文件<br>gzip -r 目录 压缩目录下所有的子文件，但是不压缩目录<br>gzip -d 压缩文件 解压缩文件<br>gunzip 压缩文件 解压缩文件  </p>
-</li>
-<li><strong>.bz2格式压缩</strong><br>bzip2 源文件 压缩为bz2格式，不保留源文件<br>bzip2 -k 源文件 压缩后保留源文件<br>bzip2 命令不能塔索目录<br>bzip2 -d 压缩文件 解压缩，-k保留压缩文件<br>bunzip2 压缩文件 解压缩，-k保留压缩文件  </li>
-<li><strong>.tar打包命令</strong><br>tar -cvf 打包文件名 源文件<br>-c 打包 -v 显示过程 -f 显示打包后的文件名<br>tar -cvf abc.tar abc 将abc文件打包成abc.tar<br>tar -xvf 打包文件名 解打包文件<br>tar -zcvf 压缩包名.tar.gz 源文件 直接将文件压缩成.tar.gz格式<br>tar -zxvf 压缩包名.tar.gz 解压缩<br>tar -jcvf 压缩包名.tar.bz2 源文件 直接将文件压缩成.tar.bz2格式<br>tar -jxvf 压缩包名.tar.bz2 解压缩<br>tar -jxvf fiel.tar.bz2 -C /dir  制定解压目录  <h4 id="1-7_关机或重启命令">1.7 关机或重启命令</h4>
-</li>
-<li><strong>shutdown [选项] 时间 </strong>保存相关内容，更安全<br>-c: 取消前一个关机命令<br>-h: 关机<br>-r: 重启<br>以下命令关机不太安全，推荐用shutdown<br><strong>halt </strong><br><strong>poweroff </strong><br><strong>init 0</strong><br><strong>reboot</strong><br><strong>init 6</strong><br><strong>系统运行级别：0-6</strong><br>cat /etc/inittab 修改系统默认运行级别<br>runlevel 查询系统运行级别  <h4 id="1-8_挂载命令">1.8 挂载命令</h4>
-</li>
-<li><strong> mount [-t 文件类型]  [-o 特殊选项] 设备文件名 挂载点 </strong>挂载文件系统<br>-t 文件系统<br>mount 查看系统中已经挂载好的设备<br>mount -a 依据配置文件/etc/fstab的内容，自动挂载  </li>
-<li><strong> umount 设备文件名或挂载点 </strong>卸载文件系统<br>umount /home/yangz/UUI 卸载文件系统<br><strong>fdisk -l：</strong>查看U盘设备文件名<br><strong>mount -t vfat /dev/sdb1 /mnt/usb </strong>挂载U盘<br><strong>linux默认不支持NTFS设备</strong>  <h4 id="1-9_用户登陆与交互命令">1.9 用户登陆与交互命令</h4>
-</li>
-<li><strong>w 查看当前用户登陆信息</strong>  </li>
-<li><strong>last 查看历史登陆信息</strong>  </li>
-<li><strong>lastlog 查看所有用户的最后一次登陆时间</strong>  </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/03/05/linux常用命令/" data-id="dgrzf0yle99kbzx3" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/03/05/linux常用命令/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -545,7 +599,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -554,7 +608,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -572,7 +626,7 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -582,6 +636,10 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/10/13/centOS运维第三部分-负载进程内存监控/">centOS运维第三部分-负载进程内存监控</a>
+          </li>
         
           <li>
             <a href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/">centOS运维第二部分-文件用户磁盘管理命令</a>
@@ -597,10 +655,6 @@ groupadd 【用户组名】添加用户组<br>groupmod -n 【新用户组名】�
         
           <li>
             <a href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
           </li>
         
       </ul>

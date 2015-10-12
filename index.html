@@ -74,6 +74,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-centOS运维第三部分-负载进程内存监控" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/13/centOS运维第三部分-负载进程内存监控/" class="article-date">
+  <time datetime="2015-10-12T16:38:51.000Z" itemprop="datePublished">10月 13 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/13/centOS运维第三部分-负载进程内存监控/">centOS运维第三部分-负载进程内存监控</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-1_查看系统负载命令">1.1 查看系统负载命令</h2>
+<hr>
+<ol>
+<li>w //显示系统负载信息<br>load average: 1分钟，5分钟，15分钟内系统的平均负载<br>负载表示单位时间内有多少进程在排队或使用cpu<br>yangz@yangz-CW65:~$ w<br>22:46:33 up  5:40,  2 users,  load average: 3.52, 3.28, 3.20<br>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT<br>yangz    :0       :0               17:07   ?xdm?   2:57m  1:18  upstart —user<br>yangz    pts/18   :0               17:10    0.00s  0.89s 19.92s gnome-terminal<br>表示1分钟内有3.52个进程在使用cpu，本机为4核i3cpu，如果大于4，将占满cpu，负载过大。<br>有2个用户登陆，登陆时间，空闲时间，jcpu表示:终端下所有进程占用的时间 pcpu表示:w命令占用的时间</li>
+<li>uptime //显示w结果中的第一行<h2 id="1-2_vmstat命令">1.2 vmstat命令</h2>
+</li>
+</ol>
+<hr>
+<ol>
+<li>vmstat 1 //表示每1秒显示一次，不停显示</li>
+<li>vmstat 1 5 //表示每1秒显示一次，显示5次<br>yangz@yangz-CW65:~$ vmstat 1 5<br>procs —————-memory————— —-swap— ——-io—— -system— ———cpu——-<br>r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st<br>2  1      0 182068 242464 1058528    0    0    22  4527  496  501 17  5 60 19  0<br>1  1      0 178124 242464 1058576    0    0     0 19320 4792 18771 28  6 50 17  0<br>1  1      0 194044 242476 1058544    0    0     0  9720 3743 15381 39  5 45 10  0<br>3  1      0 256616 242484 1055812    0    0     0 20888 6210 17003 37  5 40 18  0<br>1  1      0 254252 242496 1057772    0    0     0 16592 4494 17175 42  7 42  9  0<br>r列表示有多少线程在运行，b表示有多少线程被阻塞 swap 表示多少kb数据进行了交换。free表示有多少kb空闲内存<br>buff表示有多少kb buff<br>cache表示有多少kb cache<br>si表示swap in so表示swap out 内存进出情况<br>bi bo表示磁盘到内存的交换情况<br>in interrupt表示1秒内中断次数<br>cs 表示context1秒内上下文切换次数<br>us 表示用户程序占用cpu百分比<br>sy 表示系统程序1占用cpu百分比<h2 id="1-3_top命令动态查看负载">1.3 top命令动态查看负载</h2>
+</li>
+</ol>
+<hr>
+<ol>
+<li>top //动态显示进程情况，每3秒刷新一次</li>
+<li>在top下默认按占用cpu情况排序，输入shift+m就可以按内存使用情况排序</li>
+<li>按q退出top动态显示</li>
+<li>PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND<br>4648 yangz     20   0 1939892 215796  59552 S  21.9  5.5   4:57.30 /usr/lib/firefox/plugin-container+<br>pid表示进程id，在ls /proc 下可以列出很多进程文件；<br>pr ni 是进程优先级，pr取值范围是0-39，ni取值范围是-19-20，遵守pr+ni=20<br>pr值越小，进程优先级越高。virt是虚拟内存多大，res是物理内存多大</li>
+<li>top -bn1  //静态一次性显示所有进程情况</li>
+<li>top -d2 -c //每2秒刷新一次，并且最后一列显示线程启动的命令<h2 id="1-4_sar命令">1.4 sar命令</h2>
+</li>
+</ol>
+<hr>
+<ol>
+<li>安装yum install pcp-import-sar2pcp</li>
+<li>安装 yum install  sysstat 来安装</li>
+<li>sar -n DEV //将列出流量信息，可以看到每秒流入流出流量信息</li>
+<li>sar -n DEV 1 10 //每1秒输出一次，输出10次</li>
+<li>初次使用可能没有生成日志文件，可能输出没有安装某文件的提示。</li>
+<li>在/var/log/sa/下有每天生成的以日期结尾的文件用来保存流量信息</li>
+<li>sar -n DEV -f /var/log/sa/sa12 //将显示选择的历史流量信息</li>
+<li>sar -q //查看CPU历史负载，10分钟记录一次</li>
+<li>sar -b //查看磁盘历史负载，10分钟记录一次，可以看出每秒钟读写情况</li>
+<li>sar //可以输出系统负载信息 == sar -p<h2 id="1-5_free命令查看内存">1.5 free命令查看内存</h2>
+</li>
+</ol>
+<hr>
+<ol>
+<li>free //将列出内存使用情况</li>
+<li>free -m //以mb列出内存使用情况 -g 将以G为单位列出</li>
+<li>free -h //友好方式列出内存使用情况<br>yangz@yangz-CW65:~/Key$ free -h<pre><code>      total       used       free     shared    <span class="keyword">buffers</span>     cached
+</code></pre>Mem:          3.8G       2.8G       948M       420M       194M       1.0G<br>-/+ buffers/cache:       1.6G       2.2G<br>Swap:           0B         0B         0B<br>在系统启动时系统将分配一部分内存为buffer和cached留作备用，cached缓存是从磁盘中读取时临时放到内存中的部分，buffer缓冲是内存要写入磁盘时临时放在内存中的部分。所有内存真正空闲的包括free部分和buffers和cached部分<h2 id="1-6_ps命令查看进程">1.6 ps命令查看进程</h2>
+</li>
+</ol>
+<hr>
+<ol>
+<li>ps aux //列出进程系<br>STAT列  S表示sleep休眠，s表示它是主进程，父进程，&lt;表示优先级比较高，会优先得到系统资源,N表示优先级比较低，+表示前台进程，R表示running正在运行，L表示内存分页被锁，l表示多线程进程，Z表示僵尸进程，X表示死掉的进程，T表示暂停状态，D表示不能中断的进程。<br>START表示进程启动时间<br>TIME表示进程使用cpu时间</li>
+<li>ps -elr //与ps aux类似</li>
+<li>ps aux | grep mysql  //查看mysql进程有没有启动</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://balistardut.github.io/2015/10/13/centOS运维第三部分-负载进程内存监控/" data-id="6w1zcdst47wo49yy" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://balistardut.github.io/2015/10/13/centOS运维第三部分-负载进程内存监控/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-centOS运维第二部分-文件用户磁盘管理命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/" class="article-date">
@@ -660,191 +759,6 @@ hello.out:<span class="built_in">max</span>.o <span class="built_in">min</span>.
 
 
   
-    <article id="post-MySQL基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/28/MySQL基础/" class="article-date">
-  <time datetime="2015-04-28T08:39:32.000Z" itemprop="datePublished">4月 28 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习Linux基础的笔记，视频教程来源<a href="http://www.imooc.com/learn/122" target="_blank" rel="external">慕课网：与MySQL的零距离接触</a>  </p>
-<p>为第一到第五章部分</p>
-<h2 id="第一章_MySQL基本知识">第一章 MySQL基本知识</h2>
-<h3 id="1-启动/关闭MySQL">1.启动/关闭MySQL</h3>
-<p>CMD中启动服务：<br>net start mysql<br>CMD中停止服务：<br>net stop mysql<br>所有Windows服务都可以通过上面命令启动与关闭  </p>
-<h3 id="2-登录与退出">2.登录与退出</h3>
-<p>登录MySQL：<br>mysql [参数]  </p>
-<blockquote>
-<p>-D ,—database=name 打开指定数据库<br>-h 服务器名称<br>-p 密码  </p>
-<p>-P 端口号 MySQL默认端口号3306<br>-u 用户名<br>-V 输出版本信息并退出<br>—prompt=name 设置提示符</p>
-</blockquote>
-<p>退出MySQL：<br>exit<br>quit<br>\q</p>
-<h3 id="3-修改MySQL提示符">3.修改MySQL提示符</h3>
-<p>MySQL默认提示符 mysql&gt;<br>1.连接客户端时通过参数指定<br>shell&gt;mysql -u root -p root —prompt 提示符<br>2.连接上客户端后，通过prompt命令修改<br>mysql&gt;prompt 提示符  </p>
-<blockquote>
-<p>\D 完整的日期<br>\d 数据库名称<br>\h 主机名称<br>\u 当前用户名  </p>
-</blockquote>
-<h3 id="4-MySQL常用命令">4.MySQL常用命令</h3>
-<ol>
-<li>显示当前服务器版本<br> SELECT VERSION();</li>
-<li>显示当前日期时间<br> SELECT NOW();</li>
-<li>显示当前用户<br> SELECT USER();  </li>
-<li>显示当前打开的数据库<br> SELECT DATABASE();</li>
-<li>显示错误信息<br> SHOW WARNINGS;</li>
-<li>显示数据库创建时的命令<br> SHOW CREATE DATABASE db_name<br> SHOW CREATE TABLE db_name;</li>
-<li>以表格形式显示（直观）<br> 后面加”\G”;</li>
-<li><h3 id="5-操作数据库">5.操作数据库</h3>
-</li>
-<li>创建数据库<br> CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name;  </li>
-<li>查看当前服务器中数据库列表<br> SHOW {DATABASES | SCHEMAS} [LIKE ‘pattern’ | WHERE expr]</li>
-<li>显示数据库创建时的命令<br> SHOW CREATE DATABASE db_name</li>
-<li>修改数据库<br> ALTER {DATABASE | SCHEMA} [db_name]  [DEFAULT] CHARACTER SET [=] charset_name;  </li>
-<li>删除数据库<br> DROP {DATABASE | SCHEMA} [IF EXISTS] db_name;  <h2 id="第二章_数据类型和操作数据表">第二章 数据类型和操作数据表</h2>
-<h3 id="1-数据类型">1.数据类型</h3>
-</li>
-<li>整型 （有正负之分）<blockquote>
-<p>TINYINT  1个字节<br>有符号值：-128到127（-2^7到2^7-1）<br>无符号值：0到255（0到2^8）<br>SMALLINT  2个字节<br>MEDIUMINT 3个字节<br>INT 4个字节<br>BIGINT 8个字节  </p>
-</blockquote>
-</li>
-<li>浮点型  <blockquote>
-<p>FLOAT[(M,D)] M是数字总位数，D是小数点后面的位数。单精度浮点数精确到大约7位小数位<br>DOUBLE[(M,D)] </p>
-</blockquote>
-</li>
-<li>日期时间型  <blockquote>
-<p>YEAR 1个字节<br>TIME 3个字节<br>DATE 3个字节<br>DATETIME 8个字节<br>TIMESTAMP 4个字节</p>
-</blockquote>
-</li>
-<li>字符型  <blockquote>
-<p>CHAR(M) M个字节，0&lt;=M&lt;=255<br>VARCHAR(M) L+1个字节<br>TINYTEXT  L+1个字节<br>TEXT L+2个字节<br>MEDIUMTEXT  L+3个字节<br>LONGTEXT  L+4个字节<br>ENUM(‘value1’,’value2’,…)<br>SET(‘value1’,’value2’,…)  元素做任意的排列组合</p>
-<h3 id="2-数据表操作">2.数据表操作</h3>
-</blockquote>
-</li>
-<li>创建数据表<br> CREATE  TABLE [IF NOT EXISTS] table_name(<pre><code> column_name data_<span class="built_in">type</span>,
- .....
-</code></pre> )<br> 如果在CREATE语句后指定一个SELECT，MYsql将为在select中所有的单元创建新字段。<br> 可以用来复制表<br> 例如： create table weibotest select * from weibo where msg_ID=0</li>
-<li>查看数据库中的数据表列表<br> SHOW TABLES [FROM  db_name] [LIKE ‘pattern’ | WHERE expr]</li>
-<li>查看数据表结构<br> SHOW COLUMNS FROM tb1_name </li>
-<li>记录的插入与查找<br> INSERT [INTO] tb1_name [(col_name,…)] VALUES (val,…)<br> SELECT expr,… FROM tb1_name</li>
-<li>空与非空<br> NULL和NOT NULL</li>
-<li>自动编号<br> AUTO_INCREMENT  <ul>
-<li>自动编号，且必须与主键组合使用</li>
-<li>默认情况下，起始值为1，每次增量为1  </li>
-</ul>
-</li>
-<li>主键约束<br> PRIMARY KEY<ul>
-<li>每张数据表只能存在一个主键</li>
-<li>主键保证记录的唯一性</li>
-<li>主键自动为NOT NULL</li>
-</ul>
-</li>
-<li>唯一约束<br> UNIQUE KEY<ul>
-<li>唯一约束可以保证记录的唯一性</li>
-<li>唯一约束的字段可以为空（NULL）</li>
-<li>每张数据表可以存在多个唯一约束</li>
-</ul>
-</li>
-<li>默认约束<br>DEFAULT <ul>
-<li>默认值</li>
-<li>当插入记录时，如果没有明确为字段赋值，则自动赋予默认值</li>
-</ul>
-</li>
-<li>删除数据记录<br>DELETE FROM tb_name WHERE id = 3;</li>
-<li><h2 id="第三章_约束以及修改数据表">第三章 约束以及修改数据表</h2>
-<h3 id="1-外键约束的要求解析">1.外键约束的要求解析</h3>
-<strong>约束</strong>  </li>
-<li>约束保证数据的完整性和一致性  </li>
-<li>约束分为表级约束和列级约束  </li>
-<li><p>约束类型包括：  </p>
-<ul>
-<li>NOT NULL (非空约束)</li>
-<li>PRIMARY KEY (主键约束)</li>
-<li>UNIQUE KEY (唯一约束)</li>
-<li>DEFAULT (默认约束)</li>
-<li><strong>FOREIGN KEY(外键约束)</strong><br>外键约束：实现一对一或一对多的关系  </li>
-</ul>
-</li>
-</ol>
-<p><strong>外键约束的要求</strong>：  </p>
-<ol>
-<li>父表和子表必须使用相同的存储引擎，而且禁止使用临时表；  </li>
-<li>数据表的存储引擎只能是InnoDB。  </li>
-<li>外键列和参照列必须具有相似的数据类型。其中数字的长度或是否有符号位必须相同；而字符的长度可以不同。  </li>
-<li>外键列和参照列必须创建索引。如果外键列不存在索引的话，MySQL将自动创建索引<br><strong>显示是否有创建索引</strong><br>SHOW INDEXES FROM tb_name\G;\G可以以图表的形式表现结果<br><strong>编辑数据表的默认存储引擎</strong><br>MySQL的配置文件：my.ini<br>default-storage-engine=INNODB<h3 id="2-外键约束的参照操作">2.外键约束的参照操作</h3>
-</li>
-<li>CASECADE：从父表删除或更新且自动删除或更新子表中匹配的行<br> FOREIGN KEY (pid) REFERENCES province(id) ON DELETE CASCADE;当从父表中删除记录的时候，子表中也会删除  </li>
-<li>SET NULL：从父表删除或更新行，并设置字表中的外键列为NULL。如果使用该选项，必须保证字表列没有指定NOT NULL</li>
-<li>RESTRICT:拒绝对父表的删除或更新操作 </li>
-<li>NO ACTION:标准SQL关键字，在MySQL中与RESTRICT相同<h3 id="3-表级约束和列级约束">3.表级约束和列级约束</h3>
-对一个数据列建立的约束，称为列级约束；<br>对多个数据列建立的约束，称为表级约束；<br>列级约束既可以在列定义时声明，也可以在列定以后声明；<br>表级约束只能在列定义后声明。<h3 id="4-修改数据表-添加/删除列">4.修改数据表-添加/删除列</h3>
-</li>
-<li>添加单列<br> ALTER TABLE tb_name ADD [COLUMN] col_name  column_definition [FIRST | AFTER  col_name]</li>
-<li>添加多列<br> ALTER TABLE tb_name ADD [COLUMN] (col_name column_definition,…)</li>
-<li>删除列<br> ALTER TABLE tb_name DROP col_name;<h3 id="5-添加约束">5.添加约束</h3>
-</li>
-<li>添加主键约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] PRIMARY KEY <a href="index_col_name,...">index_type</a>  </li>
-<li>添加唯一约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] UNIQUE [INDES | KEY] [index_name] <a href="index_col_name,...">index_type</a></li>
-<li>添加外键约束<br> ALTER TABLE tb_name ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] <a href="index_col_name,...">index_type</a> reference_definition</li>
-<li>添加/删除默认约束<br> ALTER TABLE tb_name ALTER [COLUMN] col_name {SET DEFAULT literal | DROP DEFAULT};</li>
-<li>删除主键约束<br> ALTER TABLE tb_name DROP PRIMARY KEY;</li>
-<li>删除唯一约束或索引<br> ALTER TABLE tb_name DROP {INDEX | KEY} index_name;<br> SHOW INDEXES FROM tb_name;//显示索引情况</li>
-<li>删除外键约束<br> ALTER TABLE tb_name DROP FOREIGN KEY fk_symbol;<h3 id="6-修改列定义和更名数据表">6.修改列定义和更名数据表</h3>
-</li>
-<li>修改列定义<br> ALTER TABLE tb_name MODIFY [COLUMN] col_name culumn_definition [FIRST | AFTER col_name];</li>
-<li>修改列名称<br> ALTER TABLE tb_name CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST | AFTER col_name];</li>
-<li>数据表更名<br> 方法1：ALTER TABLE tb_name RENAME [TO | AS] new_tb_name;<br> 方法2：RENAME TABLE tb_name TO new_tb_name [,tb_name2 TO new_tb_name2]….  <h2 id="第四章_操作数据表中的记录">第四章 操作数据表中的记录</h2>
-<h3 id="1-插入记录_INSERT">1.插入记录 INSERT</h3>
-INSERT [INTO] tb_name [(col_name,…)]{VALUES | VALUE}({expr | DEFAULT},…),(…),…<br>INSERT users VALUES(NULL,’Tom’,’123’,25,1);<br>INSERT users VALUES(DEFAULT,’Tom’,’123’,25,1);<br>//默认自动编号的可以用NULL或DEFAULT来表示<br><strong>插入多个值</strong>：<br>INSERT users VALUES(DEFAULT,’Tom’,’123’,25,1),  (NULL,’Rose’,md5(‘123’),DEFAULT,0);<br>md5()是mysql的一个计算哈希值的函数。  <h3 id="2-插入记录_INSERT_SET">2.插入记录 INSERT SET</h3>
-插入记录：INSERT [INTO] tb_name SET col_name={expr | DEFAULT},…<br>说明：与第一种方式的区别在于，此方法可以使用子查询（SubQuery）,且一次只能插入一条<br>INSERT users SET username=’Ben’,password=’4576 ‘;<br>INSERT [INTO] tbname [(colname,…)] SELECT …<br>说明：此方法可以将查询结果插入到制定数据表。<br>INSERT test(usernaem) SELECT username FROM users WHERE age&gt;=30;   <h3 id="3-单表更新记录UPDATE">3.单表更新记录UPDATE</h3>
-单表更新：<br>UPDATE  [LOW_PRIORITY] [IGNORE] table_reference SET col_name1={expr1 | DEFAULT} [,col_name2={expr1 | DEFAULT} ]….[WHERE where_condition]<br>UPDATE users age=age+5;//所有的age都增加5<br>更新多列：<br>UPDATE users SET age=age - id,sex=0;<br>更新的时候加条件：<br>UPDATE users SET age=age + 10 WHERE id%2 = 0;//对ID为偶数的记录更新age  <h3 id="4-_单表删除记录DELETE">4. 单表删除记录DELETE</h3>
-DELETE FROM tb_name [WHERE where_condition];<br>查询表达式解析：<br>SELECT select_expr [,select_expr] [<br> FROM table_reference<br> [WHERE where_condition]<br> [GROUP BY {col_name | positon} {ASC | DESC},….]<br> [HVING where_conditon]<br> [ORDER BY {col_name | expr | position} [ASC | DESC],…]<br> [LIMIT {[offset,] row_count | row_count OFFSET offset}]<br>]<h3 id="5-_查询表达式解析">5. 查询表达式解析</h3>
-查询表达式：<br>每个表达式表示想要的一列，必须有至少一个。<br>多个列之间用英文逗号分隔。<br>星号(<em>)表示所有列。tb_name.</em>可以 表示命名表的所有列。<br>查询表达式可以使用[AS] alias_name 为其赋予别名。<br>别名可用于GROUP BY.ORDER BY 或HAVING字句。  <h3 id="6-_WHERE语句进行条件查询">6. WHERE语句进行条件查询</h3>
-WHERE语句条件查询：<br>条件表达式：对记录进行过滤，在where语句中，可以使用mysql支持的函数或运算符。  <h3 id="7-_GROUP_BY语句对查询结果分组">7. GROUP BY语句对查询结果分组</h3>
-GROUP BY语句对查询结果进行分组<br>SELECT sex FROM users GROUP BY sex;  <h3 id="8-_HAVING语句设置分组条件">8. HAVING语句设置分组条件</h3>
-[HVING where_]<br>分组条件中的条件必须为聚合函数（max()，min()，avg()，count()，sum()）  <h3 id="9-_ORDER_BY_语句对查询结果排序">9. ORDER BY 语句对查询结果排序</h3>
-ORDER BY:对查询结果进行排序：<br>[ORDER BY {col_name | expr | position} [ASC | DESC],…]<br>SELECT * FROM users ORDER BY age , id DESC;//先按age升序排列，再按id降序排列  <h3 id="10-_LIMIT语句限制查询数量">10. LIMIT语句限制查询数量</h3>
-LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFSET offset}];<br>SELECT <em> FROM users LIMIT 2;//返回前2条数据<br>SELECT </em> FROM users LIMIT 3,2; //返回从下标3开始的2条数据；下标从0开始   </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/04/28/MySQL基础/" data-id="kkm6g7cp5z5uxmst" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/04/28/MySQL基础/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -858,7 +772,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -867,7 +781,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -885,7 +799,7 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -895,6 +809,10 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/10/13/centOS运维第三部分-负载进程内存监控/">centOS运维第三部分-负载进程内存监控</a>
+          </li>
         
           <li>
             <a href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/">centOS运维第二部分-文件用户磁盘管理命令</a>
@@ -910,10 +828,6 @@ LIMIT语句限制查询数量：<br>[LIMIT {[offset,] row_count | row_count OFFS
         
           <li>
             <a href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/28/MySQL基础/">MySQL基础（上）</a>
           </li>
         
       </ul>
