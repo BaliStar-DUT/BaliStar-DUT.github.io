@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>all-categories - James&#39; blog</title>
+    <title>Tag: shell - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
@@ -14,13 +14,12 @@
     
     <meta name="description">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="all-categories">
-<meta property="og:url" content="http://balistardut.github.io/all-categories/index.html">
+<meta property="og:title" content="James' blog">
+<meta property="og:url" content="http://balistardut.github.io/tags/shell/index.html">
 <meta property="og:site_name" content="James' blog">
 <meta property="og:description">
-<meta property="og:updated_time" content="2015-12-10T02:48:43.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="all-categories">
+<meta name="twitter:title" content="James' blog">
 <meta name="twitter:description">
 <meta name="twitter:creator" content="@Libra">
     
@@ -165,18 +164,6 @@
         
             <li class="sidebar-button">
                 
-                    <a  class="sidebar-button-link "
-                         href="/old"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
-                    <span class="sidebar-button-desc">2015年以前的博客</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
                     <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
                 
                     <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
@@ -209,39 +196,61 @@
                  class="
                         hasCoverMetaIn
                         ">
-                <div id="categories-archives" class="main-content-wrap">
-    <form id="filter-form" action="##">
-        <input name="category" type="text" class="form-control input--xlarge" placeholder="Search category" autofocus="autofocus">
-    </form>
-    <h4 class="archive-result text-color-base text-xlarge"></h4>
-    <section>
+                
+    
+
+<section class="postShorten-group main-content-wrap">
+    
         
-            <a class="category category--small category--primary" href="#posts-list-Diary" data-category="diary">
-                Diary
-            </a>
-        
-    </section>
-    <section class="boxes">
-        
-            
-                <div id="posts-list-Diary" class="archive box" data-category="diary">
-                    <h4 class="archive-title">
-                        <a class="link-unstyled" href="/categories/Diary">Diary (1)</a>
-                    </h4>
-                    <ul class="archive-posts">
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
                         
-                            <li class="archive-post">
-                                <a class="archive-post-title" href="/2015/11/30/java-web之JSP/">java web之JSP</a>
-                                <span class="archive-post-date"> - nov 30, 2015</span>
-                            </li>
+                                <a class="link-unstyled" href="/2015/11/30/Shell编程进阶/">Shell编程进阶</a>
                         
-                        
-                    </ul>
-                </div>
-            
-        
-    </section>
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:04:35 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
 </div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="1-1_shell脚本">1.1 shell脚本</h2><ol>
+<li>shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。</li>
+<li>用人单位都要求会shell脚本<h2 id="1-2_shell结构以及执行">1.2 shell结构以及执行</h2></li>
+<li>首行：#!/bin/bash</li>
+<li>注释：#脚本作用，时间，作者</li>
+<li>执行：bash a.sh或./a.sh或sh a.sh</li>
+<li>sh -x first.sh//查看脚本执行过程
+                        
+                            <a href="/2015/11/30/Shell编程进阶/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">page 1 of 1</li>
+    </ul>
+</div>
+
+</section>
+
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
