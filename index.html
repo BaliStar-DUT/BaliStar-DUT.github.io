@@ -1,973 +1,617 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    
 <head>
-  <meta charset="utf-8">
-  
-  <title>James&#39; blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分享，记录和积累">
-<meta property="og:type" content="website">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="James&#39; blog">
+    <title>James&#39; blog</title>
+    <meta name="author" content="James Yang">
+    
+        <link rel="icon" href="/assets/images/favicon.ico">
+    
+    
+    <meta name="description">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/">
+<meta property="og:url" content="http://balistardut.github.io/index.html">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="分享，记录和积累">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="James' blog">
-<meta name="twitter:description" content="分享，记录和积累">
-<link rel="publisher" href="google.com/+yangDrawn">
-
-  
-    <link rel="alternative" href="/atom.xml" title="James&#39; blog" type="application/atom+xml">
-  
-   
-  <link rel="shortcut icon" type="image/x-icon" href="/1.png"> 
- 
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Libra">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/head.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">James&#39; blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">想到，做到</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="1">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">James&#39; blog</a>
+    </h1>
+    
         
-          <a class="main-nav-link" href="/">Home</a>
+            <a  class="header-right-icon "
+                href="/#about">
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
+            <i class="fa fa-lg fa-question"></i>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="balistardut.github.io">
-        </form>
-      </div>
-    </div>
-  </div>
+        </a>
+    
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-centOS运维第三部分-负载进程内存监控" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/13/centOS运维第三部分-负载进程内存监控/" class="article-date">
-  <time datetime="2015-10-12T16:38:51.000Z" itemprop="datePublished">10月 13 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+            <!-- Define author's picture -->
+
+
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/13/centOS运维第三部分-负载进程内存监控/">centOS运维第三部分-负载进程内存监控</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-1_查看系统负载命令">1.1 查看系统负载命令</h2>
-<hr>
-<ol>
-<li>w //显示系统负载信息<br>load average: 1分钟，5分钟，15分钟内系统的平均负载<br>负载表示单位时间内有多少进程在排队或使用cpu<br>yangz@yangz-CW65:~$ w<br>22:46:33 up  5:40,  2 users,  load average: 3.52, 3.28, 3.20<br>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT<br>yangz    :0       :0               17:07   ?xdm?   2:57m  1:18  upstart —user<br>yangz    pts/18   :0               17:10    0.00s  0.89s 19.92s gnome-terminal<br>表示1分钟内有3.52个进程在使用cpu，本机为4核i3cpu，如果大于4，将占满cpu，负载过大。<br>有2个用户登陆，登陆时间，空闲时间，jcpu表示:终端下所有进程占用的时间 pcpu表示:w命令占用的时间</li>
-<li>uptime //显示w结果中的第一行<h2 id="1-2_vmstat命令">1.2 vmstat命令</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>vmstat 1 //表示每1秒显示一次，不停显示</li>
-<li>vmstat 1 5 //表示每1秒显示一次，显示5次<br>yangz@yangz-CW65:~$ vmstat 1 5<br>procs —————-memory————— —-swap— ——-io—— -system— ———cpu——-<br>r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st<br>2  1      0 182068 242464 1058528    0    0    22  4527  496  501 17  5 60 19  0<br>1  1      0 178124 242464 1058576    0    0     0 19320 4792 18771 28  6 50 17  0<br>1  1      0 194044 242476 1058544    0    0     0  9720 3743 15381 39  5 45 10  0<br>3  1      0 256616 242484 1055812    0    0     0 20888 6210 17003 37  5 40 18  0<br>1  1      0 254252 242496 1057772    0    0     0 16592 4494 17175 42  7 42  9  0<br>r列表示有多少线程在运行，b表示有多少线程被阻塞 swap 表示多少kb数据进行了交换。free表示有多少kb空闲内存<br>buff表示有多少kb buff<br>cache表示有多少kb cache<br>si表示swap in so表示swap out 内存进出情况<br>bi bo表示磁盘到内存的交换情况<br>in interrupt表示1秒内中断次数<br>cs 表示context1秒内上下文切换次数<br>us 表示用户程序占用cpu百分比<br>sy 表示系统程序1占用cpu百分比<h2 id="1-3_top命令动态查看负载">1.3 top命令动态查看负载</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>top //动态显示进程情况，每3秒刷新一次</li>
-<li>在top下默认按占用cpu情况排序，输入shift+m就可以按内存使用情况排序</li>
-<li>按q退出top动态显示</li>
-<li>PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND<br>4648 yangz     20   0 1939892 215796  59552 S  21.9  5.5   4:57.30 /usr/lib/firefox/plugin-container+<br>pid表示进程id，在ls /proc 下可以列出很多进程文件；<br>pr ni 是进程优先级，pr取值范围是0-39，ni取值范围是-19-20，遵守pr+ni=20<br>pr值越小，进程优先级越高。virt是虚拟内存多大，res是物理内存多大</li>
-<li>top -bn1  //静态一次性显示所有进程情况</li>
-<li>top -d2 -c //每2秒刷新一次，并且最后一列显示线程启动的命令<h2 id="1-4_sar命令">1.4 sar命令</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>安装yum install pcp-import-sar2pcp</li>
-<li>安装 yum install  sysstat 来安装</li>
-<li>sar -n DEV //将列出流量信息，可以看到每秒流入流出流量信息</li>
-<li>sar -n DEV 1 10 //每1秒输出一次，输出10次</li>
-<li>初次使用可能没有生成日志文件，可能输出没有安装某文件的提示。</li>
-<li>在/var/log/sa/下有每天生成的以日期结尾的文件用来保存流量信息</li>
-<li>sar -n DEV -f /var/log/sa/sa12 //将显示选择的历史流量信息</li>
-<li>sar -q //查看CPU历史负载，10分钟记录一次</li>
-<li>sar -b //查看磁盘历史负载，10分钟记录一次，可以看出每秒钟读写情况</li>
-<li>sar //可以输出系统负载信息 == sar -p<h2 id="1-5_free命令查看内存">1.5 free命令查看内存</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>free //将列出内存使用情况</li>
-<li>free -m //以mb列出内存使用情况 -g 将以G为单位列出</li>
-<li>free -h //友好方式列出内存使用情况<br>yangz@yangz-CW65:~/Key$ free -h<pre><code>      total       used       free     shared    <span class="keyword">buffers</span>     cached
-</code></pre>Mem:          3.8G       2.8G       948M       420M       194M       1.0G<br>-/+ buffers/cache:       1.6G       2.2G<br>Swap:           0B         0B         0B<br>在系统启动时系统将分配一部分内存为buffer和cached留作备用，cached缓存是从磁盘中读取时临时放到内存中的部分，buffer缓冲是内存要写入磁盘时临时放在内存中的部分。所有内存真正空闲的包括free部分和buffers和cached部分<h2 id="1-6_ps命令查看进程">1.6 ps命令查看进程</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>ps aux //列出进程系<br>STAT列  S表示sleep休眠，s表示它是主进程，父进程，&lt;表示优先级比较高，会优先得到系统资源,N表示优先级比较低，+表示前台进程，R表示running正在运行，L表示内存分页被锁，l表示多线程进程，Z表示僵尸进程，X表示死掉的进程，T表示暂停状态，D表示不能中断的进程。<br>START表示进程启动时间<br>TIME表示进程使用cpu时间</li>
-<li>ps -elr //与ps aux类似</li>
-<li>ps aux | grep mysql  //查看mysql进程有没有启动</li>
-</ol>
 
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/10/13/centOS运维第三部分-负载进程内存监控/" data-id="6w1zcdst47wo49yy" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/10/13/centOS运维第三部分-负载进程内存监控/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centOS运维第二部分-文件用户磁盘管理命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/" class="article-date">
-  <time datetime="2015-10-11T11:30:51.000Z" itemprop="datePublished">10月 11 2015</time>
-</a>
+<nav id="sidebar" data-behavior="1">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/head.png"/>
+            </a>
+            <span class="sidebar-profile-name">James Yang</span>
+        </div>
     
     
-      <header class="article-header">
+        <ul class="sidebar-buttons">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/">centOS运维第二部分-文件用户磁盘管理命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-1_创建和删除目录">1.1 创建和删除目录</h2>
-<hr>
-<ol>
-<li>mkdir  /123 创建/下123目录</li>
-<li>mkdir -pv /tmp/1/2/3 创建连续的目录，并显示相关信息</li>
-<li>rmdir /123 删除空目录123</li>
-<li>rmdir -pv 1/2/3 连续删除空目录1/2/3 ，并显示相关信息</li>
-<li>tree 可以列出目录树<h2 id="1-2_rm删除文件命令">1.2 rm删除文件命令</h2>
-</li>
-</ol>
-<hr>
-<ol>
-<li>rm -i file 删除file文件前询问</li>
-<li>rm -r directory 删除目录</li>
-<li>rm -rv 123/234  删除文件时询问</li>
-<li>rm -f 123 不询问强制删除文件<h2 id="1-3_cp复制命令">1.3 cp复制命令</h2>
-</li>
-<li>cp a.txt b.txt 复制a文件到b文件</li>
-<li>cp -r a b 复制a目录到b目录</li>
-<li>cp -rv 111/ 234/ 显示详细信息地将111目录复制到234目录</li>
-<li>cp -i a b 复制a到b并询问</li>
-<li>df -h 查看当前分区情况及磁盘使用情况</li>
-<li>ctrl+a 将光标移到最开始</li>
-<li>ctrl+e 将光标移动最后    <h2 id="1-4_mv移动和重命名命令">1.4 mv移动和重命名命令</h2>
-</li>
-<li>mv -i a.txt b.txt 重命名a文件到b文件，并询问</li>
-<li>mv -v a/ b/ 将a目录移动到b目录下,并显示详细信息<h2 id="1-5_文件查看命令">1.5 文件查看命令</h2>
-</li>
-<li>cat 读取文本文档内容</li>
-<li>tac 倒序读取文本文档内容</li>
-<li>cat -a 显示所有字符内容，包括换行符</li>
-<li>more a.txt 阅读文档a.txt</li>
-<li>less a.txt less支持方向键上下翻，支持pageup，pagedown。j向下k向上,ctrl+b 不断向上翻 ctrl+f 不断向下翻</li>
-<li>g 跳到文档开头 G 跳到文档结尾</li>
-<li>less下/可以搜索关键字，n 向下翻关键字，N 向上翻关键字</li>
-<li>less下？也可以搜索关键字</li>
-<li>man 和less下按q可以退出</li>
-<li>head a.txt 可以查看默认前10行 -n 看n行</li>
-<li>tail a.txt 可以查看默认后10行 -n 看后n行</li>
-<li>tail -f a.txt 动态查看a.txt<h2 id="1-6_文件和目录属性">1.6 文件和目录属性</h2>
-</li>
-<li>ls -l //以长格式输出文件或目录属性<br>drwxrwxr-x  6 yangz yangz      4096 Jun  4 15:15 game/<br>第一列表示文件类型：-表示文件，d表示目录<br>c表示字符设备，b表示块设备，例如硬盘优盘，l表示软链接，s表示socket文件，p表示管道文件<br>后三列表示属主的权限，后三列表示属组的权限，后三列表示其他用户的权限，后的点特殊标记位。<br>第二列表示有多少文件与它用了相同的inode号，通常文件为1，目录为目录下的子目录数<br>第三列表示属主<br>第四列表示属组<br>第五列表示大小，单位byte，ls -lh //以友好方式显示，可以用kb等表示大小<br>第六列表示最后修改时间<br>第七列表示文件名<h2 id="1-7_chmod命令">1.7 chmod命令</h2>
-</li>
-<li>rwx读写可执行权限，r=4，w=2，x=1</li>
-<li>chmod 744 a.txt //修改文件访问权限</li>
-<li>chmod u=rwx,g=r—,o=r— a.txt //笨的修改文件访问权限方法</li>
-<li>chmod u-x a.txt //属主的可执行权限被去除</li>
-<li>chmod u+x,g+w,o-r //增加权限与去除权限 user group others</li>
-<li>chmod a+r a.txt //所有用户都增加可读权限</li>
-<li>chmod -R 700 a/ //将a目录下所有文件目录递归改为700权限</li>
-<li>umask  0022 //用来规定默认权限 022=—- -w- -w-<br>当是目录时 777-022 = 755，当是文件时不需要可执行权限666-022 =644，乍一看对，其实不对<br>要用rwx来做</li>
-<li>umask 011 //更改umask为011 ，相应默认权限也会修改<h2 id="1-8_chown命令">1.8 chown命令</h2>
-</li>
-<li>useradd yang //创建用户yang</li>
-<li>chown yang a.txt //将文件a.txt的属主改为yang</li>
-<li>groupadd yangs //创建用户组yangs</li>
-<li>chown :yangs a.txt //将文件a.txt的属组改为a.txt</li>
-<li>chown root:root a.txt //将文件a.txt的属主和属组同时修改为root，root</li>
-<li>chown root.root a.txt //与上一条命令一样</li>
-<li>！ls //运行命令历史中最近一条以ls开头的命名</li>
-<li>history //列出历史命令</li>
-<li>！200 //运行命令历史中第200条命令</li>
-<li>chown -R yang:yangz a/  //将目录a下的所有文件和目录改为yang，yangz<h2 id="1-9_lsattr，chattr命令">1.9 lsattr，chattr命令</h2>
-</li>
-<li>lsattr //列出当前目录下文件和目录的特殊权限</li>
-<li>chattr +a a.txt //给文件a.txt增加a权限，使它不可更改不可删除不可重命名，只能追加如echo “hello” &gt;&gt; a.txt，却不能echo “hello” &gt; a.txt</li>
-<li>chattr -a a.txt //给a.txt去除a权限</li>
-<li>chattr +i a.txt //给文件a.txt增加i权限，使不能追加，不能更改，不能删除，不能改属主，不能改属组，比a权限更严格</li>
-<li>chattr -i a.txt //去除i权限</li>
-<li>lsattr -R //列出当前目录下文件及子目录下文件的隐藏权限</li>
-<li>lsattr -d a //查看目录a本身的隐藏权限<h2 id="2-0_特殊权限之suid">2.0 特殊权限之suid</h2>
-</li>
-<li>umask中首位 set_uid=4</li>
-<li>ls -l /usr/bin/passwd //列出命令passwd的执行权限<br>-rwsr-xr-x 1 root root 51128 Jul 18  2014 /usr/bin/passwd</li>
-<li>s表示set_uid权限，表示可以赋予临时root权限，所有普通用户可以用passwd来修改普通用户密码就是这个权限</li>
-<li>su - yangs 切换用户到yangs</li>
-<li>chmod u+s /tmp/ls 可以给可执行文件ls添加set权限，使它可以在普通用户下临时拥有该文件所属主权限</li>
-<li>suid 只对可执行文件有效</li>
-<li><p>chmod o-x a.txt /将文件的用户可执行权限去掉，权限会变成大写S如下：</p>
-<p> ls -l /tmp/ls<br> -rwsr-xr-x 1 yangz yangz 118368 Oct  6 16:37 /tmp/ls<br>  chmod u-x /tmp/ls<br> ls -l /tmp/ls<br> -rwSr-xr-x 1 yangz yangz 118368 Oct  6 16:37 /tmp/ls<br> 4755权限</p>
-</li>
-<li><p>s与S的权限取决于是否有x权限，有是s，没有是S</p>
-<h2 id="2-1_特殊权限之sgid">2.1 特殊权限之sgid</h2>
-</li>
-<li>chmod g+s /tmp/ls //为文件用户组加上s权限使它临时拥有该文件用户组的权限<br>ls -l /tmp/ls<br>-rw-r-sr— 1 yangz yangz 118368 Oct  6 16:37 /tmp/ls</li>
-<li>set_gid=2 sgid对目录同样有效,如果将sgid作用于目录，就会：当其他用户在该目录下创建文件或目录时，它们的属组将与父目录一致</li>
-<li>chmod 2755 /tmp/ls 与chmod g+s /tmp/ls效果一致，如果本来所属组没有x权限，将变成大写S<h2 id="2-2_特殊权限之sticky">2.2 特殊权限之sticky</h2>
-</li>
-<li>stick_bit 俗称防删除位，只能作用在目录上，对文件没意义</li>
-<li>如果父目录的权限是777则其他用户可能删除本目录下自己的文件，不管这个文件的权限如何。也就是说父目录下的文件的权限不取决于自己，而取决于父目录的权限，因此可能被别人删除。</li>
-<li><p>chmod o+t dir/ //给目录加上其他用户不能删除权限，这样将不能被别人删除修改</p>
-<p> ls -dl 333/<br> drwxrwxrwx 2 yangz yangz 4096 Oct  6 21:52 333/<br> chmod o+t 333<br> ls -dl 333/<br> drwxrwxrwt 2 yangz yangz 4096 Oct  6 21:52 333/<br> chmod o-x 333<br> ls -dl 333/<br> drwxrwxrwT 2 yangz yangz 4096 Oct  6 21:52 333/ //将不能进入该目录</p>
-</li>
-</ol>
-<h2 id="2-3_find搜索命令">2.3 find搜索命令</h2>
-<ol>
-<li>which ls //用来搜索命令的位置,它将在$PATH环境变量的目录下搜索可执行文件</li>
-<li>whereis  pwd //搜索包含pwd的文件，它将只在PATH环境变量和其他目录下搜索</li>
-<li>locate yang //将搜索所有包含yang的文件和目录，它会在数据库中搜索，并且是定期更新的，不能搜索到tmp下的，不能搜索到最新的文件，可以手动更新updatedb</li>
-<li>find /tmp -name ‘yang*’ //将搜索tmp下按名称搜索以yang开头的文件或目录</li>
-<li>find /tmp -type d //搜索所有目录</li>
-<li>find /tmp -type f //搜索所有文件 s c b </li>
-<li>find /tmp -mtime +10 //搜苏创建时间，更改时间大于10天的文件，-10小于10天</li>
-<li>find /tmp -mmin -5 //搜索创建修改时间小于5分分钟的文件或目录</li>
-<li>find / -inum 141418 //搜索inode号为指定数值的文件</li>
-<li>sudo find /var/log -type f -mtime +30 |xargs ls -l //搜索并列出一个月以前的日志</li>
-<li>find /var/log -type f -mtime +30 |xargs rm //搜索并删除一个月以前的日志</li>
-<li>find /var/log -type f | xargs -i mv {} {}.bak //所有文件都改成以.bak结尾的文件<h2 id="2-4_三个时间属性">2.4 三个时间属性</h2>
-</li>
-<li>stat log.lock // stat 命令查看文件的详细信息及三个时间属性<br>File: ‘log.lock’<br>Size: 0             Blocks: 0          IO Block: 4096   regular empty file<br>Device: 806h/2054d    Inode: 1476116     Links: 1<br>Access: (0664/-rw-rw-r—)  Uid: ( 1000/   yangz)   Gid: ( 1000/   yangz)<br>Access: 2015-10-06 20:26:21.991789962 +0800<br>Modify: 2015-07-15 20:49:48.263396215 +0800<br>Change: 2015-07-15 20:49:48.263396215 +0800<br>Birth: -</li>
-<li>Atime 访问时间</li>
-<li>Mtime 内容修改时间</li>
-<li>Ctime 文件属性（如大小，权限）变化时间</li>
-<li>touch 可以更新文件的三个时间<h2 id="2-5_软链接与硬链接">2.5 软链接与硬链接</h2>
-</li>
-<li>软链接，快捷方式.可以跨分区</li>
-<li>ln -s a.txt b.txt //将b.txt 链接到a.txt</li>
-<li>硬链接，替身，指向同一个inode,inode是内核或服务寻找文件或目录的方法，可以让多个文件同一个inode，硬链接不能做目录的硬链接,也不能跨分区硬链接,因为每个分区都有独立的inode分配</li>
-<li>ln yangz.pub yang.pub //将yang.pub硬链接到yangz<br>ls -lhi *.pub<br>1451177 -rw-r—r— 2 yangz yangz 380 Oct  6 20:32 yang.pub<br>1451177 -rw-r—r— 2 yangz yangz 380 Oct  6 20:32 yangz.pub<br>它们公用同一个inode,并且删除一个不妨碍另一个</li>
-<li>du -sh a.txt //查看文件a使用磁盘情况<h2 id="2-6_用户文件/etc/passwd_和/etc/shadow">2.6 用户文件/etc/passwd 和/etc/shadow</h2>
-</li>
-<li>查看所有用户：cat /etc/passwd<br>yang:x:1001:1001::/home/yang:<br>!表示未设定密码，ubuntu里是x表示未设定密码，最后一个字段表示shell，/bin/false 表示不能登陆，如果创建用户时不想让它登陆，可以设置它的shell为false</li>
-<li>所有用户密码文件/etc/shadow<br>yang:!:16714:0:99999:7:::<br>第二个字段是密码位，如果是*表示密码被锁定了，！表示未设定密码，<br>第三个字段表示密码最后修改的时间，表示从1970年至修改密码的天数，<br>第四段表示要过多少天才可以修改密码，0表示不限制<br>第五段表示密码多少天后到期，默认99999，表示无限期<br>第六段表示密码到期前多少天通知改密码<br>第六段表示密码到期后多少天锁定账号<br>第七段表示账号多久到期<br>最后段是保留段</li>
-<li>id users1  //可以列出用户users1的用户id组id<h2 id="2-7_用户组文件/etc/group_和/etc/gshadow">2.7 用户组文件/etc/group 和/etc/gshadow</h2>
-一般不给组设定密码，用户定义的组id会大于500，系统设定的组id小于500，并且自定义时会递增id<h2 id="2-8_增加和删除用户组">2.8 增加和删除用户组</h2>
-</li>
-<li>groupadd grp1 //添加用户组</li>
-<li>groupdel grp1 //删除用户组，只有组内没有用户时才能删除，如果是扩展组也能有用户删除<h2 id="2-9_增加和删除用户">2.9 增加和删除用户</h2>
-</li>
-<li>useradd user1 //创建用户，同时创建一个同名用户组</li>
-<li>useradd -u 501 -g grp1 -G 512 user2 //创建用户的同时指定用户名501，用户组grp1，并指定扩展组512</li>
-<li>useradd -d /home/user1 -s /bin/bash user1 //指定用户home目录和shell</li>
-<li>useradd -M user3 //默认创建home下的同名家目录，-M表示不创建home目录</li>
-<li>userdel user2 //删除用户user2，但是默认不会删除home目录</li>
-<li>userdel -r user2 //删除用户的同时删除home目录<h2 id="3-0_usermod修改用户属性">3.0 usermod修改用户属性</h2>
-</li>
-<li>usermod -g 512 user1 //将用户的用户组改为512</li>
-<li>usermod 可以使用useradd的所有选项</li>
-<li>usermod -L user1 //锁定用户的登陆，不能登陆</li>
-<li>usermod -U user1 //解锁用户登陆<h2 id="3-1_passwd修改用户密码">3.1 passwd修改用户密码</h2>
-</li>
-<li>passwd 修改当前用户密码</li>
-<li>passwd user1 //修改用户的密码</li>
-<li>mkpasswd //自动生成密码，默认没有安装这个命令，可以yum install -y expact来安装。</li>
-<li>mkpasswd -l 12 -s 0 -d 4 -C 2 -c 2 //自动生成12位密码，并且不带特殊字符,有4位数字，有2个大写字母，有2个小写字母</li>
-<li>passwd —stdin user1 //明文输入用户名密码并修改<h2 id="3-2_su切换用户">3.2 su切换用户</h2>
-</li>
-<li>查看当前用户id，whoami</li>
-<li>su user1 //切换到用户user1</li>
-<li>su - user1 //切换到用户user1 并且将环境变量一起切换，并且切换到该用户home1下</li>
-<li>su - //切换到root下，并且切换环境变量</li>
-<li>su - -c ‘id’ user1 //切换到用户user1下执行一条id命令<h2 id="3-3_sudo详解">3.3 sudo详解</h2>
-</li>
-<li>sudo 可以临时配给用户root权限</li>
-<li>visudo 可以修改sudo配置文件/etc/sudoers,可以设置某用户可以拥有root权限执行某些命令，也可以将用户加入某些用户组中获得某些权限</li>
-<li>sudo -l 可以列出当前用户是否拥有sudo权限，可以执行哪些命令</li>
-<li>sudo passwd //可以修改root用户密码，ubuntu默认不开放root，可以这样设置root密码获得root权限<h2 id="3-4_磁盘管理df命令">3.4 磁盘管理df命令</h2>
-</li>
-<li>df  //可以查看系统磁盘分区情况 -h 友好显示 -k 以k为单位，-m 以m为单位</li>
-<li>df -i //查看inode使用情况,inode存放文件的属主属组，权限，大小，时间，位置等 </li>
-<li>df -T //查看磁盘分区情况及分区类型</li>
-<li>free //查看内存使用情况<h2 id="3-5_du命令">3.5 du命令</h2>
-</li>
-<li>du //查看文件或目录占用磁盘空间大小,并且单位是k -h 友好方式显示 -b以byte为单位</li>
-<li>du /etc 列出所有文件和目录大小单位 kb 最后显示该目录的总大小</li>
-<li>du -sh /etc //仅查看目录的大小<h2 id="3-6_fdisk命令">3.6 fdisk命令</h2>
-</li>
-<li>fdisk -l //可以查看所有磁盘所有分区</li>
-<li>fdisk /dev/sda //对磁盘sda进行分区操作，如果磁盘大小大于2T就不能用fdisk了，它不能识别2T以上的，需要用parted命令</li>
-<li>主分区加扩展分区的数量加起来不能大于4<h2 id="3-7_磁盘格式化命令">3.7 磁盘格式化命令</h2>
-</li>
-<li>磁盘分区后不能直接用，需要格式化成系统可是识别的文件系统。</li>
-<li>linux支持的文件系统可以在/etc/filesystems中查看。主要有ext3，ext4</li>
-<li>mkfs.  //tab可以列出支持的文件系统</li>
-<li>mke2fs -L ext4 -b 2048 -m 1 -L yang /dev/sdb1//格式化分区<h2 id="3-8_磁盘挂载与卸载">3.8 磁盘挂载与卸载</h2>
-</li>
-<li>mount /dev/sda1 /home/yang //挂载命令将文件系统挂载到yang下，挂载点只能给一个分区使用，注意挂载点不能有数据</li>
-<li>umount -l /home/yang    //卸载命令，即使在该分区中也卸载</li>
-<li>mount LABEL=yang /home/yang //使用label的方式来挂载<h2 id="3-9_分区表文件fstab">3.9 分区表文件fstab</h2>
-</li>
-<li>自动挂载分区，有两种方法：配置文件/etc/fstab，写脚本文件到/etc/rc.local,它会开机运行.</li>
-<li>UUID用来标识设备文件</li>
-<li>mount -a 能自动加载配置文件</li>
-<li>mount -o rw,noatime  //挂载时指定一些选项</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/" data-id="hq93odswq562ug42" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux-第一部分" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/29/linux-第一部分/" class="article-date">
-  <time datetime="2015-09-29T13:55:48.000Z" itemprop="datePublished">9月 29 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/29/linux-第一部分/">centOS运维第一部分-系统启动与连接</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-6_配置IP地址">1.6 配置IP地址</h2>
-<p>ifconfig -a 用来查看所有启动和不启动的网卡信息<br>lo 是回环地址<br>    eth0 是第一个网卡<br>    eth1 是第二个网卡<br>    dhclient 可以使网卡自动获取IP地址<br>    网卡eth0的配置文件是：/etc/sysconfig/network-scripts/ifcfg-eth0<br>    可以用vim查看并编辑：<br>    其中有ONBOOT=no 改成ONBOOT=yes 可以使网卡开机时自动启动<br>    BOOTPROTO=dhcp 改成BOOTPROTO=static 将从dhcp方式获取IP改为使用静态IP，同时需要设置：<br>    IPADDR=192.168.11.16 //IP地址<br>    NETMASK=255.255.255.0 //子网掩码<br>    GATEWAY=192.168.11.1 //网关地址，就是路由器的IP地址<br>    DNS1=192.168.11.1 //可以设置DNS地址，通常是网关地址<br>    DNS2=8.8.8.8 //可以设置第二个DNS服务器地址，这是google的DNS服务器<br>    更改完配置文件后需要重启服务:<br>    service network restart<br>    关闭网卡的命令是：<br>    ifdown eth0 //将关闭eth0网卡，此时ifconfig将不会出现网卡eth0，ifconfig -a 才会出现<br>    打开网卡的命令是：<br>    ifup eth0 //将打开eth0网卡<br>    检测是否可以上网的命令是：<br>    ping 主机名 //可以ping到指定主机，检测网络是否联通</p>
-<h2 id="1-7_系统启动过程">1.7 系统启动过程</h2>
-<ol>
-<li>power on 计算机通电</li>
-<li>BIOS：（1）初始化硬件，如内存，显卡，时间，磁盘等。（2）来查找启动介质</li>
-<li>MBR：位于硬盘的第一个分区的第一个扇区，大小为512byte。其中前446byte是bootloader，也就是grub，之后64byte是partition table分区表，之后2byte是校验位。<br>GRUB的配置文件在：/boot/grub/grub.conf<br>通常会去查看文件：/etc/grub.conf //是一个链接到上面文件的链接文件<br>配置文件中有：Kernel 内核的位置，<br>initrd 内核镜像的位置，内核镜像将解压到内存中，加载硬件驱动<br>及相关启动设置</li>
-<li>GRUB启动引导阶段<br>stage1 :在MBR中<br>stage1.5 : 桥梁作用<br>stage2 :在硬盘中</li>
-<li>内核引导阶段<br>引导/boot/kernel<br>执行/boot/initrd //在内存中释放供kernel使用的root fileSystem；执行根目录下的/sbin/init进程<br>启动位于/sbin/init的init进程<br>通过rc.d中的配置根据文件/etc/inittab中的runlevel来决定启动哪些应用</li>
-</ol>
-<ul>
-<li>linux启动级别6是重启</li>
-<li>由命令行界面切换到图形界面的命令是:init 5 和 startx<br>chkconfig 命令可以用来查看相应启动级别下哪些服务会启动<br>如果有哪些命令需要开机时就执行，可以将它们加入到文件/etc/rc.d/rc.local中</li>
-</ul>
-<ol>
-<li>Sys v init初始化阶段<br>启动图形化界面的相关初始化工作</li>
-</ol>
-<h2 id="1-9_远程连接工具">1.9 远程连接工具</h2>
-<ol>
-<li>putty</li>
-<li>xshell</li>
-<li>密钥验证<br>利用putty key可以生成公钥和私钥：<br>公钥复制到服务器端：/root/.ssh/authorized_keys文件中<br>chmod 700 /root/.ssh/<br>chmod 600 /root/.ssh/authorized_keys<br>同时需要关闭防火墙：<br>linux的防火墙有两种：selinux 和 netfilter(iptables)<br>关闭selinux防火墙：setenforce 0 //临时关闭防火墙<br>永久关闭防火墙需要编辑配置文件：vi /etc/selinux/config<br>将其中的：SELINUX=enforcing 改成SELINUX=disabled，并且需要重启才能生效<br>关闭iptables防火墙：iptables -F //临时清除规则<br>永久关闭：service iptables save //相当于将清除规则后，保存规则到配置文件/etc/sysconfig/iptables中<br>私钥保存在本地：用putty设置auth中的私钥</li>
-</ol>
-<h2 id="2-1_运行级别">2.1 运行级别</h2>
-<ol>
-<li>runlevel //显示当前的运行级别<br>runlevel的配置文件在：/etc/inittab<br>init 0 ==shutdown -h now //0级别是断电，计算机将关闭<br>init 6 == reboot == shutdown -r now //6级别是重启，与后面的命令等效<br>init 5 //5级将启动图形界面，但是首先必须安装图形界面</li>
-<li>yum工具<br>yum grouplist //将列出网络上可用的yum rpm包<br>yum groupinstall “包名” //将安装相关软件包<br>echo $LANG //将显示当前语言环境变量LANG的值<br>LANG=en //将设置环境变量LANG为en，即设置为英文环境<br>yum gourpinstall -y “X Window System” //将不用输入y来安装X Window<br>init 5 == statx //重启到图形界面</li>
-</ol>
-<h2 id="2-2_单用户模式">2.2 单用户模式</h2>
-<ol>
-<li>单用户模式 level 1<br>就像windows的安全模式，可以用来更改root密码</li>
-<li>进入单用户模式<br>重启，3秒内按任意键进入启动选项，e进入编辑模式，a修改启动参数，c进入命令行模式<br>编辑启动文件，改成进入启动level 1 或single，按B进入boot，重启</li>
-</ol>
-<h2 id="2-3_救援模式">2.3 救援模式</h2>
-<p>rescue模式就像winPE，是一个内存操作系统，从安装光盘启动它<br>root密码可以在单用户模式下修改，条件是没有设置grub密码，如果设置了grub密码就可以在救援模式下修改root密码。<br>先关机，设置BIOS从CD-ROM启动，进入后选择rescue模式启动，系统将会挂载到/mnt/sysimage目录下，进入rescue模式下的shell中。若要进入原来操作系统环境中，要进入/mnt/sysimage，修改root密码，则vi编辑/etc/passwd，这个就是系统的密码保存文件。若要修改原系统的root密码，则chroot /mnt/sysimage/，切换到原linux系统的环境中， 进入相应环境中，修改密码的命令是passwd，根据提示输入新的密码。命令exit进入rescue模式下，reboot重启。</p>
-<h2 id="2-4_cd命令">2.4 cd命令</h2>
-<ol>
-<li>cd 无参数，则进入当前用户的home目录与cd ~ 的效果一致</li>
-<li>whoami 显示当前用户名</li>
-<li>id 显示当前用户id，组id </li>
-<li>echo $HOME 显示环境变量的内容即当前用户Home目录的路径</li>
-<li>pwd 打印当前所在目录名</li>
-<li>cd - 将会回到上一次所在的目录</li>
-<li>cd . 进入当前目录</li>
-<li>cd ..进入上一级目录</li>
-</ol>
-<h2 id="2-5_ls命令">2.5 ls命令</h2>
-<ol>
-<li>ls -l 长模式显示文件信息</li>
-<li>ls -a 可以显示隐藏文件信息 </li>
-<li>ls -d 显示当前目录信息 ls -ld 可以查看目录的详细信息</li>
-<li>ctrl + l == clear 快速请屏幕</li>
-<li>ctrl + u 快速删除</li>
-<li>ls -t 按时间倒序排列的结果</li>
-<li>ls -i 查看文件的iNode信息</li>
-<li>当我们ls的时候，列出来的文件会根据文件类型不同而显示不同的颜色， /bin/ls </li>
-</ol>
-<h2 id="2-6_环境变量">2.6 环境变量</h2>
-<ol>
-<li>which ls 查看ls命令所在的目录 输出 alias ls =’ls —color=auto’ 命令的别名</li>
-<li>ls所在 /bin/ls 直接用/bin/ls 输出将没有颜色</li>
-<li>alias ls = ‘ls —color=auto’ 给命令做别名，但是仅在当前窗口有效</li>
-<li>alias 命令可以查看所有自定义的命令</li>
-<li>vi /etc/profile 可以编辑文件，将命令别名保存到配置文件中</li>
-<li>vi /etc/bashrc 或vi ~/.bashrc 编辑这个文件是当前用户的别名配置文件</li>
-<li>echo $PATH 所有命令都可以在这个环境变量下找到</li>
-<li>cp 复制文件 </li>
-<li>mv 移动文件 </li>
-<li>PATH-SPATH：/tmp/ 将tmp目录加入到path路径中，暂时的</li>
-<li>vi /etc/profile 可以将变量加入到此文件中，系统重启时才应用这些设置</li>
-<li>source /etc/profile 可以即时应用配置文件</li>
-<li>set </li>
-</ol>
-<h2 id="2-7_快捷键使用">2.7 快捷键使用</h2>
-<ol>
-<li>ctrl+l 清屏</li>
-<li>ctrl+d == exit == logout 退出当前终端</li>
-<li>ctrl+u 快速删除当前光标前面的内容</li>
-<li>ctrl+k 快速删除当前光标后面的内容</li>
-<li>ctrl+c 结束当前的命令运行，杀掉进程</li>
-<li>sleep 100 休眠当前终端100秒  </li>
-<li>ctrl+z 暂停当前命令运行 fg 命令可以恢复运行</li>
-<li>ctrl+s 锁定屏幕 </li>
-<li>ctrl+q 解锁屏幕  </li>
-<li>ctrl+a 将光标移到最开始</li>
-<li>ctrl+e 将光标移动最后    </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/09/29/linux-第一部分/" data-id="h270eal9cqa4eyrp" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/09/29/linux-第一部分/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centOS/">centOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-String及相关数据类型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/06/String及相关数据类型/" class="article-date">
-  <time datetime="2015-09-06T15:52:37.000Z" itemprop="datePublished">9月 6 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/06/String及相关数据类型/">String及相关数据类型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>String类属于java.lang包<br><img src="http://img.mukewang.com/53d9f7d200010bb007780366.jpg" alt="String类的常用方法"></li>
-<li><p>StringBuffer类和StringBuilder类<br> 当频繁操作字符串时，就会额外产生很多临时变量。使用 StringBuilder 或 StringBuffer 就可以避免这个问题。至于 StringBuilder 和StringBuffer ，它们基本相似，不同之处，StringBuffer 是线程安全的，而 StringBuilder 则没有实现线程安全功能，所以性能略高。因此一般情况下，如果需要创建一个内容可变的字符串对象，应优先考虑使用 StringBuilder 类。<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/StringBuilderTest.java" target="_blank" rel="external">StringBuilder类的示例代码</a><br><img src="http://img.mukewang.com/53a7d34300011c6005970125.jpg" alt="StringBuilder类的常用方法"></p>
-</li>
-<li><p>Integer类是int的对应包装类</p>
-<ul>
-<li>Integer类的构造方法：<br><img src="http://img.mukewang.com/53abde780001144905740055.jpg" alt="Integer类的构造方法"></li>
-<li>Integer类的常用方法：<br><img src="http://img.mukewang.com/53abdee00001542805680224.jpg" alt="Integer类的常用方法"></li>
-<li></li>
-</ul>
-</li>
-<li>装箱和拆箱<br> 那什么是装箱和拆箱呢？我们分别来看下<br>装箱：把基本类型转换成包装类，使其具有对象的性质，又可分为手动装箱和自动装箱<br><img src="http://img.mukewang.com/53abe4590001373504390074.jpg" alt="装箱"><br>拆箱：和装箱相反，把包装类对象转换成基本类型的值，又可分为手动拆箱和自动拆箱<br><img src="http://img.mukewang.com/53abe5210001652606630071.jpg" alt="拆箱"><br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/IntegerTest.java" target="_blank" rel="external">示例代码</a></li>
-<li>各种数据类型与字符串的相互转换<br>在程序开发中，我们经常需要在基本数据类型和字符串之间进行转换。<br>其中，基本类型转换为字符串有三种方法：<br>1.使用包装类的 toString() 方法<br>2.使用String类的 valueOf() 方法<br>3.用一个空字符串加上基本类型，得到的就是基本类型数据对应的字符串<br><img src="http://img.mukewang.com/53abea61000151e105120118.jpg" alt="基本类型转字符串"><br>再来看，将字符串转换成基本类型有两种方法：<br>1.调用包装类的 parseXxx 静态方法<br>2.调用包装类的 valueOf() 方法转换为基本类型的包装类，会自动拆箱<br><img src="http://img.mukewang.com/53abeaad000109af04610098.jpg" alt="字符串转换为基本类型"><br>PS：其他基本类型与字符串的相互转化这里不再一一列出，方法都类似<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/String2Double.java" target="_blank" rel="external">示例代码</a></li>
-<li>表示时间的Date类和SimpleDateFormat类（已经不推荐使用，见7Calendar类）<br> Date类属于java.util包中，SimpleDateFormat类属于java.text包中。</li>
-</ol>
-<ul>
-<li>Date类：<br>   Date d = new Date();<pre><code>  System.<span class="keyword">out</span>.println(d);
-</code></pre>使用 Date 类的默认无参构造方法创建出的对象就代表当前时间，我们可以直接输出 Date 对象显示当前的时间，显示的结果如下：<br>  Tue Aug 11 15:24:41 CST 2015<br>其中， Wed 代表 Wednesday (星期三)， Jun 代表 June (六月)， 11 代表 11 号， CST 代表 China Standard Time (中国标准时间，也就是北京时间，东八区)。<br>从上面的输出结果中，我们发现，默认的时间格式不是很友好，与我们日常看到的日期格式不太一样，如果想要按指定的格式进行显示，如 2014-06-11 09:22:30 ，那该怎么做呢？<br>可以使用 SimpleDateFormat来对日期时间进行格式化，如可以将日期转换为指定格式的文本，也可将文本转换为日期。<ul>
-<li>SimpleDateFormat类：<br>1.使用 format() 方法将日期转换为指定格式的文本<br><img src="http://img.mukewang.com/53b22d780001e5f808060193.jpg" alt="format()方法"><br>代码中的 “yyyy-MM-dd HH:mm:ss” 为预定义字符串， yyyy 表示四位年， MM 表示两位月份， dd 表示两位日期， HH 表示小时(使用24小时制)， mm 表示分钟， ss 表示秒，这样就指定了转换的目标格式，最后调用 format() 方法将时间转换为指定的格式的字符串。<br>运行结果： 2014-06-11  09:55:48<br>2.使用 parse() 方法将文本转换为日期<br><img src="http://img.mukewang.com/53b22ddf00012edf08100192.jpg" alt="parse()方法"><br>代码中的 “yyyy年MM月dd日 HH:mm:ss” 指定了字符串的日期格式，调用 parse() 方法将文本转换为日期。<br>运行结果：<br><img src="http://img.mukewang.com/53b22e4f000108b104570025.jpg" alt="结果"><br>一定要注意哦：<br>1、 调用 SimpleDateFormat 对象的 parse() 方法时可能会出现转换异常，即 ParseException ，因此需要进行异常处理<br>2、 使用 Date 类时需要导入 java.util 包，使用 SimpleDateFormat 时需要导入 java.text 包<br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/DateTest.java" target="_blank" rel="external">示例代码</a></li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>Calendar类<br>Date 类最主要的作用就是获得当前时间，同时这个类里面也具有设置时间以及一些其他的功能，但是由于本身设计的问题，这些方法却遭到众多批评，不建议使用，更推荐使用 Calendar 类进行时间和日期的处理。<br>java.util.Calendar 类是一个抽象类，可以通过调用 getInstance() 静态方法获取一个 Calendar 对象，此对象已由当前日期时间初始化，即默认代表当前时间，如 Calendar c = Calendar.getInstance();<br>那么如何使用 Calendar 获取年、月、日、时间等信息呢？我们来看下面的代码：<br><img src="http://img.mukewang.com/53b23219000153b608030239.jpg" alt="Calendar类的使用方法"><br>其中，调用 Calendar 类的 getInstance() 方法获取一个实例，然后通过调用 get() 方法获取日期时间信息，参数为需要获得的字段的值， Calendar.Year 等为 Calendar 类中定义的静态常量。<br>运行结果： 当前时间：2015-08-11 15:44:04<br>Calendar 类提供了 getTime() 方法，用来获取 Date 对象，完成 Calendar 和 Date 的转换，还可通过 getTimeInMillis() 方法，获取此 Calendar 的时间值，以毫秒为单位。如下所示：<br><img src="http://img.mukewang.com/53b232b200015b8306120095.jpg" alt="Calendar类的使用方法"><br><a href="https://github.com/BaliStarDUT/hello-world/blob/master/String/CalendarTest.java" target="_blank" rel="external">Calendar类示例代码</a></li>
-<li>Math类<br> Math 类位于 java.lang 包中，包含用于执行基本数学运算的方法， Math 类的所有方法都是静态方法，所以使用该类中的方法时，可以直接使用类名.方法名，如： Math.round();<br>常用的方法：<br><img src="http://img.mukewang.com/53b22ff10001b6d104810124.jpg" alt="Math类的常用方法"></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/09/06/String及相关数据类型/" data-id="ppvo0hmiupp006rv" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/09/06/String及相关数据类型/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Calendar/">Calendar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux-C语言编程基本原理与实践" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/09/Linux-C语言编程基本原理与实践/" class="article-date">
-  <time datetime="2015-07-09T01:50:13.000Z" itemprop="datePublished">7月 9 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一节_C语言历史">第一节 C语言历史</h2>
-<p>ANSI C ：<br>二十世纪年代由美国国家标准局制定的C语言国际标准语法：ANSI C。<br>C语言用途：<br>linux嵌入式，ARM嵌入式，单片机，硬件编程<br>NGINX：C语言编写的高并发web服务器</p>
-<h2 id="第二节_开发环境与配置">第二节 开发环境与配置</h2>
-<p>linux和cc(gcc)编译器<br>emacs和vim编辑器<br><strong>常用命令：</strong><br>sudo apt-get update //自动更新资源<br>sudo apt-get install vim; //安装vim编辑器<br>cc -v 查看编译器版本<br><strong>vim常用操作：</strong><br>i:左插入  shift+i:行首插入<br>a:右插入 shift+a:行尾插入<br>o:向下插入一行 shift+o:向上插入一行<br>x:删除当前字符 dd:删除当前行 </p>
-<h2 id="第三节_编写C程序">第三节 编写C程序</h2>
-<p><strong>头文件：</strong><br>导入库文件：#include<stdio.h> //导入标准输入输出库，存在于linux /usr/include里.尖括号里面的是系统函数库里的，会在环境变量里查找文件，双引号是当前目录里查找。include 表示编译时直接复制过来。</stdio.h></p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span>
-<span class="keyword">int</span> main()
-{
-    <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p><strong>编译程序：</strong><br>    cc a.c</p>
-<h2 id="第四节_多文件编译">第四节 多文件编译</h2>
-<h3 id="4-1_编写多文件程序">4.1 编写多文件程序</h3>
-<pre><code>gcc a.<span class="built_in">c</span> b.<span class="built_in">c</span> -o outputfile <span class="comment">//编译并连接成可执行文件,可以仅连接</span>
-gcc -<span class="built_in">c</span> a.<span class="built_in">c</span> -o a.o <span class="comment">//仅编译但不连接,可以通过这种方法将大型软件工程的源文件先编译成静态库，可以直接调用。</span>
-</code></pre><p>//a.c 与b.c在同一文件夹下<br>vim中同时打开多个文件：<br>:set nu;// 显示行号<br>:sp b.c //同时打开a.c和b.c<br>ctrl+w+↓ //进入下面的文件<br>ctrl+w+↑ //进入上面的文件<br>:dd //复制<br>:p //粘贴<br>:wqa //保存所有文件</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span>
-<span class="keyword">int</span> max(<span class="keyword">int</span> a,<span class="keyword">int</span> b)
-{
-    <span class="keyword">if</span>(a&gt;b){
-        <span class="keyword">return</span> a;
-    }<span class="keyword">else</span>{
-        <span class="keyword">return</span> b;
-    }
-}
-<span class="keyword">int</span> main()
-{
-    <span class="keyword">int</span> a1=<span class="number">2</span>;
-    <span class="keyword">int</span> a2=<span class="number">3</span>;
-    <span class="keyword">int</span> maxNum;
-    maxNum=max(a1,a2);
-    <span class="built_in">printf</span>(<span class="string">"the max value is %d"</span>,maxNum);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><h3 id="4-2_头文件与函数分离">4.2 头文件与函数分离</h3>
-<p>为了使别人调用函数时清楚知道函数返回值，参数类型，可以将函数的声明和实现分离，声明写成.h头文件的形式，这样调用时只要将头文件包含进来就可以了。</p>
-<h3 id="4-3_makefile编写">4.3 makefile编写</h3>
-<p>make工具可以将大型的开发项目分成分成若干个模块。<br>make内部也是使用gcc.</p>
-<pre><code>make -v <span class="comment">//显示make版本号</span>
-#this <span class="keyword">is</span> make file
-hello.out:<span class="built_in">max</span>.o <span class="built_in">min</span>.o a.<span class="built_in">c</span>
-    gcc <span class="built_in">max</span>.o <span class="built_in">min</span>.o a.<span class="built_in">c</span>
-<span class="built_in">max</span>.o:<span class="built_in">max</span>.<span class="built_in">c</span>
-    gcc -<span class="built_in">c</span> <span class="built_in">max</span>.<span class="built_in">c</span>
-<span class="built_in">min</span>.o:<span class="built_in">min</span>.<span class="built_in">c</span>
-    gcc -<span class="built_in">c</span> <span class="built_in">min</span>.<span class="built_in">c</span>
-</code></pre><h2 id="第五节_main函数详解">第五节 main函数详解</h2>
-<h3 id="5-1_return语句">5.1 return语句</h3>
-<p>前一个语句成功时，才运行后一个语句。<br>    gcc main.c -o main.out &amp;&amp; ./main.out<br>每个语句都有一个返回值。<br>return 0; 表示程序运行成功</p>
-<h3 id="5-2_main函数参数">5.2 main函数参数</h3>
-<p>main(int argc,char *argv[]) //argc 表示参数个数，argv[]表示参数值；</p>
-<pre><code><span class="comment">#include &lt;stdio.h&gt;</span>
-<span class="keyword">int</span> main(<span class="keyword">int</span> argv,char* argc[])
-{
-    <span class="keyword">printf</span>(<span class="string">"argv is <span class="variable">%d</span> \n"</span>,argv);
-    <span class="keyword">int</span> i=<span class="number">0</span>;
-    <span class="keyword">for</span>(;i&lt;argv;i++){
-        <span class="keyword">printf</span>(<span class="string">"argc[<span class="variable">%d</span>] is <span class="variable">%s</span>"</span>,i,argc[i]);
-    }
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><h2 id="第六节_输入输出流">第六节 输入输出流</h2>
-<h3 id="6-1输入输出函数">6.1输入输出函数</h3>
-<p>stdin //标准输入，键盘<br>stdout //标准输出，1，显示器<br>stderr //标准错误,2<br>printf(“argv is %d \n”,argv);<br>fprintf(stdout,”please input a num:\n”);<br>scanf(“%d”,&amp;a);<br>fscanf(stdin,”%d”,&amp;a);</p>
-<pre><code> <span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span>
-<span class="keyword">int</span> main(<span class="keyword">int</span> argv,<span class="keyword">char</span>* argc[])
-{
-    <span class="built_in">printf</span>(<span class="string">"argv is %d \n"</span>,argv);
-    <span class="keyword">int</span> i=<span class="number">0</span>;
-    <span class="keyword">for</span>(;i&lt;argv;i++){
-        <span class="built_in">printf</span>(<span class="string">"argc[%d] is %s \n"</span>,i,argc[i]);
-    }
-    <span class="built_in">fprintf</span>(stdout,<span class="string">"please input a num:\n"</span>);
-    <span class="keyword">int</span> a;
-    <span class="built_in">fscanf</span>(stdin,<span class="string">"%d"</span>,&amp;a);
-    <span class="keyword">if</span>(a&lt;<span class="number">0</span>){
-        <span class="built_in">fprintf</span>(stderr,<span class="string">"the value must &gt;0\n"</span>);<span class="comment">//标准错误流</span>
-        <span class="keyword">return</span> <span class="number">1</span>;    
-    }
-    <span class="comment">//scanf("%d",&amp;a);</span>
-    <span class="built_in">printf</span>(<span class="string">"you have input:%d\n"</span>,a);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><h3 id="6-2_通道">6.2 通道</h3>
-<p>输出流重定向：</p>
-<blockquote>
-<blockquote>
-<p>重定向到，并且是追加的<br>重定向到，并且是覆盖的</p>
-</blockquote>
-</blockquote>
-<p>输入流重定向：<br>./a.out &lt; input.txt 将文件input.txt输入到程序中运行</p>
-<h2 id="第七节_管道原理及应用">第七节 管道原理及应用</h2>
-<p>| 管道符</p>
-<pre><code><span class="keyword">ps</span> -<span class="keyword">e</span> | <span class="keyword">grep</span> ss //从当前运行的进程中查到带有ss的进程
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://balistardut.github.io/2015/07/09/Linux-C语言编程基本原理与实践/" data-id="fwcolmdz91zs6x43" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://balistardut.github.io/2015/07/09/Linux-C语言编程基本原理与实践/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/About/">About</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/R/">R</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calendar/">Calendar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R语言/">R语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于/">关于</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">3</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Calendar/" style="font-size: 10.00px;">Calendar</a><a href="/tags/C语言/" style="font-size: 10.00px;">C语言</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/R语言/" style="font-size: 10.00px;">R语言</a><a href="/tags/String/" style="font-size: 10.00px;">String</a><a href="/tags/centOS/" style="font-size: 12.50px;">centOS</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/关于/" style="font-size: 10.00px;">关于</a><a href="/tags/教程/" style="font-size: 17.50px;">教程</a><a href="/tags/生活/" style="font-size: 10.00px;">生活</a><a href="/tags/笔记/" style="font-size: 15.00px;">笔记</a><a href="/tags/运维/" style="font-size: 12.50px;">运维</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/10/13/centOS运维第三部分-负载进程内存监控/">centOS运维第三部分-负载进程内存监控</a>
-          </li>
-        
-          <li>
-            <a href="/2015/10/11/centOS运维第二部分-文件用户磁盘管理命令/">centOS运维第二部分-文件用户磁盘管理命令</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/29/linux-第一部分/">centOS运维第一部分-系统启动与连接</a>
-          </li>
-        
-          <li>
-            <a href="/2015/09/06/String及相关数据类型/">String及相关数据类型</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/09/Linux-C语言编程基本原理与实践/">Linux C语言编程基本原理与实践</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://xiguabaobao.com" target="_blank">主题作者</a>
-          </li>
-        
-          <li>
-            <a href="https://github.com/BaliStarDUT" target="_blank">我的Github</a>
-          </li>
-        
-          <li>
-            <a href="http://weibo.com/u/3104305047" target="_blank">我的微博</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-  <div>
-	<script type="text/javascript" src="//rd.revolvermaps.com/0/0/6.js?i=39c1a8rpv4r&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script>
-  </div>
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 James Yang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-<!-- 多说公共js代码 start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangz3"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共js代码 end -->
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"nocss.css"}};with(document)0[(getElementsByTagName("head")[0]||body).appendChild(createElement("script")).src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="+~(-new Date()/36e5)];</script>
-
-<!-- 百度分享 end -->
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-                processEscapes: true
-                    
-}
-  
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-                  
-}
-    
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Queue(function() {
-            var all = MathJax.Hub.getAllJax(), i;
-            for(i=0; i < all.length; i += 1) {
-                            all[i].SourceElement().parentNode.className += ' has-jax';
-                                    
-            }
+            <li class="sidebar-button">
                 
-        });
-</script>
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/BaliStarDUT" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/old"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc">2015年以前的博客</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+            
+            <div id="main" data-behavior="1"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
 
-<script src="/js/script.js" type="text/javascript"></script>
-
-
-<div id="totop" style="position:fixed;bottom:150px;right:0px;cursor:pointer;">
-<a title="返回顶部"><img src="/css/images/scrollup.png"></a>
+<section class="postShorten-group main-content-wrap">
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/12/10/hello-world/">Hello World</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Thu Dec 10 2015 12:45:59 GMT+0800">
+	
+		    Dec 10, 2015
+    	
+    </time>
+    
 </div>
-<script src="/js/totop.js"></script>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+                        
+                            <a href="/2015/12/10/hello-world/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://balistardut.github.io/2015/12/10/hello-world/head.png"/>
+                </div>
+                
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/11/30/java-web之JSP/">java web之JSP</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 18:06:54 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Diary/">Diary</a>
 
-  </div>
-</body>
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h1 id="一-_JSP内置对象">一. JSP内置对象</h1><h2 id="1-1_response对象">1.1 response对象</h2><p>它是HttpServletResponse类的实例。常用方法有：</p>
+<ol>
+<li>String getCharacterEncoding()//返回响应用的是何种字符编码</li>
+<li>void setContentType(String type) //返回响应的MIME类型</li>
+<li><p>PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：PrintWriter与内置out对象的区别,PrintWriter类型的对象会先于out对象输出到浏览器，因为out有一个缓存，不满就不会调用flush方法清空缓存，所以会后面输出，但是可以提前调用flush来提前刷新缓存）</p>
+                        
+                            <a href="/2015/11/30/java-web之JSP/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/11/30/LNMP架构搭建与优化/">LNMP架构搭建与优化</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:14:18 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-content" itemprop="articleBody">
+                        <h2 id="1-1_Mysql安装">1.1 Mysql安装</h2><ol>
+<li>下载mysql安装包，解压 </li>
+<li>添加mysql用户：useradd -s /sbin/nologin -M myql  </li>
+<li>移动并重命名：mv mysql-linux /usr/local/mysql</li>
+<li>创建目录：mkdir -p /data/mysql;chown -R mysql /data/mysql</li>
+<li>安装参数：./scripts/mysql_install_db –user=mysql –datadir=/data/mysql</li>
+<li>配置文件：/etc/my.conf</li>
+<li>添加服务：chkconfig –add mysqld</li>
+<li>启动服务：chkconfig mysqld on</li>
+<li>启动程序：/etc/init.d/mysqld start</li>
+<li>检查是否启动：ps aux | grep mysql </li>
+<li>检查端口：netstat -lnp | gerp mysql<h2 id="1-2_apache编译安装">1.2 apache编译安装</h2></li>
+<li>.configure //检查环境 echo $? //显示上一条命令执行结构，非0则有错</li>
+<li>make //编译</li>
+<li>make install //安装 ，每一步都建议echo $?</li>
+<li>/usr/local/apache2/bin/apachectl start //用于启动apache </li>
+<li>/usr/local/apache2/bin/apachectl restart //用于重新启动apache</li>
+<li>/usr/local/apache2/bin/apachectl stop //用于关闭apache </li>
+<li>/usr/local/apache2/bin/apachectl graceful //用于重新加载配置文件</li>
+<li>还有选项 -M,查看apache启动时加载的模块, 有静态加载的模块，和动态加载的模块<br>-l ,列出静态加载的模块<br>-t，检查配置文件有无错误</li>
+<li>查看进程：ps aux |gerp httpd</li>
+<li>查看端口：netstat -lnp | grep httpd</li>
+<li>apache的工作模式，最常用的有worker或prefork，默认是event模式<h2 id="1-3_apache的mpm工作模式">1.3 apache的mpm工作模式</h2></li>
+<li>prefork worker event//三种常用工作模式</li>
+<li>prefork下有主进程和子进程，可以通过ps aux | grep httpd来看</li>
+<li>worker下有主进程和子进程，还有线程，对高并发支持比较好</li>
+<li>event 是worker的升级版，有线程，性能方面，保持长连接方面更有优势<h2 id="1-4_php编译安装">1.4 php编译安装</h2></li>
+<li>下载解压 tar jxf php.tar.bz2</li>
+<li>yum添加源：rpm -ivh “<a href="http://www源地址" target="_blank" rel="external">http://www源地址</a>“ //-i 不区分大小写</li>
+<li>/usr/local/php/bin/php -m //列出静态加载的模块</li>
+<li>/usr/local/php/bin/php  -i //配置信息<h2 id="1-5_测试php解析">1.5 测试php解析</h2></li>
+<li>需要加载php解析模块，apache才能解析php页面 </li>
+<li>安装php后php自带解析php文件的可执行文件，php a.php 即可解析页面</li>
+<li>编辑配置文件，在modls配置项上加上php，在dir配置项上加上.php，这样就能识别php文件 </li>
+<li>之后检测apache配置文件是否正确：apachectl -t</li>
+<li>之后重新加载配置文件：apache graceful</li>
+<li>php中的phpinfo()函数将列出php的相关信息，与php -i输出信息一致，里面将列出php的编译信息。</li>
+<li>apache的编译信息在/usr/local/apache2/build/config.nice中</li>
+<li>mysql的编译信息在/usr/local/mysql/bin/mysqlbug中</li>
+<li>用curl命令也能测试php是否安装成功，curl <a href="http://localhost/php.info" target="_blank" rel="external">http://localhost/php.info</a><h2 id="1-6_安装Discuz!">1.6 安装Discuz!</h2></li>
+<li><p>如果apache出现如下错误：</p>
+<p> root@yangz-CW65:/home/yangz# /etc/init.d/apache2 restart<br>  * Restarting web server apache2                                                AH00558: apache2: Could not reliably determine the server’s fully qualified domain name, using 127.0.0.1. Set the ‘ServerName’ directive globally to suppress this message</p>
+</li>
+</ol>
+<p>这是ServerName没有配置的原因，在配置文件中添加ServerName www.yang.com即可</p>
+<ol>
+<li><h2 id="1-7_apache用户认证">1.7 apache用户认证</h2></li>
+<li><p>如果想要服务器上某个文件或目录不被外界访问，或只能输入用户名密码访问，则可以在虚拟主机下配置这样的描述：</p>
+<pre><code>&lt;Directory <span class="regexp">/var/</span>www<span class="regexp">/html/</span>phpMyAdmin-<span class="number">4.2</span><span class="number">.0</span>-all-languages/&gt;
+     AllowOverride AuthConfig
+     AuthName <span class="string">"ADMIN"</span> <span class="comment">//该字符串为浏览器的提示信息</span>
+     AuthType Basic
+     AuthUserFile <span class="regexp">/var/</span>www/.htpasswd
+     require valid-user
+ &lt;/Directory&gt;
+</code></pre></li>
+<li><p>改变PATH环境变量的值：可以在/etc/profile.d/下增加以.sh为结尾的shell脚本文件，文件中添加如下内容：</p>
+<p>  #! /bin/bash<br>  export PATH=$PATH:/usr/local/mysql/bin:/usr/local/apache2/bin<br>这样在PATH环境变量下添加了两个目录，之后用命令：source /etc/profile.d/path.sh 就可以将改动加载到环境中。</p>
+</li>
+<li><p>创建用户密码文件/var/www/.htpasswd: 需要用到apache下的命令htpasswd.</p>
+<p> <code>htpasswd -c /var/www/.htpasswd username</code> //-c表示create，后面跟文件名，用户名。之后它将提示输入密码。将保存到该文件，查看该文件，内容为username:$密码加密后的内容。<br> 如果想添加另一个用户，不需要-c选项，直接<code>htpasswd /var/www/.htpasswd username</code>就可以了。</p>
+</li>
+<li><p>重新加载apache配置文件：<code>apachectl graceful</code> 即可。</p>
+</li>
+<li>再次访问该目录是浏览器将要求输入用户名和密码,并且apache默认将不会列出此目录<h2 id="1-8_默认虚拟主机">1.8 默认虚拟主机</h2></li>
+<li>apache有一个默认的虚拟主机，只要将域名指向该ip的主机，就会默认访问配置文件中的第一个虚拟主机。通过ip方式访问的也是第一个虚拟主机。</li>
+<li>所以有些人可以通过不用你的域名，但是指向你的ip来访问你的网站。我们可以通过设置第一个虚拟主机，就是默认虚拟主机为不存在的目录来拒绝这种访问。这样，只有我们服务器配置的域名可以访问到后面的真实主机，而不匹配的域名会访问默认主机，而默认主机不存在，所以就无法访问。</li>
+<li>在配置文件中在第一个virtualhost前再添加一个virtualhost就能设置为默认虚拟主机。这样，即使通过ip也无法访问正确的虚拟主机。<h2 id="1-9_域名301跳转">1.9 域名301跳转</h2></li>
+<li>如果两个域名同时指向了同一个主机，那么可以通过域名跳转来实现两个域名访问同一个主机。</li>
+<li><p><a href="http://www.apelearn.com/bbs/thread-603-1-1.html" target="_blank" rel="external">apache 的域名重定向</a><br>需求：要把访问域名 www.domain1.com 的域名转发到 www.domain2.com 上<br>实现：<br>在相关的虚拟主机中增加</p>
+<pre><code><span class="tag">&lt;IfModule mod_rewrite.c&gt;</span>
+    <span class="keyword"><span class="common">RewriteEngine</span></span> <span class="literal">on</span>
+    <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{HTTP_HOST}</span> ^www.domain1.com$
+    <span class="keyword"><span class="common">RewriteRule</span></span> ^(.*)$ http://www.domain2.com/<span class="number">$1</span><span class="sqbracket"> [R=301,L]</span>
+<span class="tag">&lt;/IfModule&gt;</span>
+</code></pre></li>
+</ol>
+<p>如果是多个域名重定向到一个域名</p>
+<pre><code><span class="tag">&lt;IfModule mod_rewrite.c&gt;</span>
+    <span class="keyword"><span class="common">RewriteEngine</span></span> <span class="literal">on</span>
+    <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{HTTP_HOST}</span> ^www.domain.com<span class="sqbracket"> [OR]</span>
+    <span class="keyword"><span class="common">RewriteCond</span></span> <span class="cbracket">%{HTTP_HOST}</span> ^www.domain1.com$
+    <span class="keyword"><span class="common">RewriteRule</span></span> ^(.*)$ http://www.domain2.com/<span class="number">$1</span><span class="sqbracket"> [R=301,L]</span>
+<span class="tag">&lt;/IfModule&gt;</span>
+</code></pre><h2 id="2-0_apache日志切割">2.0 apache日志切割</h2><ol>
+<li>临时设定当前系统日期：date -s “2015-11-11 11:11:11”</li>
+<li>日志格式可以自定义，默认的有combined 或common</li>
+<li>日志分为访问access日志和错误error日志</li>
+<li><h2 id="2-1_apache不记录指定类型日志">2.1 apache不记录指定类型日志</h2></li>
+<li>像网页中的小图片访问日志不用记录，所有有这样的需求</li>
+<li><h2 id="2-2_apache配置静态缓存">2.2 apache配置静态缓存</h2></li>
+<li>可以配置服务器资源在浏览器的缓存时间时间，这样可以节省流量资源。</li>
+<li>需要配置apache的主配置文件，需要加载的模块是expires</li>
+<li>在配置文件中加入如下配置：<br> `<ifmodoule mod_expires.c=""><pre><code>ExpriesActive on
+ExpriesByType <span class="keyword">image</span>/gif <span class="string">"access plus 1 days "</span> 
+ExpriesByType <span class="keyword">image</span>/jpeg <span class="string">"access plus 24 hours"</span> <span class="comment">//缓存214小时</span>
+ExpriesByType <span class="keyword">image</span>/png <span class="string">"access plus 5 hours"</span>
+ExpriesByType <span class="keyword">text</span>/css <span class="string">"now plus 2 hours"</span>
+ExpriesByType application/x-javascript <span class="string">"now plus 2 days"</span>
+ExpriesByType application/x-shockwave-flash <span class="string">"now plus 2 days"</span>
+ExpriesDefault <span class="string">"now plus 0 min"</span> <span class="comment">//其余默认不缓存</span>
+</code></pre> `</ifmodoule></li>
+<li>检查配置文件后重启apache</li>
+<li>可以通过curl来查看资源的缓冲情况</li>
+</ol>
+<blockquote>
+<p>root@yangz-CW65:/etc/apache2/sites-available# curl -x127.0.0.1:80 ‘<a href="http://www.yang.me/nutch/img/lang/brazil.png" target="_blank" rel="external">http://www.yang.me/nutch/img/lang/brazil.png</a>‘ -I<br>HTTP/1.1 200 OK<br>Date: Thu, 12 Nov 2015 15:32:40 GMT<br>Server: Apache/2.4.10 (Ubuntu)<br>Last-Modified: Mon, 23 Mar 2009 12:51:44 GMT<br>ETag: “2d5-465c8ba853800”<br>Accept-Ranges: bytes<br>Content-Length: 725<br>Cache-Control: max-age=86400 //这里就是我们设置的缓存时间<br>Expires: Fri, 13 Nov 2015 15:32:40 GMT<br>Content-Type: image/png</p>
+</blockquote>
+<h2 id="2-3_Apache配置防盗链">2.3 Apache配置防盗链</h2><ol>
+<li>网站上的资源可以被放到别人的网站上，这会增大你的服务器的流量，增加服务器负担，所以要防止盗链，盗取你的图片，视频等。</li>
+<li><p>在配置文件中配置，当从其他地方访问你指定的资源时，将不能访问，出现错误</p>
+<p> `SetEnvIfNoCase Referer “^<a href="http://.*\.yang\.com" target="_blank" rel="external">http://.*\.yang\.com</a>“ local_ref<br> SetEnvIfNoCase Referer “.*.yang.me” lcal_re’f<br> <filesmatch "^\.{hr|txt|doc|mp3|zip|rar|jpg|gif|png|js|css}"=""></filesmatch></p>
+<pre><code><span class="keyword">Order</span> <span class="title">Allow</span>,<span class="operator">Deny</span> 
+Allow from <span class="variable">env=</span>local_ref
+</code></pre><p>  #Require all denied<br> <filesmatch>`</filesmatch></p>
+</li>
+</ol>
+<h2 id="2-4_apache访问控制">2.4 apache访问控制</h2><ol>
+<li><h2 id="2-6_apache禁止指定user_agent访问">2.6 apache禁止指定user_agent访问</h2></li>
+<li><h2 id="2-8_php-ini配置文件详解">2.8 php.ini配置文件详解</h2></li>
+<li>可以通过curl -x127.0.0.1:8080 www.test.com/form.php -T 来查看返回的状态码信息</li>
+<li>/usr/local/php/bin/php -i //显示php配置信息，显示php配置文件在哪里</li>
+<li>/usr/local/php/etc/php.ini //php的配置文件</li>
+<li>disable functions = //需要禁止使用的函数</li>
+<li>display errors = On //配置错误日志是否显示</li>
+<li>error log = /usr/local/php/logs/php_errors.log//最好写绝对路径，配置错误日志的输出文件，该文件的权限最好改为777，因为写文件的用户是apache</li>
+<li>error reporting = //配置日志的显示级别</li>
+<li>open basedir = //限定apache访问在某些目录下，需要设定为自己的web根目录<h2 id="2-9_php扩展模块如何安装">2.9 php扩展模块如何安装</h2></li>
+<li>动态加载模块可以在php.ini中配置</li>
+<li>安装完php后如果发现某些模块没有安装，方法有：1.卸载重新安装php 2.动态加载模块</li>
+<li>可以下载模块源码包，自己编译加载</li>
+<li>例如编译curl，进入curl源码目录下</li>
+<li>/usr/local/php/bin/phpize  //运行将生成configure文件</li>
+<li>./configure –with-php-config=/usr/local/php/bin/php-config //执行编译参数</li>
+<li>make install //编译产生二进制文件，将显示curl.so的位置</li>
+<li>php的extension dir表示模块加载目录，在php.ini中配置，可以通过php -i | grep extension_dir来发现</li>
+<li>在extension中加入：extension=curl.so //配置完成后将动态加载此模块</li>
+<li>在vim 中 nohl是不显示高亮</li>
+<li>php -m //显示加载的模块</li>
+<li>可以通过查看php的错误日志来查看错误原因. .<h2 id="3-0_mysql配置讲解">3.0 mysql配置讲解</h2></li>
+<li>mysql的配置文件在/etc/my.cnf中，核心配置是mysqld部分</li>
+<li>key_buffer_size://mysql的buffer size</li>
+<li>mysql中可以用：SHOW STATUS LIKE ‘key_read%’来查看配置</li>
+<li>mysql的常用引擎有myisam和inodb引擎</li>
+<li>慢查询：long_query_time = 1 和 log_slow_queries= /data/mysql/slow.log //设置查询时间超过1秒的查询记录到慢查询日志中<h2 id="3-1_mysql_root密码重置">3.1 mysql root密码重置</h2></li>
+<li>mysql 默认不加密码，可以直接用mysql -u root 登陆</li>
+<li>mysqladmin -u root password ‘yangzhenmysql’ //给root设置密码</li>
+<li>编辑配置文件my.conf,在其后加入一句：skip-grant </li>
+<li>重启mysql：/etc/init.d/mysqld restart 又可以直接mysql登陆了</li>
+<li>然后use mysql数据库，修改root密码。</li>
+<li>运行sql语句：update user set password=password(‘yangzhen’) where user=’root;//这样就重置了root用户的密码</li>
+<li>‘修改配置文件删除增加的那一行，重启，然后就需要用新密码登陆<h2 id="3-2_mysql远程登陆">3.2 mysql远程登陆</h2></li>
+<li>远程登陆mysql：mysql -h192.168.1.10 -P3306 -uroot -pyang //-P指定端口</li>
+<li>在mysql中执行：grant all on <em>.</em> to ‘root’@’192.168.0.1’ identified by ‘123456’ //授权给root在指定host上用指定密码登陆，并且能访问所有数据库的所有数据表。</li>
+<li>在mysql数据库中执行select * from user where host=’192.168.0.1’\G;’将可以看到已经授权访问的客户端</li>
+<li>就可以用2中的命令登陆，-p应该是123456</li>
+<li>select user();可以显示当前登陆的用户</li>
+<li>本地如果有多个mysql可以用socket登陆：mysql -uroot -S /tmp/mysql.sock -p 输入密码就能登陆，-S指定socket，就是配置文件中的socket<h2 id="3-3_mysql常用操作1">3.3 mysql常用操作1</h2></li>
+<li>show databases;//显示有多少数据库</li>
+<li>use mysql; //切换数据库</li>
+<li>select database(); //显示当前数据库</li>
+<li>select user(); //显示当前用户</li>
+<li>select version(); //</li>
+<li>show tables;<h2 id="3-5_mysql备份与恢复">3.5 mysql备份与恢复</h2></li>
+<li>备份数据库可以用mysqldump：mysqldump -uroot -pyangzhen mysql &gt;mysql.sql//将备份数据库到文件中，也可以不重定向，将打印出备份信息，该文件是可读的，内容是先创建数据表，然后插入数据，这将备份整个数据库</li>
+<li>可以通过上面的文件来恢复：mysql -uroot -pyang mysql &lt;mysql.sql //恢复数据库，反向重定向到数据库恢复，这将恢复整个数据库</li>
+<li>备份数据表可以：mysqldump -uroot -pyangzhen mysql user&gt;mysqluser.sql //这将备份mysql数据库的user表到文件中，cat!$ 将显示结果。与备份数据库内容一样</li>
+<li>！/et //将运行上一条/et开头的命令</li>
+<li>恢复数据表可以：mysql -uroot -pyang mysql &lt;mysql.sql //不需要加表名</li>
+<li>字符集问题，备份恢复时可能会产生乱码问题：备份时指定字符集为utf8：mysqldump -uroot -pyangzhen –default-character-set=utf8 mysql user&gt;mysqluser.sql</li>
+<li>恢复时指定字符集：mysql -uroot -pyang –default-character-set=utf8 mysql &lt;mysql.sql </li>
+<li></li>
+</ol>
+
+                        
+                            
+
+                        
+                        
+                            <p>
+                                <a href="/2015/11/30/LNMP架构搭建与优化/#post-footer" class="postShorten-excerpt_link link">
+                                    Comment and share
+                                </a>
+                            </p>
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/11/30/Shell编程进阶/">Shell编程进阶</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:04:35 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="1-1_shell脚本">1.1 shell脚本</h2><ol>
+<li>shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。</li>
+<li>用人单位都要求会shell脚本<h2 id="1-2_shell结构以及执行">1.2 shell结构以及执行</h2></li>
+<li>首行：#!/bin/bash</li>
+<li>注释：#脚本作用，时间，作者</li>
+<li>执行：bash a.sh或./a.sh或sh a.sh</li>
+<li>sh -x first.sh//查看脚本执行过程
+                        
+                            <a href="/2015/11/30/Shell编程进阶/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">page 1 of 1</li>
+    </ul>
+</div>
+
+</section>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 James Yang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/head.png"/>
+        
+            <h4 id="about-card-name">James Yang</h4>
+        
+            <h5 id="about-card-bio"><p>like LOL</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software developer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Beijing
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover3.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+
 </html>

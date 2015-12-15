@@ -1,0 +1,551 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="James&#39; blog">
+    <title>java web之JSP - James&#39; blog</title>
+    <meta name="author" content="James Yang">
+    
+        <link rel="icon" href="/assets/images/favicon.ico">
+    
+    
+    <meta name="description" content="一. JSP内置对象1.1 response对象它是HttpServletResponse类的实例。常用方法有：
+
+String getCharacterEncoding()//返回响应用的是何种字符编码
+void setContentType(String type) //返回响应的MIME类型
+PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：Print">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="java web之JSP">
+<meta property="og:url" content="http://balistardut.github.io/2015/11/30/java-web之JSP/index.html">
+<meta property="og:site_name" content="James' blog">
+<meta property="og:description" content="一. JSP内置对象1.1 response对象它是HttpServletResponse类的实例。常用方法有：
+
+String getCharacterEncoding()//返回响应用的是何种字符编码
+void setContentType(String type) //返回响应的MIME类型
+PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：Print">
+<meta property="og:updated_time" content="2015-12-10T04:53:59.354Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java web之JSP">
+<meta name="twitter:description" content="一. JSP内置对象1.1 response对象它是HttpServletResponse类的实例。常用方法有：
+
+String getCharacterEncoding()//返回响应用的是何种字符编码
+void setContentType(String type) //返回响应的MIME类型
+PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：Print">
+<meta name="twitter:creator" content="@Libra">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/head.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">James&#39; blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-icon "
+                href="/#about">
+        
+        
+            <i class="fa fa-lg fa-question"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="3">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/head.png"/>
+            </a>
+            <span class="sidebar-profile-name">James Yang</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/BaliStarDUT" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/old"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc">2015年以前的博客</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            java web之JSP
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 18:06:54 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Diary/">Diary</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="一-_JSP内置对象">一. JSP内置对象</h1><h2 id="1-1_response对象">1.1 response对象</h2><p>它是HttpServletResponse类的实例。常用方法有：</p>
+<ol>
+<li>String getCharacterEncoding()//返回响应用的是何种字符编码</li>
+<li>void setContentType(String type) //返回响应的MIME类型</li>
+<li><p>PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：PrintWriter与内置out对象的区别,PrintWriter类型的对象会先于out对象输出到浏览器，因为out有一个缓存，不满就不会调用flush方法清空缓存，所以会后面输出，但是可以提前调用flush来提前刷新缓存）</p>
+<a id="more"></a>
+</li>
+<li><p>sendRedirect(String location)//重定向客户端的请求到指定的链接</p>
+<h2 id="1-2_请求转发与请求重定向">1.2 请求转发与请求重定向</h2></li>
+<li>请求重定向：是客户端行为，respons.sendRedirect(),从本质上等同于两次请求，前一次的请求对象不会保存，地址栏的URL地址会改变。</li>
+<li>请求转发：是服务器行为，request.getRequestDispatcher().forward(req,resp);是一次请求，转发后请求对象会保存，地址栏的URL也不会变<h2 id="1-3_session">1.3 session</h2></li>
+<li>session表示客户端与服务器的一次会话</li>
+<li>Web中的session指的是用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间。session实际上是一个特定的时间概念</li>
+<li>session：在服务器的内存中保存着不同用户的session<h2 id="1-4_session对象">1.4 session对象</h2></li>
+<li>session对象是一个JSP页面的内置对象</li>
+<li>session对象在第一个JSP页面被装载时自动创建，完成会话期管理</li>
+<li>从一个客户打开浏览器并连接到服务器开始，到客户关闭浏览器离开这个服务器结束，被称为一个会话。</li>
+<li>当一个客户访问一个服务器是，可能会在服务器的几个页面间跳转，服务器需要知道这是一个客户，就需要session对象</li>
+<li>session对象是HttpSession类的实例</li>
+<li>session对象常用方法如下：<br>（1）long getCreationTime() //返回session创建的时间<br>（2）public String getId() //返回session创建时JSP引擎为它设的唯一的ID号<br>（3）public Object setAttribute(String name,Object value)//使用指定名称将对象绑定到此会话<br>（4）public Object getAttribute(String name)//返回与此会话中的指定名称绑定到一起的对象，如果没有对象绑定在该名称下，则返回null<br>（5）String[] getValueNames() //返回一个包含此session中所有可用属性的数组<br>（6）int setMaxInactiveInterval()//返回两次请求间隔多长时间此session被取消（单位秒），不访问设定秒后，session将失效<!--more-->
+<h2 id="1-5_session的什么周期">1.5 session的什么周期</h2></li>
+<li>创建：<br> 当客户端第一次访问某个jsp或者servlet时，服务器会为当前会话创建一个SessionId，每次客户端向服务端发送请求时，都会讲此Session携带过去，服务端会对此SessionId进行校验。</li>
+<li>活动：<ul>
+<li>某次会话当中通过超链接打开的新页面属于同一次会话；</li>
+<li>只要当前会话页面没有全部关闭，重新打开新的浏览器窗口访问同一个项目资源时属于同一个会话。</li>
+<li>除非本次会话的所有页面都关闭后再重新访问某个jsp或者servlet将会创建新的会话。（注意：原有会话还存在，只是这个旧的sessionId仍然存在于服务端，只不过再也没有客户端会携带它然后交予服务器校验）</li>
+</ul>
+</li>
+<li>销毁：</li>
+</ol>
+<ul>
+<li>调用invalidate()方法来手动销毁session</li>
+<li>设定超时时间，使session自动失效。</li>
+<li>服务器重启，服务器将不保存session信息</li>
+<li>tomcat默认session超时时间为30分钟</li>
+<li>设置session超时时间除了用setMaxInactiveInterval(）方法外还可以在web.xml文件中配置：<br>` <session-config><pre><code><span class="tag">&lt;session-timeout&gt;</span>
+    <span class="keyword">10</span> //单位是分钟
+<span class="tag">&lt;/session-timeout&gt;</span>
+</code></pre>  </session-config>`<h2 id="1-6_application对象">1.6 application对象</h2></li>
+</ul>
+<ol>
+<li>application对象实现了用户间数据的共享，可以存放全局变量</li>
+<li>application开始于服务器的启动，终止于服务器的关闭</li>
+<li>在用户的前后连接或不同用户之间的连接中，可以对application对象的同一属性进行操作。</li>
+<li>在任何地方对application对象属性的操作，都将影响到其他用户对此的访问</li>
+<li>服务器的启动和关闭决定了application对象的生命</li>
+<li>application对象是ServletContext类的实例</li>
+<li>application对象的常用方法：<br>（1） public void setAttribute(String name,Object value)//使用指定名称将对象绑定到此对话<br>（2）public Object getAttribute(String name)<br>(3)Enumeration getAttrbuteNames() //返回所有可用属性名的枚举<br>（4）String getServerInfo() //返回JSP（Servlet）引擎名及版本号<h2 id="1-7_page对象">1.7 page对象</h2></li>
+<li>page对象就是指向当前JSP页面本身，有点像类中的this指针，它是java.lang.Object类的实例，常用方法如下：<br>（1）class getClass() //返回此Object的类<br>（2）int hashCode()<br>（3）boolean equals(Object obj)//判断此obj是否与指定的obj对象相等<br>（4）void copy(Object obj)//把此Object拷贝到指定Object对象中<br>（5）Object clone() //克隆此Object对象<br>（6）String toString() //把此Object对象转换成String类的对象<br>（7）void notify() //唤醒一个等待的线程<br>（8）void notifyAll() //唤醒所有等待的线程<br>（9）void wait(int timeout)//使一个线程处在等待直到timeout结束或被唤醒<br>（10）void wait() //使一个线程处于等待直到被唤醒<h2 id="1-8_pageContext对象">1.8 pageContext对象</h2></li>
+<li>pageContext对象提供了对JSP页面所有的对象及名字空间的访问</li>
+<li>pageContext对象可以访问到本页所在的session，也可以取本页所在的application的某一属性值</li>
+<li>pageContext对象相当于页面中所有功能的集大成者</li>
+<li>pageContext对象的本类名也叫pageContext</li>
+<li>pageContext对象的方法：<br>（1）JspWriter getOut() //返回当前客户端响应被使用的JspWriter流（out）<br>（2）HttpSession getSession() //返回当前页的HttpSession对象（session）<br>（3）Object getPage()//返回当前页的Object对象（page）<br>（4）ServletRequest getRequest()//返回当前页的ServletRequest对象<br>（5）ServletResponse getResponse()//返回当前页的ServletResponse()<br>（6）void setAttribute(String name,Object obj)<br>(7) Object getAttribute(String name)<br>(8)int getAttributeScope(String name)//返回某属性的作用范围<br>(9)void forward(String relativeUrlPath)//使得当前页面重定向到另一个页面<br>（10）void include(String relativeUrlPath)//在当前位置包含另一个文件<h2 id="1-9_Config对象">1.9 Config对象</h2>config对象是在一个Servlet初始化时，JSP引擎向它传递信息用的。此信息包括Servlet初始化时所要用到的参数以及服务器的有关属性（通过传递一个ServletContext对象），常用方法有：</li>
+<li>ServletContext getServletContext() //返回含有服务器相关信息的ServletContext对象</li>
+<li>String getInitParameter(String name)//返回初始化参数的值状态</li>
+<li>Enumeration getInitParameterNames() //返回Servelt初始化所需所有参数的枚举<h2 id="2-0_exception对象">2.0 exception对象</h2></li>
+<li>exception对象是一个异常对象，如果一个JSP页面要应用此对象，就必须把isErrorPage设为true，否则无法编译。它实际上是java.lang.Throwable的对象</li>
+<li>常用方法：<br>（1）String getMessage()//返回描述异常的消息<br>(2)String toString() //返回关于异常的简短描述消息<br>（3）void printStackTrace()//显示异常及其栈轨迹<br>（4）Throwable FillInStackTrace()//重写异常的执行栈轨迹<h1 id="二-_JSP状态管理">二. JSP状态管理</h1></li>
+<li>http协议无状态性<br>无状态是指：当浏览器发送请求给服务器的时候，服务器响应客户端请求，但是当同一个浏览器再次发送请求给服务器时，服务器并不知道它就是刚才那个浏览器。简单说，就是服务器不会记住你，所以就是无状态协议。</li>
+<li>保存用户状态的两大机制:cookie和session<br>session是在服务端，cookie是在浏览器端</li>
+<li>Cookie的简介<br>应用场景：判定用户是否已经登录网站；购物车的处理；系统记录登录用户浏览记录。<br>cookie可以：对特定对象的追踪；保存用户网页浏览记录与习惯；简化登录。<br>安全风险：容易泄露用户信息</li>
+<li>Cookie的创建和使用<br>(1)创建Cookie<br>Cookie newCookie = new Cookie(String key,Object calue)<br>(2)写入Cookie对象<br>response.addCookie(newCookie);<br>(3)读取Cookie对象<br>Cookie[] cookies = request.getCookies();<br>(4)Cookie的常用方法：<br>void setMaxAge(int expiry)//设置cookie的有效期，以秒为单位<br>void setValue(String value)//在cookie创建后，对cookie进行赋值<br>String getName()//获取cookie的名称<br>String getValue()//获取cookie的值<br>int getMaxAge()//获取cookie的有效时间，以秒为单位<br>(5)使用URLEncoder解决无法再cookie中保存中文字符串的问题<br>需用到java.net包下的URLEncoder类。<br>request.setCharacterEncoding(“utf-8”);<br>URLEcoder.encode(String,”UTF-8”);<br>URLDecoder.decode(String,”UTF-8”)</li>
+<li>Session与Cookie的对比<br>Session:<br>在服务器端保存用户信息；<br>session中保存的是object类型；<br>随会话的结束而将其存储的数据销毁<br>保存重要的信息<br>cookie：<br>在客户端保存用户信息<br>cookie保存的是String类型<br>cookie可以长期保存在客户端<br>保存不重要的用户信息<h1 id="3-_JSP指令与动作元素">3. JSP指令与动作元素</h1><h2 id="3-1_include指令">3.1 include指令</h2></li>
+<li>&lt;%@ include file=”URL”%&gt;<h2 id="3-2_include动作">3.2 include动作</h2></li>
+<li>include动作标签<jsp:include page="URL" 要包含的页面="" flush="true|false" 被包含的页面是否从缓冲区读取=""> 
+
+</jsp:include></li>
+</ol>
+<h2 id="3-3_include指令和include动作的区别">3.3 include指令和include动作的区别</h2><ol>
+<li>发生作用的时间：include指令发生在页面转换期间，include动作发生在请求期间</li>
+<li>包含的内容：指令包含文件的实际内容，动作包含页面的输出</li>
+<li>转换成servlet：指令主页面和包含页面转换为一个servlet；动作主页面和包含页面转换为独立的servlet<h2 id="3-4_动作">3.4 <jsp:forward>动作</jsp:forward></h2></li>
+<li><jsp:forward page="URL">等同于request.getRequestDispatcher(“/url”).forward(request,response);</jsp:forward></li>
+<li><h2 id="3-5_动作">3.5 <jsp:param>动作</jsp:param></h2></li>
+<li><jsp:param name="参数名" value="参数值"></jsp:param></li>
+<li><h2 id="3-6_动作">3.6 <jsp:plugin>动作</jsp:plugin></h2></li>
+</ol>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/java/">java</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/10/hello-world/"  data-tooltip="Hello World">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/30/LNMP架构搭建与优化/" data-tooltip="LNMP架构搭建与优化">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 James Yang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/10/hello-world/"  data-tooltip="Hello World">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/30/LNMP架构搭建与优化/" data-tooltip="LNMP架构搭建与优化">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/java-web之JSP/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/head.png"/>
+        
+            <h4 id="about-card-name">James Yang</h4>
+        
+            <h5 id="about-card-bio"><p>like LOL</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software developer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Beijing
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover3.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+
+</html>

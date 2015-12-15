@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>Tag: linux - James&#39; blog</title>
+    <title>Archives - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
@@ -15,7 +15,7 @@
     <meta name="description">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/tags/linux/index.html">
+<meta property="og:url" content="http://balistardut.github.io/archives/index.html">
 <meta property="og:site_name" content="James' blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -164,18 +164,6 @@
         
             <li class="sidebar-button">
                 
-                    <a  class="sidebar-button-link "
-                         href="/old"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
-                    <span class="sidebar-button-desc">2015年以前的博客</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
                     <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
                 
                     <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
@@ -212,6 +200,89 @@
     
 
 <section class="postShorten-group main-content-wrap">
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/12/10/hello-world/">Hello World</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Thu Dec 10 2015 12:45:59 GMT+0800">
+	
+		    Dec 10, 2015
+    	
+    </time>
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+                        
+                            <a href="/2015/12/10/hello-world/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://balistardut.github.io/2015/12/10/hello-world/head.png"/>
+                </div>
+                
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/11/30/java-web之JSP/">java web之JSP</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 18:06:54 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Diary/">Diary</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h1 id="一-_JSP内置对象">一. JSP内置对象</h1><h2 id="1-1_response对象">1.1 response对象</h2><p>它是HttpServletResponse类的实例。常用方法有：</p>
+<ol>
+<li>String getCharacterEncoding()//返回响应用的是何种字符编码</li>
+<li>void setContentType(String type) //返回响应的MIME类型</li>
+<li><p>PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：PrintWriter与内置out对象的区别,PrintWriter类型的对象会先于out对象输出到浏览器，因为out有一个缓存，不满就不会调用flush方法清空缓存，所以会后面输出，但是可以提前调用flush来提前刷新缓存）</p>
+                        
+                            <a href="/2015/11/30/java-web之JSP/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
     
         
         <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
@@ -425,6 +496,46 @@ Allow from <span class="variable">env=</span>local_ref
             
         </article>
     
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/11/30/Shell编程进阶/">Shell编程进阶</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:04:35 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="1-1_shell脚本">1.1 shell脚本</h2><ol>
+<li>shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。</li>
+<li>用人单位都要求会shell脚本<h2 id="1-2_shell结构以及执行">1.2 shell结构以及执行</h2></li>
+<li>首行：#!/bin/bash</li>
+<li>注释：#脚本作用，时间，作者</li>
+<li>执行：bash a.sh或./a.sh或sh a.sh</li>
+<li>sh -x first.sh//查看脚本执行过程
+                        
+                            <a href="/2015/11/30/Shell编程进阶/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -434,6 +545,7 @@ Allow from <span class="variable">env=</span>local_ref
 </div>
 
 </section>
+
 
 
                 <footer id="footer" class="main-content-wrap">

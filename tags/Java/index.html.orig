@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>Category: Diary - James&#39; blog</title>
+    <title>Tag: java - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
@@ -15,7 +15,7 @@
     <meta name="description">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/categories/Diary/index.html">
+<meta property="og:url" content="http://balistardut.github.io/tags/java/index.html">
 <meta property="og:site_name" content="James' blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -164,18 +164,6 @@
         
             <li class="sidebar-button">
                 
-                    <a  class="sidebar-button-link "
-                         href="/old"
-                        
-                    >
-                
-                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
-                    <span class="sidebar-button-desc">2015年以前的博客</span>
-                </a>
-        </li>
-        
-            <li class="sidebar-button">
-                
                     <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
                 
                     <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
@@ -266,7 +254,6 @@
 </div>
 
 </section>
-
 
 
                 <footer id="footer" class="main-content-wrap">
