@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>Archives: 2015/12 - James&#39; blog</title>
+    <title>Archives: 2015 - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
@@ -15,7 +15,7 @@
     <meta name="description">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="James' blog">
-<meta property="og:url" content="http://balistardut.github.io/archives/2015/12/index.html">
+<meta property="og:url" content="http://balistardut.github.io/archives/2015/page/2/index.html">
 <meta property="og:site_name" content="James' blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -228,94 +228,13 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2015/12/23/Mysql简单操作/">&#39;Mysql简单操作&#39;</a>
+                                <a class="link-unstyled" href="/2015/11/30/Shell编程进阶/">Shell编程进阶</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Wed Dec 23 2015 14:24:33 GMT+0800">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:04:35 GMT+0800">
 	
-		    Dec 23, 2015
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Mysql/">Mysql</a>
-
-
-    
-</div>
-                </div>
-                
-                
-                    <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h2 id="1-_启动Mysql">1. 启动Mysql</h2><p>(1) 将mysql命令加入到环境变量PATH中<br>PATH=\$PATH:/usr/local/mysql/bin<br>(2) 使Mysql开机加载<br>echo “PATH=$PATH:/usr/local/mysql/bin” &gt;&gt; /etc/profile<br>source /etc/profile<br>mysql -u root -p</p>
-<h2 id="2-_连接数据库">2. 连接数据库</h2><p>mysql -uroot -p -h192.168.137.10 -P3306<br>
-                        
-                            <a href="/2015/12/23/Mysql简单操作/" class="postShorten-excerpt_link link">
-                                Continue reading
-                            </a>
-                            
-                        
-                    </div>
-                
-            </div>
-            
-        </article>
-    
-        
-        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2015/12/18/mysql常见问题/">Mysql常见问题</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Fri Dec 18 2015 14:44:38 GMT+0800">
-	
-		    Dec 18, 2015
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Mysql/">Mysql</a>
-
-
-    
-</div>
-                </div>
-                
-                
-                    <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h3 id="1-_MYSQL导入导出-sql文件">1. MYSQL导入导出.sql文件</h3><p>(1)将数据库mydb导出到mydb.sql文件<br># mysqldump -u root -p mydb &gt; mydb.mysql<br>(2)将数据库mydb中的表mytable导出到mytable.sql文件中<br># mysqldump -u root -p mydb mytable &gt; mytable.sql<br>(3)将数据库mydb的结构导出到mydb_stru.sql文件中<br># mysqldump -u root -p mydb –add-drop-table &gt; mydb.mysql<br>(4)将mydb.mysql文件导入到数据库中(首先mydb需要存在)<br>#mysql -h localhost -u root -p mydb &lt; e:\mysql\mydb.sql</p>
-                        
-                            <a href="/2015/12/18/mysql常见问题/" class="postShorten-excerpt_link link">
-                                Continue reading
-                            </a>
-                            
-                        
-                    </div>
-                
-            </div>
-            
-        </article>
-    
-        
-        <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2015/12/10/hello-world/">Hello World</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Thu Dec 10 2015 12:45:59 GMT+0800">
-	
-		    Dec 10, 2015
+		    Nov 30, 2015
     	
     </time>
     
@@ -324,9 +243,15 @@
                 
                 
                     <div class="postShorten-excerpt" itemprop="articleBody">
-                        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+                        <h2 id="1-1_shell脚本">1.1 shell脚本</h2><ol>
+<li>shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。</li>
+<li>用人单位都要求会shell脚本<h2 id="1-2_shell结构以及执行">1.2 shell结构以及执行</h2></li>
+<li>首行：#!/bin/bash</li>
+<li>注释：#脚本作用，时间，作者</li>
+<li>执行：bash a.sh或./a.sh或sh a.sh</li>
+<li>sh -x first.sh//查看脚本执行过程
                         
-                            <a href="/2015/12/10/hello-world/" class="postShorten-excerpt_link link">
+                            <a href="/2015/11/30/Shell编程进阶/" class="postShorten-excerpt_link link">
                                 Continue reading
                             </a>
                             
@@ -334,19 +259,23 @@
                     </div>
                 
             </div>
-            
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://balistardut.github.io/2015/12/10/hello-world/head.png"/>
-                </div>
-                
             
         </article>
     
     <div class="pagination-bar">
     <ul class="pagination">
         
+        <li class="pagination-prev">
+            
+                <a class="btn btn--default btn--small" href="/ ">
+            
+                <i class="fa fa-angle-left text-base icon-mr"></i>
+                    <span>NEWER POSTS</span>
+            </a>
+        </li>
         
-        <li class="pagination-number">page 1 of 1</li>
+        
+        <li class="pagination-number">page 2 of 2</li>
     </ul>
 </div>
 

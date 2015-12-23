@@ -222,6 +222,46 @@
 <section class="postShorten-group main-content-wrap">
     
         
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2015/12/18/mysql常见问题/">Mysql常见问题</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Fri Dec 18 2015 14:44:38 GMT+0800">
+	
+		    Dec 18, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Mysql/">Mysql</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h3 id="1-_MYSQL导入导出-sql文件">1. MYSQL导入导出.sql文件</h3><p>(1)将数据库mydb导出到mydb.sql文件<br># mysqldump -u root -p mydb &gt; mydb.mysql<br>(2)将数据库mydb中的表mytable导出到mytable.sql文件中<br># mysqldump -u root -p mydb mytable &gt; mytable.sql<br>(3)将数据库mydb的结构导出到mydb_stru.sql文件中<br># mysqldump -u root -p mydb –add-drop-table &gt; mydb.mysql<br>(4)将mydb.mysql文件导入到数据库中(首先mydb需要存在)<br>#mysql -h localhost -u root -p mydb &lt; e:\mysql\mydb.sql</p>
+                        
+                            <a href="/2015/12/18/mysql常见问题/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
         <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
             <div class="postShorten-wrap">
                 <div class="postShorten-header">
