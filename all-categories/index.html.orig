@@ -256,13 +256,18 @@
             
                 <div id="posts-list-Mysql" class="archive box" data-category="mysql">
                     <h4 class="archive-title">
-                        <a class="link-unstyled" href="/categories/Mysql">Mysql (1)</a>
+                        <a class="link-unstyled" href="/categories/Mysql">Mysql (2)</a>
                     </h4>
                     <ul class="archive-posts">
                         
                             <li class="archive-post">
                                 <a class="archive-post-title" href="/2015/12/18/mysql常见问题/">Mysql常见问题</a>
                                 <span class="archive-post-date"> - dec 18, 2015</span>
+                            </li>
+                        
+                            <li class="archive-post">
+                                <a class="archive-post-title" href="/2015/12/23/Mysql简单操作/">&#39;Mysql简单操作&#39;</a>
+                                <span class="archive-post-date"> - dec 23, 2015</span>
                             </li>
                         
                         

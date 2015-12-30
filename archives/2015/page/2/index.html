@@ -228,6 +228,57 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
+                                <a class="link-unstyled" href="/2015/11/30/LAMP架构搭建与优化/">LAMP架构搭建与优化</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Nov 30 2015 17:14:18 GMT+0800">
+	
+		    Nov 30, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/linux/">linux</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="1-1_Mysql安装">1.1 Mysql安装</h2><ol>
+<li>下载mysql安装包，解压 </li>
+<li>添加mysql用户：useradd -s /sbin/nologin -M myql  </li>
+<li>移动并重命名：mv mysql-linux /usr/local/mysql</li>
+<li>创建目录：mkdir -p /data/mysql;chown -R mysql /data/mysql</li>
+<li>安装参数：./scripts/mysql_install_db –user=mysql –datadir=/data/mysql</li>
+<li>配置文件：/etc/my.conf</li>
+<li>添加服务：chkconfig –add mysqld</li>
+<li>启动服务：chkconfig mysqld on</li>
+<li>启动程序：/etc/init.d/mysqld start</li>
+<li>检查是否启动：ps aux | grep mysql </li>
+<li>检查端口：netstat -lnp | gerp mysql
+                        
+                            <a href="/2015/11/30/LAMP架构搭建与优化/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
                                 <a class="link-unstyled" href="/2015/11/30/Shell编程进阶/">Shell编程进阶</a>
                         
                     </h1>

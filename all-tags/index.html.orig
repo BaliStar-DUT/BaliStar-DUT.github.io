@@ -229,6 +229,10 @@
                 MySql
             </a>
         
+            <a class="tag tag--primary tag--small" href="#MySql linux-list" data-tag="mysql linux">
+                MySql linux
+            </a>
+        
             <a class="tag tag--primary tag--small" href="#java-list" data-tag="java">
                 java
             </a>
@@ -253,6 +257,20 @@
                     <li class="archive-post">
                         <a class="archive-post-title" href="/2015/12/18/mysql常见问题/">Mysql常见问题</a>
                         <span class="archive-post-date"> - dec 18, 2015</span>
+                    </li>
+                    
+                </ul>
+            </div>
+        
+            <div id="MySql linux-list" class="archive box" data-tag="mysql linux">
+                <h4 class="archive-title">
+                    <a class="link-unstyled" href="/tags/MySql-linux">MySql linux (1)</a>
+                </h4>
+                <ul class="archive-posts">
+                    
+                    <li class="archive-post">
+                        <a class="archive-post-title" href="/2015/12/23/Mysql简单操作/">&#39;Mysql简单操作&#39;</a>
+                        <span class="archive-post-date"> - dec 23, 2015</span>
                     </li>
                     
                 </ul>

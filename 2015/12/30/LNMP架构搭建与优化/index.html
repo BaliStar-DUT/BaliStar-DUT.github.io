@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="James&#39; blog">
+    <title>LNMP架构搭建与优化 - James&#39; blog</title>
+    <meta name="author" content="James Yang">
+    
+        <link rel="icon" href="/assets/images/favicon.ico">
+    
+    
+    <meta name="description" content="linux">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="LNMP架构搭建与优化">
+<meta property="og:url" content="http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/index.html">
+<meta property="og:site_name" content="James' blog">
+<meta property="og:description" content="linux">
+<meta property="og:updated_time" content="2015-12-30T07:03:12.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LNMP架构搭建与优化">
+<meta name="twitter:description" content="linux">
+<meta name="twitter:creator" content="@Libra">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/head.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">James&#39; blog</a>
+    </h1>
+    
+        
+            <a  class="header-right-icon "
+                href="/#about">
+        
+        
+            <i class="fa fa-lg fa-question"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="3">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/head.png"/>
+            </a>
+            <span class="sidebar-profile-name">James Yang</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/BaliStarDUT" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/old"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc">2015年以前的博客</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://weibo.com/3104305047" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc">微博</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:drawnkid@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            LNMP架构搭建与优化
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Wed Dec 30 2015 15:00:51 GMT+0800">
+	
+		    Dec 30, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/linux/">linux</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h2 id="1-0_安装Mysql">1.0 安装Mysql</h2><ol>
+<li>安装Mysql二进制免编译包</li>
+<li>下载：mysql到/usr/local/src/<br>cd /usr/local/src/<br>wget <a href="http://syslab.comsenz.com/downloads/linux/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz" target="_blank" rel="external">http://syslab.comsenz.com/downloads/linux/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz</a></li>
+<li>解压：<br>tar zxvf /usr/local/src/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz<br>mv mysql-5.1.40-linux-i686-icc-glibc23 /usr/local/mysql<a id="more"></a></li>
+<li>建立mysql用户<br>useradd -s /sbin/nologin mysql</li>
+<li>初始化数据库<br>cd /usr/local/mysql<br>mkdir -p /data/mysql ;chown -R mysql:mysql /data/mysql<br>./scripts/mysql_install_db –user=mysql –datadir=/data/mysql</li>
+<li>拷贝配置文件及启动脚本<br>cp support-files/my-large.cnf /etc/my.cnf<br>cp support-files/mysql.server /etc/init.d/mysqld<br>chmod 755 /etc/init.d/mysqld</li>
+<li>修改启动脚本<br>vim /etc/init.d/mysqld //修改“datadir=/data/mysql”</li>
+<li>启动脚本加入系统服务项，设定开机启动mysql<br>chkconfig –add mysqld<br>chkconfig mysqld on<br>service mysqld start<h2 id="1-1_php编译安装">1.1 php编译安装</h2></li>
+<li>下载php<br>cd /usr/local/src<br>wget <a href="http://am1.php.net/distributions/php-5.3.27.tar.gz" target="_blank" rel="external">http://am1.php.net/distributions/php-5.3.27.tar.gz</a><br>tar zxvff php-5.3.27.tar.gz</li>
+<li>创建相关用户<br>useradd -s /sbin/nologin php-fpm</li>
+<li>配置编译参数：cd php-5.3.27; ./configure </li>
+<li>编译：make </li>
+<li>安装 make install</li>
+<li>ps aux | grep php-fpm</li>
+<li>修改配置文件<br>cp php.ini-production /usr/local/php/etc/php.ini<br>vim /usr/local/php/etc/php-fpm.conf<br>写入如下内容：<br>[global]<br>pid = /usr/local/php/var/run/php-fpm.pid<br>error_log = /usr/local/php/var/log/php-fpm.log<br>[www]<br>listen = /tmp/php-fcgi.sock<br>user = php-fpm<br>group = php-fpm<br>pm = dynamic<br>pm.max_children = 50<br>pm.start_servers = 20<br>pm.min_spare_servers = 5<br>pm.max_spare_servers = 35<br>pm.max_requests = 500<br>rlimit_files = 1024</li>
+<li>保存配置文件后，检查配置是否正确：<br>/usr/local/php/sbin/php-fpm -t</li>
+<li>启动php-fpm<br>cp /usr/local/src/php-5.3.27/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm<br>chmod 755 /etc/init.d/php-fpm<br>service php-fpm start</li>
+<li>开机启动<br>chkconfig php-fpm on</li>
+<li>查看进程：ps aux | grep php-fpm<h2 id="1-2_安装Nginx">1.2 安装Nginx</h2><strong>通过yum在线安装可以参考<a href="http://nginx.org/en/linux_packages.html#stable" target="_blank" rel="external">官方安装文档</a></strong></li>
+<li>下载nginx<br>cd /usr/local/src/<br>wget <a href="http://nginx.org/en/download.html" target="_blank" rel="external">http://nginx.org/en/download.html</a> download     nginx-1.8.0 </li>
+<li>解压:tar zxvf nginx-1.8.0.tar.gz</li>
+<li>配置编译参数：cd nginx-1.8.0<br>./configure –prefix=/usr/local/nginx –with=pcre</li>
+<li>编译：make </li>
+<li>安装:make install</li>
+<li>编写nginx启动脚本，加入系统服务<br>vim /etc/init.d/nginx<br><a href="http://www.apelearn.com/study_v2/chapter18.html" target="_blank" rel="external">脚本内容</a><br>chmod 755 /etc/init.d/nginx<br>chkconfg –add nginx</li>
+<li>加入开机启动：chkconfig nginx on</li>
+<li>更改nginx配置：vim /usr/local/nginx/conf/nginx.conf<br><a href="http://www.apelearn.com/study_v2/chapter18.html" target="_blank" rel="external">配置文件内容</a></li>
+<li>检查配置文件是否有错：/usr/local/nginx/sbin/nginx -t </li>
+<li>启动nginx ： service nginx start</li>
+<li>检查nginx是否启动：ps aux | grep nginx<br>root@yangz-CW65:/usr/local/nginx# ps aux | grep nginx<br>root      7755  0.0  0.0  28688   572 ?        Ss   21:26   0:00 nginx: master process ./sbin/nginx<br>nobody    7756  0.0  0.0  29120  2484 ?        S    21:26   0:00 nginx: worker process</li>
+<li>netstat -lnp<h2 id="1-3_测试php解析">1.3 测试php解析</h2></li>
+<li>将nginx配置文件中的以下内容去除注释：</li>
+<li>location ~ .php\$ {<pre><code> root           html<span class="comment">;</span>
+ fastcgi_pass   <span class="number">127.0.0.1</span>:9000<span class="comment">;</span>
+ fastcgi_index  index.php<span class="comment">;</span>
+fastcgi_param  SCRIPT_FILENAME  /usr/local/nginx/html$fastcgi_script_name<span class="comment">; //设置成网站根目录</span>
+ include        fastcgi_params<span class="comment">;</span>
+</code></pre>   }</li>
+<li>在网站根目录下编写index.php文件，内容如下:<br> <code>&lt;?php  phpinfo(); ?&gt;</code></li>
+<li>浏览器中打开文件可以看到解析的php结果。<h2 id="1-4_Nginx启动脚本和配置文件">1.4 Nginx启动脚本和配置文件</h2></li>
+<li>vim /etc/init.d/nginx 添加如下内容：<br><a href="http://www.apelearn.com/study_v2/chapter18.html" target="_blank" rel="external">论坛：nginx启动脚本</a><br>如果是yum安装则系统启动项已存在启动脚本。</li>
+<li>chmod 755 /etc/init.d/nginx //更改权限</li>
+<li>chkconfig –add nginx //加入到启动列表</li>
+<li>chkconfig nginx on //加入开机启动项</li>
+<li>service nginx start | stop | restart //服务开启关闭</li>
+<li>配置虚拟主机，可以在nginx的配置文件中配置另外的虚拟主机，和apache，tomcat中的虚拟主机用途一致。<h2 id="1-5_php-fpm配置文件">1.5 php-fpm配置文件</h2></li>
+<li>php-fpm.conf 是php-fpm服务使用的配置文件；将原配置文件清空：&gt; php-fpm.conf</li>
+<li>复制php-fpm.cof的配置文件内容：<br><a href="http://www.apelearn.com/study_v2/chapter18.html" target="_blank" rel="external">php-fpm配置文件</a></li>
+<li>多个pool可以通过不同的名字使用相同配置来实现<br>启动多个pool可以使不同的域名使用不同的pool，通过在虚拟主机中设置fastcgi_pass 的路径来使用不同的pool socket。多个pool也可以设置不同的权限，通过不同的用户来控制不同的权限。 </li>
+<li>在pool中添加slowlog可以调试网站，例如记录执行超过2秒的脚本，这样就能知道网站访问速度瓶颈了。request_slowlog_timeout=1 记录超过1秒的脚本</li>
+<li>nginx中不同的pool也可以设置不同的open_basedir<h2 id="1-6_常见的502错误">1.6 常见的502错误</h2></li>
+<li>首先查看nginx的错误日志<br>发现sock无权限读取，发现socket的其他用户没有读写权限，不能使用php-fpm的sock</li>
+<li><h2 id="1-7_用户认证">1.7 用户认证</h2></li>
+<li>用户认证用于给一些目录或文件加上访问权限，使拥有用户名和密码的才能访问</li>
+<li>在nginx的配置文件中加入如下配置：<br> `location ~ .*admin.php$ { <pre><code>auth_basic <span class="string">"yangzhen auth"</span>;
+auth_basic_user_file <span class="regexp">/usr/</span>local<span class="regexp">/src/</span>.htpasswd;<span class="comment">//此为用户名与密码文件</span>
+</code></pre> }`</li>
+<li>生成用户名密码文件：利用apache的htpasswd命令来生成该文件：<br><code>htpasswd -c /usr/local/src/.htpasswd yangzhen</code> 然后输入密码即可生成加密的密码文件。</li>
+<li>检查配置是否正确后重启：`nginx -t; service nginx reload</li>
+<li>如果发现php文件不能被解析，则应将php文件中的相关配置复制进上面的配置中，以使php能被解析。` </li>
+<li>可以用curl来验证：指定用户名密码的方法如下： curl -x localhost:8000 localhost:8000/index.html -u yang:yang</li>
+<li>如果要给目录加限制，则改为：location /test/ 但是给单个文件加限制更为常见<h2 id="1-8_nginx域名重定向">1.8 nginx域名重定向</h2></li>
+<li>将不同的域名导向同一个主机的作用。可以在配置文件中加入如下：<br><code>if ( $host != &#39;www.test.com&#39;){
+ rewrite ^/(.*)$ http://www.test.com/$1 permanent;
+}</code></li>
+<li>后面的permanent表示永久重定向，可以参考论坛文档来详细了解</li>
+<li>检查并重新加载配置文件：<code>nginx -t; service nginx reload</code></li>
+<li>域名重定向有助于搜索引擎找到真实对应的站点，使过时的域名都导入到新的域名中。<h2 id="1-9_nginx不记录指定文件类型日志">1.9 nginx不记录指定文件类型日志</h2></li>
+<li>日志记录格式和位置都在配置文件中规定；access日志记录的访问资源的情况，像图片，css文件等是不需要记录的，可以配置实现。</li>
+<li>在配置文件中添加：<br><code>location ~ .*\.(gif|png|jpeg|swf|ico|css)$ {
+ access_log off;
+}</code><h2 id="2-0_nginx日志切割">2.0 nginx日志切割</h2></li>
+<li>不像Apache可以用工具实现，需要我们自己写脚本实现</li>
+<li>脚本内容如下：<br><code>#! /bin/bash
+d =</code>date -d “-1 day” +%F<code>[ -d /tmp/nginx_log ] || mkdir /tmp/nginx_log
+mv /tmp/access.log /tmp/nginx_log/\$d.log
+/etc/init.d/nginx reload 2&gt; /dev/null
+cd /tmp/nginx_log/
+gzip -f $d.log</code></li>
+<li>然后将这个脚本的执行加入到计划任务中，指定时间执行。<h2 id="2-1_nginx配置静态文件过期时间">2.1 nginx配置静态文件过期时间</h2></li>
+<li>配置静态文件缓存，如图片，css，js文件的过期时间配置</li>
+<li>修改配置文件，在location中加入如下配置：<br>`location ~ .*.(js|css){<pre><code><span class="title">access_log</span> <span class="built_in">off</span>;
+<span class="title">expires</span> <span class="number">2h</span>;
+</code></pre> }`</li>
+<li>在浏览器端，将看到：cache-control：max-age=毫秒数，添加过期时间将提高访问速度，节省带宽，不用每次请求都返回数据。<h2 id="2-2_nginx配置防盗链">2.2 nginx配置防盗链</h2></li>
+<li>依据reffer的来源来判断来源是否为本网站</li>
+<li>在配置文件的location中加入如下配置：<br>` location ~ .*.(gif|jpeg|png|bmp|ico|swf|flv|rar|zip|gz|bz2|mp3|mp4)$ {<pre><code>access_log off;
+expires <span class="number">5</span>h;
+valid_referers none blocked  *.test.com;
+<span class="keyword">if</span> (\<span class="variable">$invalid</span>_referer){
+    return <span class="number">403</span>;//此处也可将重定向到指定文件
+}
+</code></pre> }`</li>
+<li>检查配置文件后，重新加载配置文件。<h2 id="2-3_nginx访问控制">2.3 nginx访问控制</h2></li>
+<li>nginx限制访问的方法，例如禁止某ip的访问，开放某些ip的访问。</li>
+<li>在配置文件中加入如下配置：<br>`location ~ .*admin.php$ { <pre><code>allow <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>;
+deny all;
+auth_basic <span class="string">"yangzhen auth"</span>;
+auth_basic_user_file /usr/local/src/.htpasswd;<span class="comment">//此为用户名与密码文件</span>
+</code></pre> }`</li>
+<li>检查配置文件后重新加载。</li>
+<li>全局访问控制，在server字段下增加allow和deny；<h2 id="2-4_nginx禁止指定useragent">2.4 nginx禁止指定useragent</h2></li>
+<li>即限制指定客户端的访问</li>
+<li>在配置文件中加入如下：<br>` if ($http_user_agent ~ ‘Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.3; .NET4.0C; .NET4.0E)’){<pre><code><span class="keyword">return</span> <span class="number">403</span>;
+</code></pre>  }`</li>
+<li>用curl 模拟指定useragent：<br><code>curl -A &quot;abcd&quot; -xlocalhost:80 localhost/test/index.php -I</code> //模拟useragent为abcd</li>
+<li>不区分大小写匹配：~* 即表示不区分大小写匹配<h2 id="2-5_nginx代理详解">2.5 nginx代理详解</h2></li>
+<li>如果想访问google，可以通过代理来访问不能访问的网站。</li>
+<li><p>在配置文件中加入：<br>`server {<br> listen 81;<br> server_name www.facebook.com;</p>
+<p> location / {</p>
+<pre><code>proxy_pass http://<span class="number">31.13</span>.<span class="number">77.36</span>/;
+http://<span class="number">23.235</span>.<span class="number">47.81</span>/
+proxy_set_header Host <span class="variable">$host</span>;
+</code></pre><p> }<br>}` //表示将本机的访问导入到facebook的主页</p>
+</li>
+<li><p>如果想要代理多个网站，则可以改成：<br>`upstream yang{<br> server 23.235.47.81:80;<br> server 23.235.47.81:80;<br>server {<br> listen 81;<br> server_name www.facebook.com;</p>
+<p> location / {</p>
+<pre><code>proxy_pass http:<span class="comment">//yang/;</span>
+proxy_set_header Host <span class="variable">$host</span>;<span class="comment">//加上此行，否则可能502</span>
+<span class="variable">#proxy_set_header</span> X<span class="attribute">-Real_IP</span> <span class="variable">$remote_addr</span>;<span class="comment">//设定远程真实IP</span>
+</code></pre><p> }<br>}<br>}`</p>
+</li>
+</ol>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/linux/">linux</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/23/Mysql简单操作/" data-tooltip="Mysql简单操作">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 James Yang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/23/Mysql简单操作/" data-tooltip="Mysql简单操作">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/12/30/LNMP架构搭建与优化/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/head.png"/>
+        
+            <h4 id="about-card-name">James Yang</h4>
+        
+            <h5 id="about-card-bio"><p>like LOL</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software developer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Beijing
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover3.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/script.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+
+</html>
