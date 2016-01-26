@@ -6,40 +6,34 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>Shell编程进阶 - James&#39; blog</title>
+    <title>linux常用服务部署与优化-文件和代理服务 - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
     
     
-    <meta name="description" content="1.1 shell脚本
-shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。
-用人单位都要求会shell脚本1.2 shell结构以及执行
-首行：#!/bin/bash
-注释：#脚本作用，时间，作者
-执行：bash a.sh或./a.sh或sh a.sh
-sh -x first.sh//查看脚本执行过程">
+    <meta name="description" content="1.1 nfs部署和优化-1
+NFS==network file system 网络文件系统 //可以在网络上共享文件，远程访问；也用来备份文件系统
+yum install nfs-utils rpcbind //安装nfs和通信工具rpcbind
+安装完成后打开配置文件：/etc/exports 在里面输入:
+ /mnt 192.168.11.20(rw,sync)  //这将共享文件远程ip&amp;">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Shell编程进阶">
-<meta property="og:url" content="http://balistardut.github.io/2015/11/30/Shell编程进阶/index.html">
+<meta property="og:title" content="linux常用服务部署与优化-文件和代理服务">
+<meta property="og:url" content="http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/index.html">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description" content="1.1 shell脚本
-shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。
-用人单位都要求会shell脚本1.2 shell结构以及执行
-首行：#!/bin/bash
-注释：#脚本作用，时间，作者
-执行：bash a.sh或./a.sh或sh a.sh
-sh -x first.sh//查看脚本执行过程">
-<meta property="og:updated_time" content="2015-11-30T10:01:28.349Z">
+<meta property="og:description" content="1.1 nfs部署和优化-1
+NFS==network file system 网络文件系统 //可以在网络上共享文件，远程访问；也用来备份文件系统
+yum install nfs-utils rpcbind //安装nfs和通信工具rpcbind
+安装完成后打开配置文件：/etc/exports 在里面输入:
+ /mnt 192.168.11.20(rw,sync)  //这将共享文件远程ip&amp;">
+<meta property="og:updated_time" content="2016-01-26T03:00:25.362Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell编程进阶">
-<meta name="twitter:description" content="1.1 shell脚本
-shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。
-用人单位都要求会shell脚本1.2 shell结构以及执行
-首行：#!/bin/bash
-注释：#脚本作用，时间，作者
-执行：bash a.sh或./a.sh或sh a.sh
-sh -x first.sh//查看脚本执行过程">
+<meta name="twitter:title" content="linux常用服务部署与优化-文件和代理服务">
+<meta name="twitter:description" content="1.1 nfs部署和优化-1
+NFS==network file system 网络文件系统 //可以在网络上共享文件，远程访问；也用来备份文件系统
+yum install nfs-utils rpcbind //安装nfs和通信工具rpcbind
+安装完成后打开配置文件：/etc/exports 在里面输入:
+ /mnt 192.168.11.20(rw,sync)  //这将共享文件远程ip&amp;">
 <meta name="twitter:creator" content="@Libra">
     
     
@@ -243,51 +237,121 @@ sh -x first.sh//查看脚本执行过程">
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Shell编程进阶
+            linux常用服务部署与优化-文件和代理服务
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Mon Nov 30 2015 17:04:35 GMT+0800">
+    <time itemprop="datePublished" content="Tue Jan 26 2016 10:51:13 GMT+0800">
 	
-		    Nov 30, 2015
+		    Jan 26, 2016
     	
     </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/linux/">linux</a>
+
+
     
 </div>
 </div>
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h2 id="1-1_shell脚本">1.1 shell脚本</h2><ol>
-<li>shell脚本是使用linux中的命令来形成某些功能。它有一定的语法规则，可以再linux下直接运行，可以实现自动化运维。</li>
-<li>用人单位都要求会shell脚本<h2 id="1-2_shell结构以及执行">1.2 shell结构以及执行</h2></li>
-<li>首行：#!/bin/bash</li>
-<li>注释：#脚本作用，时间，作者</li>
-<li>执行：bash a.sh或./a.sh或sh a.sh</li>
-<li>sh -x first.sh//查看脚本执行过程<a id="more"></a>
-<h2 id="1-3_date命令">1.3 date命令</h2></li>
-<li>date //输出日期时间</li>
-<li>cal //输出日历，-y输出整年的日历</li>
-<li>date -s “2014-12-20 13.5.56” //临时设置系统时间</li>
-<li>安装ntp：yum install ntp</li>
-<li>date +%F（日期格式）+%T（时间格式）+%Y（四位年份）+%y（两位年份）+%m（月份）+%d(日)+H%(小时)+%M(分钟)+%S(秒)+%s（时间戳）+%W（一年的第几周）// 打印指定格式日期</li>
-<li>date -d “-2 days” +%F //两天前</li>
-<li>date -d “-2 month” +%F //两月前<h2 id="1-4_shell自定义变量">1.4 shell自定义变量</h2></li>
-<li>内置变量$1,$2表示脚本运行时的输入参数，$0表示脚本名称<h2 id="1-5_if逻辑判断">1.5 if逻辑判断</h2></li>
-<li>if语句的格式 </li>
-<li>if判断的几种用法：</li>
-<li><h2 id="1-7_case选择">1.7 case选择</h2></li>
-<li>格式：case “$1” in<br> 1)<h2 id="1-8_for循环">1.8 for循环</h2></li>
-<li>`for i in [1..10]<br> do<pre><code>echo <span class="variable">$1</span>
-</code></pre> done`<h2 id="1-9_while循环">1.9 while循环</h2></li>
-<li><code>while [ $n -le 10 ]
-do 
- date +%T    
- sleep()
-donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环关键词</h2></li>
-<li>break ，退出整个循环</li>
-<li>continue，继续下次循环<h2 id="2-1_shell函数">2.1 shell函数</h2><h2 id="2-2_shell数组">2.2 shell数组</h2></li>
-<li></li>
+            <h2 id="1-1_nfs部署和优化-1">1.1 nfs部署和优化-1</h2><ol>
+<li>NFS==network file system 网络文件系统 //可以在网络上共享文件，远程访问；也用来备份文件系统</li>
+<li>yum install nfs-utils rpcbind //安装nfs和通信工具rpcbind</li>
+<li><p>安装完成后打开配置文件：/etc/exports 在里面输入:</p>
+<p> /mnt 192.168.11.20(rw,sync)  //这将共享文件远程ip&lt;可以是网段192.168.11.0/24&gt;（rw表示可读可写，ro表示只读，sync表示同步）</p>
+</li>
+<li>然后启动rpcbind ：/etc/init.d/rpcbind start</li>
+<li>然后启动nfs：/etc/init.d/nfs start</li>
+<li>远程客户端(192.168.11.20)需要安装nfs-utils：yum install nfs-utils</li>
+<li>客户端运行showmount -e 192.168.11.160 将显示服务端共享出来的文件</li>
+<li>在客户端挂载远程文件：mount -t nfs 192.168.11.160:/mnt /opt</li>
+<li>df -h 将显示已经挂载了远程的nfs文件系统，远程客户端需要能访问服务端文件系统，需要可读可写</li>
+</ol>
+<a id="more"></a>
+<h2 id="1-2_nfs部署和优化-2">1.2 nfs部署和优化-2</h2><ol>
+<li>在客户端创建文件将以nfsnobody用户名和同名用户组来创建</li>
+<li><p>编辑配置文件：/etc/exports 在里面输入</p>
+<p> /mnt 192.168.11.20(rw,sync,all_squash,anonuid=501,anongid=501)  //这将共享文件(rw表示可读可写，ro表示只读，sync表示同步，并将远程用户映射为501用户）</p>
+</li>
+<li>服务端重新加载配置文件：exportfs -arv</li>
+<li>客户端重新挂载；mount -t nfs -onolock,nfsvers=3 192.168.11.160:/mnt /opt //不加锁，指定版本为3，默认为4版本，与centos有不兼容现象</li>
+<li>将把客户端映射的用户映射为指定用户501</li>
+<li><p>如果不限定root。编辑配置文件：/etc/exports 在里面输入</p>
+<p> /mnt 192.168.11.20(rw,sync,no_root_squash)//将不限定root用户在客户端的操作，不会映射到501 </p>
+</li>
+</ol>
+<h2 id="1-3_pureftp部署和优化">1.3 pureftp部署和优化</h2><ol>
+<li>ftp是一种文件传输协议，pureftp是一种linux下的ftp软件</li>
+<li>www.pureftpd.org是它的官网，可以在上面下载软件</li>
+<li>下载后编译安装可以参考文档：<a href="http://www.apelearn.com/study_v2/chapter21.html" target="_blank" rel="external">第21章 配置FTP服务</a></li>
+<li>配置：创建配置文件存放目录：mkdir -p /usr/local/pureftpd/etc</li>
+<li>将配置文件拷贝过去，需要编辑修改</li>
+<li>不能映射uid小于100的用户</li>
+</ol>
+<h2 id="1-4_pureftpd部署和优化2">1.4 pureftpd部署和优化2</h2><ol>
+<li>查看ftp的进程：ps aux | grep pure</li>
+<li>查看监听端口：netstat -lnp</li>
+<li>登陆ftp服务器：lftp命令：yum install lftp</li>
+<li>lftp ftp@192.168.11.160 //输入密码将登陆到ftp服务器</li>
+<li>下载文件用get file</li>
+<li>上传文件用put file</li>
+<li>ftp ip //ftp命令也能登陆ftp服务器</li>
+</ol>
+<h2 id="1-5_vsftp部署与优化">1.5 vsftp部署与优化</h2><ol>
+<li>centos自带的vsftp软件：yum install -y vsftpd</li>
+<li>启动：/etc/init.d/vsftpd start</li>
+<li>所有的ftp服务使用21端口，所以要防止端口冲突</li>
+<li>登录lftp user3@192.168.11.160</li>
+<li>但是这样登录会进入任何系统目录，需要配置虚拟用户来映射一下。</li>
+<li>可以编辑配置文件：/etc/vsftpd/vsftpd.conf.编辑：chroot local_user=YES</li>
+</ol>
+<h2 id="1-6_vsftp部署与优化2">1.6 vsftp部署与优化2</h2><ol>
+<li>配置虚拟用户：创建一个用户：useradd virftp -s /sbin/nologin</li>
+<li>vim /etc/vsftpd/vsftpd_login //加入test1 password test2 password</li>
+<li>chmod 600 /etc/vsftpd/vdftpd_login</li>
+<li>要将vsftpd生成一个库文件：db_load -T -t hash -f  /etc/vsftpd/vsftpd_login /etc/vsftpd/vsftpd_login.db</li>
+<li>mkdir /etc/vsftpd/vsftpd_user_conf //创建虚拟用户配置文件存放目录：在vsftpd_user_conf下新建配置文件：test1<br>内容参考：</li>
+<li>mkdir /home/virftp/test1</li>
+<li>chown -R virftp:virftp !$</li>
+<li>配置认证文件vim /etc/pam.d/vsftpd</li>
+<li>在内容中添加两行：<br>auth sufficient /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login<br>acount sufficient /lib/security/pam_userdb.so db=/etc/vsftdpd/vsftpd_login</li>
+<li>注意系统是否是32位，如果是64位会 在目录/lib64/security/pam_userdb.so</li>
+<li>vim ftpd.conf //配置本地用户是否可登陆，匿名用户是否可登陆等，匿名用户是否可上传等等配置。添加guest_enable=YES</li>
+<li>登陆：lftp test1@127.0.0.1</li>
+<li>参考</li>
+</ol>
+<h2 id="1-7_samba部署和优化">1.7 samba部署和优化</h2><ol>
+<li>samba用来共享出来一个文件给其他机器使用</li>
+<li>yum install samba //安装samba</li>
+<li>同一个工作组中可以在网上邻居看到别人共享的文件</li>
+</ol>
+<h2 id="2-0_squid服务介绍">2.0 squid服务介绍</h2><ol>
+<li>squid可以做代理服务器，CDN加速是可以加速访问的，也可以用squid实现</li>
+<li>正向代理是用户通过代理服务访问其他服务器，这个代理服务是需要用户客户端来设置的，用户知道自己的访问通过了代理服务器。</li>
+<li>反向代理是从用户可以访问的服务器来访问后端的服务器。网站提供商用反向代理服务器来充当后端服务器的外层出入口。反向代理用户不知道访问的是代理服务器</li>
+</ol>
+<h2 id="2-1_squid正向代理">2.1 squid正向代理</h2><ol>
+<li>安装yum install squid;</li>
+<li>修改配置文件：/etc/squid/squid.conf //打开cache_dir 打开缓存，这样可以缓存文件，减少网络占用；也可以修改端口</li>
+<li>增加cache_mem 128MB //使用128M内存</li>
+<li>增加refresh_patthern .(jpg|png|js|css|mp3|mp4) 1440 缓存的文件类型，时间，百分比等，忽略重新加载等。</li>
+<li>启动：/etc/init.d/squid start //它会做初始化配置</li>
+<li>如果有问题，查看日志/var/log/squid/cache.log</li>
+<li>squid默认监听端口是3128</li>
+<li>在IE的Internet选项中添加代理服务器，使用代理服务</li>
+<li>curl -x127.0.0.1：3128 www.baidu.com -I //这样用curl访问相应端口，就能代理访问</li>
+<li>如何控制代理上网的范围呢？配置文件中的acl就是控制的（添加黑白名单）：<br>acl http proto HTTP<br>acl good_domain dstdomain .baidu.com .sina.com<br>http_access allow good_domain//运行上网<br>http-access deny !good_domin//不允许上网</li>
+<li>检查配置文件：squid -kcheck </li>
+<li>重新启动就可以限制可以访问的网站了</li>
+</ol>
+<h2 id="2-1_squid反向代理">2.1 squid反向代理</h2><ol>
+<li>编辑配置文件：http_port 80 accel vhost vport<br>cache_peer 61.135.169.125 parent 80 0 originserver name=a//百度的服务器地址和端口<br>cache_peer_domain a www.baidu.com//代理百度的域名<br>//可以多添加后两行来代理多个网站</li>
+<li>重新启动：squid -kre </li>
+<li>测试：curl -x127.0.0.1:80 www.qq.com -I</li>
 </ol>
 
             
@@ -301,7 +365,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/shell/">shell</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/linux-squid/">linux,squid</a>
 
             </div>
         
@@ -310,7 +374,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/30/LAMP架构搭建与优化/"  data-tooltip="LAMP架构搭建与优化">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -318,7 +382,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/30/LNMP架构搭建与优化/" data-tooltip="LNMP架构搭建与优化">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -333,17 +397,17 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -373,7 +437,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2015 James Yang. All Rights Reserved.
+        Copyrights &copy; 2016 James Yang. All Rights Reserved.
     </span>
 </footer>
 
@@ -385,7 +449,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/30/LAMP架构搭建与优化/"  data-tooltip="LAMP架构搭建与优化">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -393,7 +457,7 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/12/30/LNMP架构搭建与优化/" data-tooltip="LNMP架构搭建与优化">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -408,17 +472,17 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -444,17 +508,17 @@ donw</code><h2 id="2-0_shell中控制循环关键词">2.0 shell中控制循环�
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2015/11/30/Shell编程进阶/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/01/26/linux常用服务部署与优化-文件和代理服务/">
                 <i class="fa fa-twitter"></i><span>Share on Twitter</span>
             </a>
         </li>
