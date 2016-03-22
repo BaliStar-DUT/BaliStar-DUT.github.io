@@ -223,6 +223,52 @@
 <section class="postShorten-group main-content-wrap">
     
         
+        <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2016/03/22/java多线程/">java多线程</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Tue Mar 22 2016 18:44:25 GMT+0800">
+	
+		    Mar 22, 2016
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Java/">Java</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-content" itemprop="articleBody">
+                        <p>java线程的正确停止方法<br>Thread.sleep()方法能让当前线程停止，让出cpu，等到时间结束，根据菜谱分配时间片来决定是否获得cpu运行<br>Thread.join()方法会让该线程在调用这个方法后完全结束才进行主线程的下一步<br>停止线程的错误方法：不能使用stop()方法，会使线程不知道什么时候停止。后续java已经将该方法设为不建议使用。<br>停止线程的错误方法：interrupt()方法的初衷不是用来停止线程，而是中断线程，为线程设置中断状态，当线程被其他方法阻塞时，中断状态将被清除，并抛出InterruptedException异常，故sleep()等方法都需要捕获该异常。<br>正确停止线程的方法是设置停止标志：例如设置boolean标志位，在其他线程中设置标志位，当线程再次读取标志位后可以正常退出。<br>isInterrupted()方法能检查线程是否被设置了中断，可以用来作为停止标志位来停止线程。<br>建议使用设置标志位的方法来停止线程。<br>线程交互：<br>争用条件（Race Conditon）：线程会对资源进行争用，如果不设置锁，则资源会被多个线程操作。当多个线程同时共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏，这种现象称为争用条件。<br>互斥与同步：互斥就是同时只有一个线程访问一个资源。同步就是线程以某种方式通知其他线程。<br>synchronized关键字可以实现互斥，可以对一个对象进行synchronized关键字设置，就相当于给该对象加上了互斥锁。</p>
+
+                        
+                            
+
+                        
+                        
+                            <p>
+                                <a href="/2016/03/22/java多线程/#post-footer" class="postShorten-excerpt_link link">
+                                    Comment and share
+                                </a>
+                            </p>
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
         <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
             <div class="postShorten-wrap">
                 <div class="postShorten-header">
@@ -249,7 +295,7 @@
                 
                 
                     <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h2 id="问题描述：">问题描述：</h2><p>移动硬盘分配空间如下(其中sdb1,sdb3,sdb4为主分区，sdb5、6/7为逻辑分区)：<br><code>sdb      8:16   0 465.7G  0 disk<br>├─sdb1   8:17   0  18.7G  0 part /<br>├─sdb2   8:18   0     1K  0 part<br>├─sdb3   8:19   0    78G  0 part /media/james/My Documentes<br>├─sdb4   8:20   0 319.2G  0 part /media/james/UUI<br>├─sdb5   8:21   0  10.9G  0 part<br>├─sdb6   8:22   0   7.8G  0 part /media/james/mint<br>└─sdb7   8:23   0  31.2G  0 part /media/james/home</code><br>
+                        <h2 id="问题描述：">问题描述：</h2><p>移动硬盘分配空间如下(其中sdb1,sdb3,sdb4为主分区，sdb5、6、7为逻辑分区)：<br><code>sdb      8:16   0 465.7G  0 disk<br>├─sdb1   8:17   0  18.7G  0 part /<br>├─sdb2   8:18   0     1K  0 part<br>├─sdb3   8:19   0    78G  0 part /media/james/My Documentes<br>├─sdb4   8:20   0 319.2G  0 part /media/james/UUI<br>├─sdb5   8:21   0  10.9G  0 part<br>├─sdb6   8:22   0   7.8G  0 part /media/james/mint<br>└─sdb7   8:23   0  31.2G  0 part /media/james/home</code><br>
                         
                             <a href="/2016/01/30/Linux磁盘相关-分区与修复/" class="postShorten-excerpt_link link">
                                 Continue reading
@@ -388,46 +434,6 @@
 <h2 id="2-_连接数据库">2. 连接数据库</h2><p>mysql -uroot -p -h192.168.137.10 -P3306<br>
                         
                             <a href="/2015/12/23/Mysql简单操作/" class="postShorten-excerpt_link link">
-                                Continue reading
-                            </a>
-                            
-                        
-                    </div>
-                
-            </div>
-            
-        </article>
-    
-        
-        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2015/12/18/mysql常见问题/">Mysql常见问题</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Fri Dec 18 2015 14:44:38 GMT+0800">
-	
-		    Dec 18, 2015
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Mysql/">Mysql</a>
-
-
-    
-</div>
-                </div>
-                
-                
-                    <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h3 id="1-_MYSQL导入导出-sql文件">1. MYSQL导入导出.sql文件</h3><p>(1)将数据库mydb导出到mydb.sql文件<br># mysqldump -u root -p mydb &gt; mydb.mysql<br>(2)将数据库mydb中的表mytable导出到mytable.sql文件中<br># mysqldump -u root -p mydb mytable &gt; mytable.sql<br>(3)将数据库mydb的结构导出到mydb_stru.sql文件中<br># mysqldump -u root -p mydb –add-drop-table &gt; mydb.mysql<br>(4)将mydb.mysql文件导入到数据库中(首先mydb需要存在)<br>#mysql -h localhost -u root -p mydb &lt; e:\mysql\mydb.sql</p>
-                        
-                            <a href="/2015/12/18/mysql常见问题/" class="postShorten-excerpt_link link">
                                 Continue reading
                             </a>
                             

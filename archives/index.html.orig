@@ -228,6 +228,98 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
+                                <a class="link-unstyled" href="/2016/01/30/Linux磁盘相关-分区与修复/">Linux磁盘相关-分区与修复</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Sat Jan 30 2016 17:05:34 GMT+0800">
+	
+		    Jan 30, 2016
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/linux/">linux</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="问题描述：">问题描述：</h2><p>移动硬盘分配空间如下(其中sdb1,sdb3,sdb4为主分区，sdb5、6/7为逻辑分区)：<br><code>sdb      8:16   0 465.7G  0 disk<br>├─sdb1   8:17   0  18.7G  0 part /<br>├─sdb2   8:18   0     1K  0 part<br>├─sdb3   8:19   0    78G  0 part /media/james/My Documentes<br>├─sdb4   8:20   0 319.2G  0 part /media/james/UUI<br>├─sdb5   8:21   0  10.9G  0 part<br>├─sdb6   8:22   0   7.8G  0 part /media/james/mint<br>└─sdb7   8:23   0  31.2G  0 part /media/james/home</code><br>
+                        
+                            <a href="/2016/01/30/Linux磁盘相关-分区与修复/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2016/01/26/linux常用服务部署与优化-文件和代理服务/">linux常用服务部署与优化-文件和代理服务</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Tue Jan 26 2016 10:51:13 GMT+0800">
+	
+		    Jan 26, 2016
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/linux/">linux</a>
+
+
+    
+</div>
+                </div>
+                
+                
+                    <div class="postShorten-excerpt" itemprop="articleBody">
+                        <h2 id="1-1_nfs部署和优化-1">1.1 nfs部署和优化-1</h2><ol>
+<li>NFS==network file system 网络文件系统 //可以在网络上共享文件，远程访问；也用来备份文件系统</li>
+<li>yum install nfs-utils rpcbind //安装nfs和通信工具rpcbind</li>
+<li><p>安装完成后打开配置文件：/etc/exports 在里面输入:</p>
+<p> /mnt 192.168.11.20(rw,sync)  //这将共享文件远程ip&lt;可以是网段192.168.11.0/24&gt;（rw表示可读可写，ro表示只读，sync表示同步）</p>
+</li>
+<li>然后启动rpcbind ：/etc/init.d/rpcbind start</li>
+<li>然后启动nfs：/etc/init.d/nfs start</li>
+<li>远程客户端(192.168.11.20)需要安装nfs-utils：yum install nfs-utils</li>
+<li>客户端运行showmount -e 192.168.11.160 将显示服务端共享出来的文件</li>
+<li>在客户端挂载远程文件：mount -t nfs 192.168.11.160:/mnt /opt</li>
+<li>df -h 将显示已经挂载了远程的nfs文件系统，远程客户端需要能访问服务端文件系统，需要可读可写</li>
+</ol>
+                        
+                            <a href="/2016/01/26/linux常用服务部署与优化-文件和代理服务/" class="postShorten-excerpt_link link">
+                                Continue reading
+                            </a>
+                            
+                        
+                    </div>
+                
+            </div>
+            
+        </article>
+    
+        
+        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
                                 <a class="link-unstyled" href="/2015/12/30/LNMP架构搭建与优化/">LNMP架构搭建与优化</a>
                         
                     </h1>
@@ -249,7 +341,7 @@
                 
                 
                     <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h2 id="1-0_安装Mysql">1.0 安装Mysql</h2><ol>
+                        <h3 id="1-0_安装Mysql">1.0 安装Mysql</h3><ol>
 <li>安装Mysql二进制免编译包</li>
 <li>下载：mysql到/usr/local/src/<br>cd /usr/local/src/<br>wget <a href="http://syslab.comsenz.com/downloads/linux/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz">http://syslab.comsenz.com/downloads/linux/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz</a></li>
 <li>解压：<br>tar zxvf /usr/local/src/mysql-5.1.40-linux-i686-icc-glibc23.tar.gz<br>mv mysql-5.1.40-linux-i686-icc-glibc23 /usr/local/mysql
@@ -346,89 +438,6 @@
             
         </article>
     
-        
-        <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2015/12/10/hello-world/">Hello World</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Thu Dec 10 2015 12:45:59 GMT+0800">
-	
-		    Dec 10, 2015
-    	
-    </time>
-    
-</div>
-                </div>
-                
-                
-                    <div class="postShorten-excerpt" itemprop="articleBody">
-                        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
-                        
-                            <a href="/2015/12/10/hello-world/" class="postShorten-excerpt_link link">
-                                Continue reading
-                            </a>
-                            
-                        
-                    </div>
-                
-            </div>
-            
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://balistardut.github.io/2015/12/10/hello-world/head.png"/>
-                </div>
-                
-            
-        </article>
-    
-        
-        <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2015/11/30/java-web之JSP/">java web之JSP</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Mon Nov 30 2015 18:06:54 GMT+0800">
-	
-		    Nov 30, 2015
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Diary/">Diary</a>
-
-
-    
-</div>
-                </div>
-                
-                
-                    <div class="postShorten-excerpt" itemprop="articleBody">
-                        <h1 id="一-_JSP内置对象">一. JSP内置对象</h1><h2 id="1-1_response对象">1.1 response对象</h2><p>它是HttpServletResponse类的实例。常用方法有：</p>
-<ol>
-<li>String getCharacterEncoding()//返回响应用的是何种字符编码</li>
-<li>void setContentType(String type) //返回响应的MIME类型</li>
-<li><p>PrintWriter getWriter() //返回可以向客户端输出字符的对象（注意：PrintWriter与内置out对象的区别,PrintWriter类型的对象会先于out对象输出到浏览器，因为out有一个缓存，不满就不会调用flush方法清空缓存，所以会后面输出，但是可以提前调用flush来提前刷新缓存）</p>
-                        
-                            <a href="/2015/11/30/java-web之JSP/" class="postShorten-excerpt_link link">
-                                Continue reading
-                            </a>
-                            
-                        
-                    </div>
-                
-            </div>
-            
-        </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -450,7 +459,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2015 James Yang. All Rights Reserved.
+        Copyrights &copy; 2016 James Yang. All Rights Reserved.
     </span>
 </footer>
 

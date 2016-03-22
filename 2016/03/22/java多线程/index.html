@@ -6,22 +6,22 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="James&#39; blog">
-    <title>Tags - James&#39; blog</title>
+    <title>java多线程 - James&#39; blog</title>
     <meta name="author" content="James Yang">
     
         <link rel="icon" href="/assets/images/favicon.ico">
     
     
-    <meta name="description">
+    <meta name="description" content="java线程的正确停止方法Thread.sleep()方法能让当前线程停止，让出cpu，等到时间结束，根据菜谱分配时间片来决定是否获得cpu运行Thread.join()方法会让该线程在调用这个方法后完全结束才进行主线程的下一步停止线程的错误方法：不能使用stop()方法，会使线程不知道什么时候停止。后续java已经将该方法设为不建议使用。停止线程的错误方法：interrupt()方法的初衷不是用">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="http://balistardut.github.io/tags/index.html">
+<meta property="og:title" content="java多线程">
+<meta property="og:url" content="http://balistardut.github.io/2016/03/22/java多线程/index.html">
 <meta property="og:site_name" content="James' blog">
-<meta property="og:description">
-<meta property="og:updated_time" content="2015-11-30T08:28:48.182Z">
+<meta property="og:description" content="java线程的正确停止方法Thread.sleep()方法能让当前线程停止，让出cpu，等到时间结束，根据菜谱分配时间片来决定是否获得cpu运行Thread.join()方法会让该线程在调用这个方法后完全结束才进行主线程的下一步停止线程的错误方法：不能使用stop()方法，会使线程不知道什么时候停止。后续java已经将该方法设为不建议使用。停止线程的错误方法：interrupt()方法的初衷不是用">
+<meta property="og:updated_time" content="2016-03-22T10:46:21.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
-<meta name="twitter:description">
+<meta name="twitter:title" content="java多线程">
+<meta name="twitter:description" content="java线程的正确停止方法Thread.sleep()方法能让当前线程停止，让出cpu，等到时间结束，根据菜谱分配时间片来决定是否获得cpu运行Thread.join()方法会让该线程在调用这个方法后完全结束才进行主线程的下一步停止线程的错误方法：不能使用stop()方法，会使线程不知道什么时候停止。后续java已经将该方法设为不建议使用。停止线程的错误方法：interrupt()方法的初衷不是用">
 <meta name="twitter:creator" content="@Libra">
     
     
@@ -42,7 +42,7 @@
             <!-- Define author's picture -->
 
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="3">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <h1 class="header-title">
         <a class="header-title-link" href="/ ">James&#39; blog</a>
@@ -66,7 +66,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="3">
     
         <div class="sidebar-profile">
             <a href="/#about">
@@ -214,7 +214,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="3"
                  class="
                         hasCoverMetaIn
                         ">
@@ -225,22 +225,29 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Tags
+            java多线程
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Mon Nov 30 2015 16:56:37 GMT+0800">
+    <time itemprop="datePublished" content="Tue Mar 22 2016 18:44:25 GMT+0800">
 	
-		    Nov 30, 2015
+		    Mar 22, 2016
     	
     </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Java/">Java</a>
+
+
     
 </div>
 </div>
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            
+            <p>java线程的正确停止方法<br>Thread.sleep()方法能让当前线程停止，让出cpu，等到时间结束，根据菜谱分配时间片来决定是否获得cpu运行<br>Thread.join()方法会让该线程在调用这个方法后完全结束才进行主线程的下一步<br>停止线程的错误方法：不能使用stop()方法，会使线程不知道什么时候停止。后续java已经将该方法设为不建议使用。<br>停止线程的错误方法：interrupt()方法的初衷不是用来停止线程，而是中断线程，为线程设置中断状态，当线程被其他方法阻塞时，中断状态将被清除，并抛出InterruptedException异常，故sleep()等方法都需要捕获该异常。<br>正确停止线程的方法是设置停止标志：例如设置boolean标志位，在其他线程中设置标志位，当线程再次读取标志位后可以正常退出。<br>isInterrupted()方法能检查线程是否被设置了中断，可以用来作为停止标志位来停止线程。<br>建议使用设置标志位的方法来停止线程。<br>线程交互：<br>争用条件（Race Conditon）：线程会对资源进行争用，如果不设置锁，则资源会被多个线程操作。当多个线程同时共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏，这种现象称为争用条件。<br>互斥与同步：互斥就是同时只有一个线程访问一个资源。同步就是线程以某种方式通知其他线程。<br>synchronized关键字可以实现互斥，可以对一个对象进行synchronized关键字设置，就相当于给该对象加上了互斥锁。</p>
+
             
                 
 
@@ -248,6 +255,13 @@
         </div>
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/java/">java</a>
+
+            </div>
         
         <div class="post-actions-wrap">
     <nav>
@@ -262,7 +276,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/30/Linux磁盘相关-分区与修复/" data-tooltip="Linux磁盘相关-分区与修复">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -277,17 +291,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/tags/index.html">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/03/22/java多线程/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/tags/index.html">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/03/22/java多线程/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/tags/index.html">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/03/22/java多线程/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -322,6 +336,89 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/30/Linux磁盘相关-分区与修复/" data-tooltip="Linux磁盘相关-分区与修复">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://balistardut.github.io/2016/03/22/java多线程/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
             
         </div>
         <!-- Define author's picture -->
